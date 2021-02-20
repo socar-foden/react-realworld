@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve --config ./webpack.config.dev.js"
+    "dev": "webpack serve --config ./webpack.config.dev.js",
+    "build": "webpack build --config ./webpack.config.prod.js",
+    "start": "node ./server.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,8 @@
   },
   "homepage": "https://github.com/zxczoxc125/react-realworld#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
