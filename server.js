@@ -9,5 +9,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-  console.log("✅ Server is running on http://localhost");
+  console.log("✅ Server is running on [ http://localhost ]");
 });
