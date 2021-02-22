@@ -6,8 +6,8 @@ import LoginForm from "./LoginForm";
 describe("[LoginForm]", () => {
   it("id, password input이 존재", () => {
     const { unmount, getByRole } = render(<LoginForm />);
-    expect(getByRole("input", { name: 'email' })).toBeInTheDocument();
-    expect(getByRole("input", { name: 'password' })).toBeInTheDocument();
+    expect(getByRole("input", { name: "email" })).toBeInTheDocument();
+    expect(getByRole("input", { name: "password" })).toBeInTheDocument();
     unmount();
   });
 });
