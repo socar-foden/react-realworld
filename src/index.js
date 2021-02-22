@@ -4,7 +4,11 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import axios from "axios";
 import App from "./components/App";
+
+axios.defaults.baseURL =
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "????";
 
 const middleware = [];
 const reducer = (state = {}, action) => {
