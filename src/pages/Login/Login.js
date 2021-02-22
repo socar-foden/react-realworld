@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "../../components/LoginForm/LoginForm";
+import SignInForm from "../../components/SignInForm/SignInForm";
 import useStyles from "./Login.style";
 
 const Login = () => {
@@ -7,7 +7,7 @@ const Login = () => {
 
   return (
     <div className={classes.root}>
-      <LoginForm />
+      <SignInForm />
     </div>
   );
 };

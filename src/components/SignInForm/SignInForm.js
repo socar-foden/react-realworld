@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, TextField } from "@material-ui/core";
-import useStyles from "./LoginForm.style";
+import useStyles from "./SignInForm.style";
 
-const LoginForm = () => {
+const SignInForm = () => {
   const classes = useStyles();
 
   return (
@@ -44,4 +44,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignInForm;
