@@ -1,9 +1,15 @@
 import React from "react";
 import { Button, TextField } from "@material-ui/core";
+import { useHistory } from "react-router";
 import useStyles from "./SignUpForm.style";
 
 const SignUpForm = () => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleClickCancel = () => {
+    history.push("/");
+  };
 
   return (
     <form className={classes.root}>
@@ -56,6 +62,7 @@ const SignUpForm = () => {
           className={classes.margin}
           variant="contained"
           aria-label="cancel"
+          onClick={handleClickCancel}
         >
           Cancel
         </Button>
