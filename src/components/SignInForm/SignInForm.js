@@ -1,9 +1,15 @@
 import React from "react";
 import { Button, TextField } from "@material-ui/core";
+import { useHistory } from "react-router";
 import useStyles from "./SignInForm.style";
 
 const SignInForm = () => {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleClickSignUp = () => {
+    history.push("sign-up");
+  };
 
   return (
     <form className={classes.root}>
@@ -14,6 +20,7 @@ const SignInForm = () => {
         role="input"
         label="E-mail"
         required
+        fullWidth
       />
       <TextField
         className={classes.margin}
@@ -22,24 +29,28 @@ const SignInForm = () => {
         role="input"
         label="Password"
         required
+        fullWidth
       />
-      <Button
-        className={classes.margin}
-        type="submit"
-        variant="contained"
-        color="primary"
-        aria-label="sign-in"
-      >
-        Sign in
-      </Button>
-      <Button
-        className={classes.margin}
-        variant="contained"
-        color="secondary"
-        aria-label="sign-up"
-      >
-        Sign up
-      </Button>
+      <div>
+        <Button
+          className={classes.margin}
+          type="submit"
+          variant="contained"
+          color="primary"
+          aria-label="sign-in"
+        >
+          Sign in
+        </Button>
+        <Button
+          className={classes.margin}
+          variant="contained"
+          color="secondary"
+          aria-label="sign-up"
+          onClick={handleClickSignUp}
+        >
+          Sign up
+        </Button>
+      </div>
     </form>
   );
 };
