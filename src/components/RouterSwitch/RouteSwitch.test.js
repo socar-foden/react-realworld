@@ -6,7 +6,7 @@ import { createMemoryHistory } from "history";
 import App from "../App";
 
 describe("[RouterSwitch]", () => {
-  it("라우팅 테스트", () => {
+  it("/로 접근시 Login 페이지 노출", () => {
     const history = createMemoryHistory();
     const { getByRole, unmount } = render(
       <Router history={history}>
