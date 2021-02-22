@@ -33,7 +33,6 @@ const SignInForm = () => {
       </Button>
       <Button
         className={classes.margin}
-        type="submit"
         variant="contained"
         color="secondary"
         aria-label="sign-up"
