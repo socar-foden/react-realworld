@@ -8,7 +8,7 @@ const SignInForm = () => {
   const history = useHistory();
 
   const handleClickSignUp = () => {
-    history.push("sign-up");
+    history.push("/sign-up");
   };
 
   return (
