@@ -10,6 +10,7 @@ const SignInForm = () => {
       <TextField
         className={classes.margin}
         aria-label="e-mail"
+        type="email"
         role="input"
         label="E-mail"
         required
