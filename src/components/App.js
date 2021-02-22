@@ -1,8 +1,8 @@
 import React from "react";
-import LoginForm from "./LoginForm/LoginForm";
+import RouterSwitch from "./RouterSwitch/RouteSwitch";
 
 const App = () => {
-  return <LoginForm />;
+  return <RouterSwitch />;
 };
 
 export default App;
