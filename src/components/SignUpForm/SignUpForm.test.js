@@ -7,18 +7,20 @@ import { createMemoryHistory } from "history";
 import SignUpForm from "./SignUpForm";
 
 describe("[SignUpForm]", () => {
-  it("UI 테스트", () => {
-    const { getByRole, unmount } = render(<SignUpForm />);
+  describe("UI 테스트", () => {
+    it("폼 구성요소 테스트", () => {
+      const { getByRole, unmount } = render(<SignUpForm />);
 
-    expect(getByRole("input", { name: "username" })).toBeInTheDocument();
-    expect(getByRole("input", { name: "e-mail" })).toBeInTheDocument();
-    expect(getByRole("input", { name: "password" })).toBeInTheDocument();
-    expect(
-      getByRole("input", { name: "password-confirm" })
-    ).toBeInTheDocument();
-    expect(getByRole("button", { name: "sign-up" })).toBeInTheDocument();
-    expect(getByRole("button", { name: "cancel" })).toBeInTheDocument();
-    unmount();
+      expect(getByRole("input", { name: "username" })).toBeInTheDocument();
+      expect(getByRole("input", { name: "e-mail" })).toBeInTheDocument();
+      expect(getByRole("input", { name: "password" })).toBeInTheDocument();
+      expect(
+        getByRole("input", { name: "password-confirm" })
+      ).toBeInTheDocument();
+      expect(getByRole("button", { name: "sign-up" })).toBeInTheDocument();
+      expect(getByRole("button", { name: "cancel" })).toBeInTheDocument();
+      unmount();
+    });
   });
 
   describe("UX 테스트", () => {
