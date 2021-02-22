@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import SignInForm from "./SignInForm";
 
 describe("[SignInForm]", () => {
-  it("id, password input이 존재", () => {
+  it("UI 테스트", () => {
     const { unmount, getByRole } = render(<SignInForm />);
     expect(getByRole("input", { name: "e-mail" })).toBeInTheDocument();
     expect(getByRole("input", { name: "password" })).toBeInTheDocument();
