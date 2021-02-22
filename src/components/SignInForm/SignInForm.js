@@ -21,6 +21,7 @@ const SignInForm = () => {
         label="E-mail"
         required
         fullWidth
+        autoFocus
       />
       <TextField
         className={classes.margin}
