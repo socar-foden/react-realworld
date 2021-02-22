@@ -1,8 +1,8 @@
 import React from "react";
 import SignInForm from "../../components/SignInForm/SignInForm";
-import useStyles from "./Login.style";
+import useStyles from "./SignIn.style";
 
-const Login = () => {
+const SignIn = () => {
   const classes = useStyles();
 
   return (
@@ -12,4 +12,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;
