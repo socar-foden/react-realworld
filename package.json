@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --config ./webpack.config.dev.js",
-    "test": "jest --passWithNoTests --watchAll --coverage",
+    "test": "jest --passWithNoTests --watchAll --coverage --verbose",
     "build": "webpack build --config ./webpack.config.prod.js",
     "start": "npm run build && cross-env NODE_ENV=production node ./server.js"
   },
