@@ -6,22 +6,15 @@ import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import axios from "axios";
 import App from "./components/App";
+import rootReducer from "./reducers/rootReducer";
 
 axios.defaults.baseURL =
   process.env.NODE_ENV === "development" ? "http://localhost:3000" : "????";
 
 const middleware = [];
-const reducer = (state = {}, action) => {
-  switch (action.type) {
-    case "TEST":
-      return { ...state };
-    default:
-      return { ...state };
-  }
-};
 
 const store = createStore(
-  reducer,
+  rootReducer,
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
