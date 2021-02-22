@@ -16,6 +16,7 @@ describe("[RouterSwitch]", () => {
 
     expect(getByRole("input", { name: "email" })).toBeInTheDocument();
     expect(getByRole("input", { name: "password" })).toBeInTheDocument();
+    expect(getByRole("button", { name: "submit" })).toBeInTheDocument();
     unmount();
   });
 });

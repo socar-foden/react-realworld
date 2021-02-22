@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 
 const LoginForm = () => {
   return (
@@ -12,6 +12,9 @@ const LoginForm = () => {
         label="password"
         required
       />
+      <Button variant="contained" color="primary" aria-label="submit">
+        Login
+      </Button>
     </form>
   );
 };
