@@ -4,11 +4,7 @@ const theme = createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       "@global": {
-        html: {
-          width: "100%",
-          height: "100%",
-        },
-        body: {
+        "html, body, #root": {
           width: "100%",
           height: "100%",
         },
