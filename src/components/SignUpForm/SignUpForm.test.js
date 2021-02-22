@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import { Router } from "react-router";
@@ -8,36 +8,48 @@ import SignUpForm from "./SignUpForm";
 
 describe("[SignUpForm]", () => {
   describe("UI 테스트", () => {
-    it("폼 구성요소 테스트", () => {
-      const { getByRole, unmount } = render(<SignUpForm />);
+    beforeEach(() => {
+      render(<SignUpForm />);
+    });
 
-      expect(getByRole("input", { name: "username" })).toBeInTheDocument();
-      expect(getByRole("input", { name: "e-mail" })).toBeInTheDocument();
-      expect(getByRole("input", { name: "password" })).toBeInTheDocument();
+    it("폼 구성요소 테스트", () => {
       expect(
-        getByRole("input", { name: "password-confirm" })
+        screen.getByRole("input", { name: "username" })
       ).toBeInTheDocument();
-      expect(getByRole("button", { name: "sign-up" })).toBeInTheDocument();
-      expect(getByRole("button", { name: "cancel" })).toBeInTheDocument();
-      unmount();
+      expect(screen.getByRole("input", { name: "e-mail" })).toBeInTheDocument();
+      expect(
+        screen.getByRole("input", { name: "password" })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("input", { name: "password-confirm" })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: "sign-up" })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: "cancel" })
+      ).toBeInTheDocument();
     });
   });
 
   describe("UX 테스트", () => {
-    it("CANCEL 버튼 클릭시 /로 이동", () => {
-      const history = createMemoryHistory();
+    let history;
+
+    beforeEach(() => {
+      history = createMemoryHistory();
       const route = "/sign-in";
       history.push(route);
 
-      const { getByRole, unmount } = render(
+      render(
         <Router history={history}>
           <SignUpForm />
         </Router>
       );
+    });
 
-      userEvent.click(getByRole("button", { name: "cancel" }));
+    it("CANCEL 버튼 클릭시 /로 이동", () => {
+      userEvent.click(screen.getByRole("button", { name: "cancel" }));
       expect(history.location.pathname).toBe("/");
-      unmount();
     });
   });
 });
