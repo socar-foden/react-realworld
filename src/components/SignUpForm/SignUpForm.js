@@ -15,18 +15,19 @@ const SignUpForm = () => {
     <form className={classes.root}>
       <TextField
         className={classes.margin}
-        aria-label="username"
-        role="input"
-        label="Username"
-        required
-        fullWidth
-      />
-      <TextField
-        className={classes.margin}
         aria-label="e-mail"
         type="email"
         role="input"
         label="E-mail"
+        required
+        fullWidth
+        autoFocus
+      />
+      <TextField
+        className={classes.margin}
+        aria-label="username"
+        role="input"
+        label="Username"
         required
         fullWidth
       />

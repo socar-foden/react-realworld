@@ -37,7 +37,7 @@ describe("[SignUpForm]", () => {
 
     beforeEach(() => {
       history = createMemoryHistory();
-      const route = "/sign-in";
+      const route = "/sign-up";
       history.push(route);
 
       render(
@@ -45,6 +45,12 @@ describe("[SignUpForm]", () => {
           <SignUpForm />
         </Router>
       );
+    });
+
+    it("최초 렌더링시 email 인풋에 포커싱", () => {
+      expect(
+        screen.getByRole("input", { name: "e-mail" }).lastChild.lastChild
+      ).toHaveFocus();
     });
 
     it("CANCEL 버튼 클릭시 /로 이동", () => {
