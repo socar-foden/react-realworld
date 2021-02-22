@@ -14,6 +14,7 @@ describe("[SignUpForm]", () => {
       getByRole("input", { name: "password-confirm" })
     ).toBeInTheDocument();
     expect(getByRole("button", { name: "sign-up" })).toBeInTheDocument();
+    expect(getByRole("button", { name: "cancel" })).toBeInTheDocument();
     unmount();
   });
 });

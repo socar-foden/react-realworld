@@ -13,6 +13,7 @@ const SignUpForm = () => {
         role="input"
         label="Username"
         required
+        fullWidth
       />
       <TextField
         className={classes.margin}
@@ -21,6 +22,7 @@ const SignUpForm = () => {
         role="input"
         label="E-mail"
         required
+        fullWidth
       />
       <TextField
         className={classes.margin}
@@ -29,6 +31,7 @@ const SignUpForm = () => {
         role="input"
         label="Password"
         required
+        fullWidth
       />
       <TextField
         className={classes.margin}
@@ -37,16 +40,26 @@ const SignUpForm = () => {
         role="input"
         label="Password Confirm"
         required
+        fullWidth
       />
-      <Button
-        className={classes.margin}
-        type="submit"
-        variant="contained"
-        color="secondary"
-        aria-label="sign-up"
-      >
-        Sign up
-      </Button>
+      <div>
+        <Button
+          className={classes.margin}
+          type="submit"
+          variant="contained"
+          color="secondary"
+          aria-label="sign-up"
+        >
+          Sign up
+        </Button>
+        <Button
+          className={classes.margin}
+          variant="contained"
+          aria-label="cancel"
+        >
+          Cancel
+        </Button>
+      </div>
     </form>
   );
 };
