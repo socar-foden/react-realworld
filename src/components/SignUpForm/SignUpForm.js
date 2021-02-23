@@ -1,14 +1,36 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Button, TextField } from "@material-ui/core";
 import { useHistory } from "react-router";
+import fp from "lodash/fp";
 import useStyles from "./SignUpForm.style";
+import utils from "../../utils/utils";
 
 const SignUpForm = () => {
   const classes = useStyles();
   const history = useHistory();
+  const [formData, setFormData] = useState({
+    email: "",
+    username: "",
+    password: "",
+    passwordConfirm: "",
+  });
+  const emailRef = useRef();
+  const usernameRef = useRef();
+  const passwordRef = useRef();
+  const passwordConfirmRef = useRef();
 
   const handleClickCancel = () => {
     history.push("/");
+  };
+
+  const onChangeTextField = fp.curry((prop, e) => {
+    setFormData((prev) => ({ ...prev, [prop]: e.target.value }));
+  });
+
+  const handleClickSignUp = (e) => {
+    e.preventDefault();
+
+    // utils.validate([]);
   };
 
   return (
@@ -22,6 +44,9 @@ const SignUpForm = () => {
         required
         fullWidth
         autoFocus
+        value={formData.email}
+        onChange={onChangeTextField("email")}
+        inputRef={emailRef}
       />
       <TextField
         className={classes.margin}
@@ -30,6 +55,9 @@ const SignUpForm = () => {
         label="Username"
         required
         fullWidth
+        value={formData.username}
+        onChange={onChangeTextField("username")}
+        inputRef={usernameRef}
       />
       <TextField
         className={classes.margin}
@@ -39,6 +67,9 @@ const SignUpForm = () => {
         label="Password"
         required
         fullWidth
+        value={formData.password}
+        onChange={onChangeTextField("password")}
+        inputRef={passwordRef}
       />
       <TextField
         className={classes.margin}
@@ -48,6 +79,9 @@ const SignUpForm = () => {
         label="Password Confirm"
         required
         fullWidth
+        value={formData.passwordConfirm}
+        onChange={onChangeTextField("passwordConfirm")}
+        inputRef={passwordConfirmRef}
       />
       <div>
         <Button
@@ -56,6 +90,7 @@ const SignUpForm = () => {
           variant="contained"
           color="secondary"
           aria-label="sign-up"
+          onClick={handleClickSignUp}
         >
           Sign up
         </Button>

@@ -4,7 +4,10 @@ import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import { Router } from "react-router";
 import { createMemoryHistory } from "history";
+import { createStore } from "redux";
 import SignUpForm from "./SignUpForm";
+import userReducer from "../../reducers/user/userReducer";
+import utils from "../../utils/utils";
 
 describe("[SignUpForm]", () => {
   describe("UI 테스트", () => {
@@ -57,5 +60,28 @@ describe("[SignUpForm]", () => {
       userEvent.click(screen.getByRole("button", { name: "cancel" }));
       expect(history.location.pathname).toBe("/");
     });
+
+    it("SIGN UP 버튼 클릭시 validate 함수를 호출", () => {
+      const validateCall = jest.spyOn(utils, 'validate');
+
+      userEvent.click(screen.getByRole("button", { name: "sign-up" }));
+      expect(validateCall).toHaveBeenCalled();
+    });
+  });
+
+  describe("상태 테스트", () => {
+    beforeEach(() => {
+      const store = createStore(userReducer);
+
+      render(
+        <Provider store={store}>
+          <SignUpForm />
+        </Provider>
+      );
+    });
+
+    // it("SIGN UP 버튼 클릭시 user/registration을 dispatch한다.", () => {
+
+    // });
   });
 });
