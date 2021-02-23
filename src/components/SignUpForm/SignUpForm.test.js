@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import userEvent from "@testing-library/user-event";
@@ -56,9 +56,7 @@ describe("[SignUpForm]", () => {
     beforeEach(renderSignUpForm);
 
     it("최초 렌더링시 email 인풋에 포커싱", () => {
-      expect(
-        screen.getByRole("input", { name: "e-mail" })
-      ).toHaveFocus();
+      expect(screen.getByRole("input", { name: "e-mail" })).toHaveFocus();
     });
 
     it("CANCEL 버튼 클릭시 /로 이동", () => {
@@ -86,6 +84,31 @@ describe("[SignUpForm]", () => {
 
         userEvent.click(screen.getByRole("button", { name: "sign-up" }));
         expect(registration_failureCall).toHaveBeenCalled();
+      });
+
+      it("폼에 유효한 데이터를 입력하면, user/registration_request액션을 호출한다.", () => {
+        const registration_requestCall = jest.spyOn(
+          userActions,
+          "registration_request"
+        );
+
+        /**
+         * 권장되는 userEvent는 type 이벤트가 정상적으로 작동하지 않음.
+         */
+        fireEvent.change(screen.getByRole("input", { name: "username" }), {
+          target: { value: "jakesss" },
+        });
+        fireEvent.change(screen.getByRole("input", { name: "e-mail" }), {
+          target: { value: "jake@jake.jake" },
+        });
+        fireEvent.change(screen.getByRole("input", { name: "password" }), {
+          target: { value: "jakejake" },
+        });
+        fireEvent.change(screen.getByRole("input", { name: "password-confirm" }), {
+          target: { value: "jakejake" },
+        });
+        userEvent.click(screen.getByRole("button", { name: "sign-up" }));
+        expect(registration_requestCall).toHaveBeenCalled();
       });
     });
   });

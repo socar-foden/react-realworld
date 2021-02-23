@@ -76,7 +76,15 @@ const SignUpForm = () => {
       },
     ]);
 
+    // FIXME: ramda-fantasy Maybe로
     if (fp.isUndefined(result)) {
+      dispatch(
+        userActions.registration_request({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+        })
+      );
     } else {
       fp.invoke(["el", "current", "focus"], result);
       dispatch(
