@@ -104,9 +104,12 @@ describe("[SignUpForm]", () => {
         fireEvent.change(screen.getByRole("input", { name: "password" }), {
           target: { value: "jakejake" },
         });
-        fireEvent.change(screen.getByRole("input", { name: "password-confirm" }), {
-          target: { value: "jakejake" },
-        });
+        fireEvent.change(
+          screen.getByRole("input", { name: "password-confirm" }),
+          {
+            target: { value: "jakejake" },
+          }
+        );
         userEvent.click(screen.getByRole("button", { name: "sign-up" }));
         expect(registration_requestCall).toHaveBeenCalled();
       });
