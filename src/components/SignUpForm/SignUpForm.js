@@ -72,10 +72,10 @@ const SignUpForm = () => {
 
     if (fp.isUndefined(result)) {
     } else {
-      fp.invoke(["3", "current", "focus"], result);
+      fp.invoke(["el", "current", "focus"], result);
       dispatch(
         userActions.registration_failure({
-          errors: { body: fp.get("2", result) },
+          errors: { body: fp.get("message", result) },
         })
       );
     }
