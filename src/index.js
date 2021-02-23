@@ -5,6 +5,8 @@ import { BrowserRouter } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import axios from "axios";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import App from "./components/App";
 import rootReducer from "./reducers/rootReducer";
 
