@@ -74,18 +74,18 @@ describe("[SignUpForm]", () => {
     });
   });
 
-  // describe("상태 테스트", () => {
-  //   beforeEach(renderSignUpForm);
+  describe("상태 테스트", () => {
+    beforeEach(renderSignUpForm);
 
-  //   describe("SIGN UP 버튼 클릭", () => {
-  //     it("validate를 통과하지 못하면, user/registration_failure액션을 호출한다.", () => {
-  //       const registration_failureCall = jest.spyOn(
-  //         userActions,
-  //         "registration_failure"
-  //       );
-  //       userEvent.click(screen.getByRole("button", { name: "sign-up" }));
-  //       expect(registration_failureCall).toHaveBeenCalled();
-  //     });
-  //   });
-  // });
+    describe("SIGN UP 버튼 클릭", () => {
+      it("validate를 통과하지 못하면, user/registration_failure액션을 호출한다.", () => {
+        const registration_failureCall = jest.spyOn(
+          userActions,
+          "registration_failure"
+        );
+        userEvent.click(screen.getByRole("button", { name: "sign-up" }));
+        expect(registration_failureCall).toHaveBeenCalled();
+      });
+    });
+  });
 });

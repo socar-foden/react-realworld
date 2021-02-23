@@ -2,12 +2,16 @@ import React, { useRef, useState } from "react";
 import { Button, TextField } from "@material-ui/core";
 import { useHistory } from "react-router";
 import fp from "lodash/fp";
+import validator from "email-validator";
+import { useDispatch } from "react-redux";
 import useStyles from "./SignUpForm.style";
 import utils from "../../utils/utils";
+import { userActions } from "../../reducers/user/userReducer";
 
 const SignUpForm = () => {
   const classes = useStyles();
   const history = useHistory();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -31,6 +35,7 @@ const SignUpForm = () => {
     e.preventDefault();
 
     const result = utils.validate([
+      // null 체크
       [formData.email, fp.negate(fp.isEmpty), "E-Mail is required.", emailRef],
       [
         formData.username,
@@ -50,9 +55,20 @@ const SignUpForm = () => {
         "Password Confirm is required.",
         passwordConfirmRef,
       ],
+
+      // 포맷 체크
+      [formData.email, validator.validate, "Not in E-Mail format.", emailRef],
     ]);
 
-    fp.invoke(["3", "current", "focus"], result);
+    if (fp.isUndefined(result)) {
+    } else {
+      fp.invoke(["3", "current", "focus"], result);
+      dispatch(
+        userActions.registration_failure({
+          errors: { body: fp.get("2", result) },
+        })
+      );
+    }
   };
 
   return (
