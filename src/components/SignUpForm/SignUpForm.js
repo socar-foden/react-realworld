@@ -36,28 +36,38 @@ const SignUpForm = () => {
 
     const result = utils.validate([
       // null 체크
-      [formData.email, fp.negate(fp.isEmpty), "E-Mail is required.", emailRef],
-      [
-        formData.username,
-        fp.negate(fp.isEmpty),
-        "Username is required.",
-        usernameRef,
-      ],
-      [
-        formData.password,
-        fp.negate(fp.isEmpty),
-        "Password is required.",
-        passwordRef,
-      ],
-      [
-        formData.passwordConfirm,
-        fp.negate(fp.isEmpty),
-        "Password Confirm is required.",
-        passwordConfirmRef,
-      ],
+      {
+        v: formData.email,
+        pred: fp.negate(fp.isEmpty),
+        message: "E-Mail is required.",
+        el: emailRef,
+      },
+      {
+        v: formData.username,
+        pred: fp.negate(fp.isEmpty),
+        message: "Username is required.",
+        el: usernameRef,
+      },
+      {
+        v: formData.password,
+        pred: fp.negate(fp.isEmpty),
+        message: "Password is required.",
+        el: passwordRef,
+      },
+      {
+        v: formData.passwordConfirm,
+        pred: fp.negate(fp.isEmpty),
+        message: "Password Confirm is required.",
+        el: passwordConfirmRef,
+      },
 
       // 포맷 체크
-      [formData.email, validator.validate, "Not in E-Mail format.", emailRef],
+      {
+        v: formData.email,
+        pred: validator.validate,
+        message: "Not in E-Mail format.",
+        el: emailRef,
+      },
     ]);
 
     if (fp.isUndefined(result)) {
