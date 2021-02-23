@@ -68,6 +68,12 @@ const SignUpForm = () => {
         message: "Not in E-Mail format.",
         el: emailRef,
       },
+      {
+        v: formData.passwordConfirm,
+        pred: fp.isEqual(formData.password),
+        message: "Password Confirm does not match Password.",
+        el: passwordConfirmRef,
+      },
     ]);
 
     if (fp.isUndefined(result)) {
