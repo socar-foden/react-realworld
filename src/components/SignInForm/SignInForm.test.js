@@ -26,7 +26,7 @@ describe("[SignInForm]", () => {
   describe("UX 테스트", () => {
     it("최초 렌더링시 email 인풋에 포커싱", () => {
       expect(
-        screen.getByRole("input", { name: "e-mail" }).lastChild.lastChild
+        screen.getByRole("input", { name: "e-mail" })
       ).toHaveFocus();
     });
   });

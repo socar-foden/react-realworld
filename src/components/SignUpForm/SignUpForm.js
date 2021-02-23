@@ -91,10 +91,9 @@ const SignUpForm = () => {
     <form className={classes.root}>
       <TextField
         className={classes.margin}
-        aria-label="e-mail"
+        inputProps={{ "aria-label": "e-mail", role: "input" }}
         type="email"
-        role="input"
-        label="E-mail"
+        label="E-Mail"
         required
         fullWidth
         autoFocus
@@ -104,8 +103,7 @@ const SignUpForm = () => {
       />
       <TextField
         className={classes.margin}
-        aria-label="username"
-        role="input"
+        inputProps={{ "aria-label": "username", role: "input" }}
         label="Username"
         required
         fullWidth
@@ -115,9 +113,8 @@ const SignUpForm = () => {
       />
       <TextField
         className={classes.margin}
+        inputProps={{ "aria-label": "password", role: "input" }}
         type="password"
-        aria-label="password"
-        role="input"
         label="Password"
         required
         fullWidth
@@ -127,9 +124,8 @@ const SignUpForm = () => {
       />
       <TextField
         className={classes.margin}
+        inputProps={{ "aria-label": "password-confirm", role: "input" }}
         type="password"
-        aria-label="password-confirm"
-        role="input"
         label="Password Confirm"
         required
         fullWidth
