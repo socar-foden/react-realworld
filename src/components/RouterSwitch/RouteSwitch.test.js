@@ -1,17 +1,28 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { Router } from "react-router";
+import { Provider } from "react-redux";
 import "@testing-library/jest-dom";
+import { createStore } from "redux";
 import { createMemoryHistory } from "history";
 import App from "../App";
+import rootReducer from "../../reducers/rootReducer";
 
 describe("[RouterSwitch]", () => {
+  let store;
+
+  beforeEach(() => {
+    store = createStore(rootReducer);
+  });
+
   it("/로 접근시 SignIn 페이지 노출", () => {
     const history = createMemoryHistory();
     const { getByRole, unmount } = render(
-      <Router history={history}>
-        <App />
-      </Router>
+      <Provider store={store}>
+        <Router history={history}>
+          <App />
+        </Router>
+      </Provider>
     );
 
     expect(getByRole("input", { name: "e-mail" })).toBeInTheDocument();
@@ -26,9 +37,11 @@ describe("[RouterSwitch]", () => {
     const route = "/sign-up";
     history.push(route);
     const { getByRole, unmount } = render(
-      <Router history={history}>
-        <App />
-      </Router>
+      <Provider store={store}>
+        <Router history={history}>
+          <App />
+        </Router>
+      </Provider>
     );
 
     expect(getByRole("input", { name: "username" })).toBeInTheDocument();

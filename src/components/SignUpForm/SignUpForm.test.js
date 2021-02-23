@@ -1,19 +1,36 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { Provider } from "react-redux";
 import userEvent from "@testing-library/user-event";
 import { Router } from "react-router";
 import { createMemoryHistory } from "history";
 import { createStore } from "redux";
 import SignUpForm from "./SignUpForm";
-import userReducer from "../../reducers/user/userReducer";
 import utils from "../../utils/utils";
+import rootReducer from "../../reducers/rootReducer";
+import { userActions } from "../../reducers/user/userReducer";
 
 describe("[SignUpForm]", () => {
+  let history;
+
+  const renderSignUpForm = () => {
+    const store = createStore(rootReducer);
+    history = createMemoryHistory();
+    const route = "/sign-up";
+    history.push(route);
+
+    render(
+      <Provider store={store}>
+        <Router history={history}>
+          <SignUpForm />
+        </Router>
+      </Provider>
+    );
+  };
+
   describe("UI 테스트", () => {
-    beforeEach(() => {
-      render(<SignUpForm />);
-    });
+    beforeEach(renderSignUpForm);
 
     it("폼 구성요소 테스트", () => {
       expect(
@@ -36,19 +53,7 @@ describe("[SignUpForm]", () => {
   });
 
   describe("UX 테스트", () => {
-    let history;
-
-    beforeEach(() => {
-      history = createMemoryHistory();
-      const route = "/sign-up";
-      history.push(route);
-
-      render(
-        <Router history={history}>
-          <SignUpForm />
-        </Router>
-      );
-    });
+    beforeEach(renderSignUpForm);
 
     it("최초 렌더링시 email 인풋에 포커싱", () => {
       expect(
@@ -62,26 +67,25 @@ describe("[SignUpForm]", () => {
     });
 
     it("SIGN UP 버튼 클릭시 validate 함수를 호출", () => {
-      const validateCall = jest.spyOn(utils, 'validate');
+      const validateCall = jest.spyOn(utils, "validate");
 
       userEvent.click(screen.getByRole("button", { name: "sign-up" }));
       expect(validateCall).toHaveBeenCalled();
     });
   });
 
-  describe("상태 테스트", () => {
-    beforeEach(() => {
-      const store = createStore(userReducer);
+  // describe("상태 테스트", () => {
+  //   beforeEach(renderSignUpForm);
 
-      render(
-        <Provider store={store}>
-          <SignUpForm />
-        </Provider>
-      );
-    });
-
-    // it("SIGN UP 버튼 클릭시 user/registration을 dispatch한다.", () => {
-
-    // });
-  });
+  //   describe("SIGN UP 버튼 클릭", () => {
+  //     it("validate를 통과하지 못하면, user/registration_failure액션을 호출한다.", () => {
+  //       const registration_failureCall = jest.spyOn(
+  //         userActions,
+  //         "registration_failure"
+  //       );
+  //       userEvent.click(screen.getByRole("button", { name: "sign-up" }));
+  //       expect(registration_failureCall).toHaveBeenCalled();
+  //     });
+  //   });
+  // });
 });
