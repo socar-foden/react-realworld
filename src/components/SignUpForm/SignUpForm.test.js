@@ -83,6 +83,7 @@ describe("[SignUpForm]", () => {
           userActions,
           "registration_failure"
         );
+
         userEvent.click(screen.getByRole("button", { name: "sign-up" }));
         expect(registration_failureCall).toHaveBeenCalled();
       });
