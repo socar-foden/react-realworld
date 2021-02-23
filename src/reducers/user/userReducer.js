@@ -4,7 +4,7 @@ const initialState = {
   registration: { request: false, success: false, failure: "" },
 };
 
-const counterSlice = createSlice({
+const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
@@ -27,5 +27,5 @@ const counterSlice = createSlice({
   },
 });
 
-export const userActions = counterSlice.actions;
-export default counterSlice.reducer;
+export const userActions = userSlice.actions;
+export default userSlice.reducer;
