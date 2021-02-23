@@ -30,7 +30,29 @@ const SignUpForm = () => {
   const handleClickSignUp = (e) => {
     e.preventDefault();
 
-    // utils.validate([]);
+    const result = utils.validate([
+      [formData.email, fp.negate(fp.isEmpty), "E-Mail is required.", emailRef],
+      [
+        formData.username,
+        fp.negate(fp.isEmpty),
+        "Username is required.",
+        usernameRef,
+      ],
+      [
+        formData.password,
+        fp.negate(fp.isEmpty),
+        "Password is required.",
+        passwordRef,
+      ],
+      [
+        formData.passwordConfirm,
+        fp.negate(fp.isEmpty),
+        "Password Confirm is required.",
+        passwordConfirmRef,
+      ],
+    ]);
+
+    fp.invoke(["3", "current", "focus"], result);
   };
 
   return (
