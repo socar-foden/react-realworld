@@ -1,14 +1,10 @@
-import { all, takeLatest, put } from "redux-saga/effects";
+import { all } from "redux-saga/effects";
+import user_mock_service from "../../apis/user/user-mock-service";
 import { userActions } from "../../reducers/user/userReducer";
-
-function* registration() {
-   // TODO: 공통부분 분리 필요
-  yield put({ type: userActions.REGISTRATION_SUCCESS.type });
-}
-function* watch_registration() {
-  yield takeLatest(userActions.REGISTRATION, registration);
-}
+import { watchSaga } from "../../utils/utils";
 
 export default function* userSaga() {
-  yield all([watch_registration()]);
+  yield all([
+    watchSaga(userActions.REGISTRATION, user_mock_service.registration),
+  ]);
 }

@@ -1,4 +1,9 @@
-import utils from "../utils/utils";
+import SagaTester from "redux-saga-tester";
+import { all } from "redux-saga/effects";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import { createAction } from "@reduxjs/toolkit";
+import utils, { watchSaga } from "../utils/utils";
 
 describe("[utils]", () => {
   describe("[validate]", () => {
@@ -29,6 +34,34 @@ describe("[utils]", () => {
         { v: 5, pred: (v) => v === 5, message: "5가 아닙니다.", el: {} },
       ];
       expect(utils.validate(conditionList)).toEqual(wrongSet);
+    });
+  });
+
+  describe("[createAsyncSaga, watchSaga]", () => {
+    describe("XXXX타입 액션이 dispatch되면 api를 요청", () => {
+      it("성공하면 XXXX_SUCCESS를 dispatch 한다", async () => {
+        const sagaTester = new SagaTester({});
+        function* testSaga() {
+          yield all([
+            watchSaga(createAction("TEST_ACTION"), () => {
+              const mock = new MockAdapter(axios);
+              mock.onPost("/test").reply(200);
+              return axios.post("/test");
+            }),
+          ]);
+        }
+
+        sagaTester.start(testSaga);
+        sagaTester.dispatch({ type: "TEST_ACTION" });
+        await sagaTester.waitFor("TEST_ACTION_SUCCESS");
+        expect(sagaTester.getLatestCalledAction().type).toEqual(
+          "TEST_ACTION_SUCCESS"
+        );
+      });
+
+      // it("실패하면 XXXX_FAILURE를 dispatch 한다", () => {
+
+      // });
     });
   });
 });
