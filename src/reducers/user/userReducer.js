@@ -8,13 +8,13 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    registration_request(state) {
+    REGISTRATION(state) {
       state.registration = { request: true, success: false, failure: "" };
     },
-    registration_success(state) {
+    REGISTRATION_SUCCESS(state) {
       state.registration = { request: false, success: true, failure: "" };
     },
-    registration_failure(
+    REGISTRATION_FAILURE(
       state,
       {
         payload: {

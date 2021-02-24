@@ -16,7 +16,7 @@ const SignUp = () => {
 
   const init_registration_failure = () => {
     dispatch(
-      userActions.registration_failure({
+      userActions.REGISTRATION_FAILURE({
         errors: { body: "" },
       })
     );

@@ -76,20 +76,20 @@ describe("[SignUpForm]", () => {
     beforeEach(renderSignUpForm);
 
     describe("SIGN UP 버튼 클릭", () => {
-      it("validate를 통과하지 못하면, user/registration_failure액션을 호출한다.", () => {
-        const registration_failureCall = jest.spyOn(
+      it("validate를 통과하지 못하면, user/REGISTRATION_FAILURE 호출한다.", () => {
+        const registrationFailureCall = jest.spyOn(
           userActions,
-          "registration_failure"
+          "REGISTRATION_FAILURE"
         );
 
         userEvent.click(screen.getByRole("button", { name: "sign-up" }));
-        expect(registration_failureCall).toHaveBeenCalled();
+        expect(registrationFailureCall).toHaveBeenCalled();
       });
 
-      it("폼에 유효한 데이터를 입력하면, user/registration_request액션을 호출한다.", () => {
-        const registration_requestCall = jest.spyOn(
+      it("폼에 유효한 데이터를 입력하면, user/REGISTRATION액션을 호출한다.", () => {
+        const registrationCall = jest.spyOn(
           userActions,
-          "registration_request"
+          "REGISTRATION"
         );
 
         /**
@@ -111,7 +111,7 @@ describe("[SignUpForm]", () => {
           }
         );
         userEvent.click(screen.getByRole("button", { name: "sign-up" }));
-        expect(registration_requestCall).toHaveBeenCalled();
+        expect(registrationCall).toHaveBeenCalled();
       });
     });
   });

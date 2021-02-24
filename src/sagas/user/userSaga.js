@@ -1,14 +1,14 @@
 import { all, takeLatest, put } from "redux-saga/effects";
 import { userActions } from "../../reducers/user/userReducer";
 
-function* registration_request() {
+function* registration() {
    // TODO: 공통부분 분리 필요
-  yield put({ type: userActions.registration_success.type });
+  yield put({ type: userActions.REGISTRATION_SUCCESS.type });
 }
-function* watch_registration_request() {
-  yield takeLatest(userActions.registration_request, registration_request);
+function* watch_registration() {
+  yield takeLatest(userActions.REGISTRATION, registration);
 }
 
 export default function* userSaga() {
-  yield all([watch_registration_request()]);
+  yield all([watch_registration()]);
 }
