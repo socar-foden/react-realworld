@@ -1,6 +1,5 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import userEvent from "@testing-library/user-event";
 import { Router } from "react-router";
