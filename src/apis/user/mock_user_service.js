@@ -1,7 +1,7 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 
-const user_mock_service = {
+const mock_user_service = {
   registration: ({ user }) => {
     const mock = new MockAdapter(axios);
     mock.onPost("/api/users").reply(200, user);
@@ -9,4 +9,4 @@ const user_mock_service = {
   },
 };
 
-export default user_mock_service;
+export default mock_user_service;
