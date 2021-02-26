@@ -85,32 +85,34 @@ describe("[SignUpForm]", () => {
         expect(registrationFailureCall).toHaveBeenCalled();
       });
 
-      it("폼에 유효한 데이터를 입력하면, user/REGISTRATION액션을 호출한다.", () => {
-        const registrationCall = jest.spyOn(
-          userActions,
-          "REGISTRATION"
-        );
-
-        /**
-         * 권장되는 userEvent는 type 이벤트가 정상적으로 작동하지 않음.
-         */
-        fireEvent.change(screen.getByRole("input", { name: "username" }), {
-          target: { value: "jakesss" },
-        });
-        fireEvent.change(screen.getByRole("input", { name: "e-mail" }), {
-          target: { value: "jake@jake.jake" },
-        });
-        fireEvent.change(screen.getByRole("input", { name: "password" }), {
-          target: { value: "jakejake" },
-        });
-        fireEvent.change(
-          screen.getByRole("input", { name: "password-confirm" }),
-          {
+      describe("폼에 유효한 데이터를 입력하면", () => {
+        beforeEach(() => {
+          /**
+           * 권장되는 userEvent는 type 이벤트가 정상적으로 작동하지 않음.
+           */
+          fireEvent.change(screen.getByRole("input", { name: "username" }), {
+            target: { value: "jakesss" },
+          });
+          fireEvent.change(screen.getByRole("input", { name: "e-mail" }), {
+            target: { value: "jake@jake.jake" },
+          });
+          fireEvent.change(screen.getByRole("input", { name: "password" }), {
             target: { value: "jakejake" },
-          }
-        );
-        userEvent.click(screen.getByRole("button", { name: "sign-up" }));
-        expect(registrationCall).toHaveBeenCalled();
+          });
+          fireEvent.change(
+            screen.getByRole("input", { name: "password-confirm" }),
+            {
+              target: { value: "jakejake" },
+            }
+          );
+        });
+
+        it("user/REGISTRATION액션을 호출한다.", () => {
+          const registrationCall = jest.spyOn(userActions, "REGISTRATION");
+
+          userEvent.click(screen.getByRole("button", { name: "sign-up" }));
+          expect(registrationCall).toHaveBeenCalled();
+        });
       });
     });
   });
