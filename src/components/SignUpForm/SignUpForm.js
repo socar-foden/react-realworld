@@ -80,9 +80,11 @@ const SignUpForm = () => {
     if (fp.isUndefined(result)) {
       dispatch(
         userActions.REGISTRATION({
-          username: formData.username,
-          email: formData.email,
-          password: formData.password,
+          user: {
+            username: formData.username,
+            email: formData.email,
+            password: formData.password,
+          },
         })
       );
     } else {
