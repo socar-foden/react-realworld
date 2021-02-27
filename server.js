@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-require("dotenv").config({ path: `./env.${process.env.NODE_ENV}` });
+require("dotenv").config({ path: path.join(__dirname, `./.env.${process.env.NODE_ENV}`) });
 
 const app = express();
 
@@ -9,5 +9,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(process.env.PORT, () => {
-  console.log("✅ Server is running on [ http://localhost ]");
+  console.log(`✅ Server is running on [ http://localhost:${process.env.PORT} ]`);
 });
