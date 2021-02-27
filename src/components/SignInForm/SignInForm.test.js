@@ -49,13 +49,13 @@ describe("[SignInForm]", () => {
   describe("상태 테스트", () => {
     describe("Sign in 버튼 클릭", () => {
       it("validate를 통과하지 못하면, user/AUTHENTICATION_FAILURE를 호출", () => {
-        const registrationFailureCall = jest.spyOn(
+        const authenticationFailureCall = jest.spyOn(
           userActions,
           "AUTHENTICATION_FAILURE"
         );
 
         userEvent.click(screen.getByRole("button", { name: "sign-in" }));
-        expect(registrationFailureCall).toHaveBeenCalled();
+        expect(authenticationFailureCall).toHaveBeenCalled();
       });
     });
   });
