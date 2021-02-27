@@ -13,13 +13,12 @@ const utils = {
         yield put({ type: `${type}_FAILURE`, payload: e });
       }
     },
+  watchSaga: function* (action, api) {
+    yield takeLatest(action, utils.createAsyncSaga(action.type, api));
+  },
   handleChangeTextField: fp.curry((setState, prop, e) => {
     setState((prev) => ({ ...prev, [prop]: e.target.value }));
   }),
 };
-
-export function* watchSaga(action, api) {
-  yield takeLatest(action, utils.createAsyncSaga(action.type, api));
-}
 
 export default utils;

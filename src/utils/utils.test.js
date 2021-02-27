@@ -3,7 +3,7 @@ import { all } from "redux-saga/effects";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { createAction } from "@reduxjs/toolkit";
-import utils, { watchSaga } from "../utils/utils";
+import utils from "../utils/utils";
 
 describe("[utils]", () => {
   describe("[validate]", () => {
@@ -43,7 +43,7 @@ describe("[utils]", () => {
         const sagaTester = new SagaTester({});
         function* testSaga() {
           yield all([
-            watchSaga(createAction("TEST_ACTION"), () => {
+            utils.watchSaga(createAction("TEST_ACTION"), () => {
               const mock = new MockAdapter(axios);
               mock.onPost("/test").reply(200);
               return axios.post("/test");
