@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Button, TextField } from "@material-ui/core";
 import { useHistory } from "react-router";
 import fp from "lodash/fp";
-import validator from "email-validator";
+import email_validator from "email-validator";
 import { useDispatch } from "react-redux";
 import useStyles from "./SignUpForm.style";
 import utils from "../../utils/utils";
@@ -64,7 +64,7 @@ const SignUpForm = () => {
       // 포맷 체크
       {
         v: formData.email,
-        pred: validator.validate,
+        pred: email_validator.validate,
         message: "Not in E-Mail format.",
         el: emailRef,
       },
