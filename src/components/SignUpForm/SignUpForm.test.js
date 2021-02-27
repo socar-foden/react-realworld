@@ -27,9 +27,9 @@ describe("[SignUpForm]", () => {
       </Provider>
     );
   };
+  beforeEach(renderSignUpForm);
 
   describe("UI 테스트", () => {
-    beforeEach(renderSignUpForm);
 
     it("폼 구성요소 테스트", () => {
       expect(
@@ -52,8 +52,6 @@ describe("[SignUpForm]", () => {
   });
 
   describe("UX 테스트", () => {
-    beforeEach(renderSignUpForm);
-
     it("최초 렌더링시 email 인풋에 포커싱", () => {
       expect(screen.getByRole("input", { name: "e-mail" })).toHaveFocus();
     });
@@ -72,8 +70,6 @@ describe("[SignUpForm]", () => {
   });
 
   describe("상태 테스트", () => {
-    beforeEach(renderSignUpForm);
-
     describe("SIGN UP 버튼 클릭", () => {
       it("validate를 통과하지 못하면, user/REGISTRATION_FAILURE 호출한다.", () => {
         const registrationFailureCall = jest.spyOn(
