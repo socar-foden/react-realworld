@@ -1,15 +1,58 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Button, TextField } from "@material-ui/core";
 import { useHistory } from "react-router";
+import fp from "lodash/fp";
+import { useDispatch } from "react-redux";
+import email_validator from "email-validator";
 import useStyles from "./SignInForm.style";
 import utils from "../../utils/utils";
+import { userActions } from "../../reducers/user/userReducer";
 
 const SignInForm = () => {
   const classes = useStyles();
   const history = useHistory();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const dispatch = useDispatch();
 
-  const handleClickSignIn = () => {
-    const result = utils.validate([]);
+  const handleClickSignIn = (e) => {
+    e.preventDefault();
+
+    const result = utils.validate([
+      {
+        v: formData.email,
+        pred: fp.negate(fp.isEmpty),
+        message: "E-Mail is required.",
+        el: emailRef,
+      },
+      {
+        v: formData.password,
+        pred: fp.negate(fp.isEmpty),
+        message: "Password is required.",
+        el: passwordRef,
+      },
+
+      // 포맷 체크
+      {
+        v: formData.email,
+        pred: email_validator.validate,
+        message: "Not in E-Mail format.",
+        el: emailRef,
+      },
+    ]);
+
+    if (fp.isUndefined(result)) {
+    } else {
+      dispatch(
+        userActions.AUTHENTICATION_FAILURE({
+          errors: { body: fp.get("message", result) },
+        })
+      );
+    }
   };
 
   const handleClickSignUp = () => {

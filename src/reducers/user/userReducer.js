@@ -24,6 +24,23 @@ const userSlice = createSlice({
     ) {
       state.registration = { request: false, success: false, failure: body };
     },
+
+    AUTHENTICATION(state) {
+      state.authentication = { request: true, success: false, failure: "" };
+    },
+    AUTHENTICATION_SUCCESS(state) {
+      state.authentication = { request: false, success: true, failure: "" };
+    },
+    AUTHENTICATION_FAILURE(
+      state,
+      {
+        payload: {
+          errors: { body },
+        },
+      }
+    ) {
+      state.authentication = { request: false, success: false, failure: body };
+    },
   },
 });
 

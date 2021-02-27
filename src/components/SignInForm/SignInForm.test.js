@@ -3,10 +3,19 @@ import { render, screen } from "@testing-library/react";
 import SignInForm from "./SignInForm";
 import userEvent from "@testing-library/user-event";
 import utils from "../../utils/utils";
+import { createStore } from "redux";
+import userReducer, { userActions } from "../../reducers/user/userReducer";
+import { Provider } from "react-redux";
 
 describe("[SignInForm]", () => {
   beforeEach(() => {
-    render(<SignInForm />);
+    const store = createStore(userReducer);
+
+    render(
+      <Provider store={store}>
+        <SignInForm />
+      </Provider>
+    );
   });
 
   describe("UI 테스트", () => {
@@ -31,12 +40,23 @@ describe("[SignInForm]", () => {
 
     it("Sign in 클릭시, validate 함수를 호출한다.", () => {
       const validateCall = jest.spyOn(utils, "validate");
+
       userEvent.click(screen.getByRole("button", { name: "sign-in" }));
       expect(validateCall).toHaveBeenCalled();
     });
   });
 
-  // describe("상태관리 테스트", () => {
-  //   it("Sign in 버튼 클릭시 user/REGISTRATION_FAILURE", () => {});
-  // });
+  describe("상태 테스트", () => {
+    describe("Sign in 버튼 클릭", () => {
+      it("validate를 통과하지 못하면, user/AUTHENTICATION_FAILURE를 호출", () => {
+        const registrationFailureCall = jest.spyOn(
+          userActions,
+          "AUTHENTICATION_FAILURE"
+        );
+
+        userEvent.click(screen.getByRole("button", { name: "sign-in" }));
+        expect(registrationFailureCall).toHaveBeenCalled();
+      });
+    });
+  });
 });
