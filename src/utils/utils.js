@@ -2,7 +2,7 @@ import fp from "lodash/fp";
 import { fork, put, takeLatest } from "redux-saga/effects";
 
 const utils = {
-  validate: fp.find(({ v, pred, message, el }) => !pred(v)),
+  validate: fp.find(({ v, pred }) => !pred(v)),
   createAsyncSaga: (type, api) =>
     function* ({ payload }) {
       try {
