@@ -2,10 +2,15 @@ import React from "react";
 import { Button, TextField } from "@material-ui/core";
 import { useHistory } from "react-router";
 import useStyles from "./SignInForm.style";
+import utils from "../../utils/utils";
 
 const SignInForm = () => {
   const classes = useStyles();
   const history = useHistory();
+
+  const handleClickSignIn = () => {
+    const result = utils.validate([]);
+  };
 
   const handleClickSignUp = () => {
     history.push("/sign-up");
@@ -37,6 +42,7 @@ const SignInForm = () => {
           variant="contained"
           color="primary"
           aria-label="sign-in"
+          onClick={handleClickSignIn}
         >
           Sign in
         </Button>

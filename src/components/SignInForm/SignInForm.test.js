@@ -1,6 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import SignInForm from "./SignInForm";
+import userEvent from "@testing-library/user-event";
+import utils from "../../utils/utils";
 
 describe("[SignInForm]", () => {
   beforeEach(() => {
@@ -24,9 +26,17 @@ describe("[SignInForm]", () => {
 
   describe("UX 테스트", () => {
     it("최초 렌더링시 email 인풋에 포커싱", () => {
-      expect(
-        screen.getByRole("input", { name: "e-mail" })
-      ).toHaveFocus();
+      expect(screen.getByRole("input", { name: "e-mail" })).toHaveFocus();
+    });
+
+    it("Sign in 클릭시, validate 함수를 호출한다.", () => {
+      const validateCall = jest.spyOn(utils, "validate");
+      userEvent.click(screen.getByRole("button", { name: "sign-in" }));
+      expect(validateCall).toHaveBeenCalled();
     });
   });
+
+  // describe("상태관리 테스트", () => {
+  //   it("Sign in 버튼 클릭시 user/REGISTRATION_FAILURE", () => {});
+  // });
 });
