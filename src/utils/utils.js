@@ -13,6 +13,9 @@ const utils = {
         yield put({ type: `${type}_FAILURE`, payload: e });
       }
     },
+  handleChangeTextField: fp.curry((setState, prop, e) => {
+    setState((prev) => ({ ...prev, [prop]: e.target.value }));
+  }),
 };
 
 export function* watchSaga(action, api) {

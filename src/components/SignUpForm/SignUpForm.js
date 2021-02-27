@@ -27,10 +27,6 @@ const SignUpForm = () => {
     history.push("/");
   };
 
-  const handleChangeTextField = fp.curry((prop, e) => {
-    setFormData((prev) => ({ ...prev, [prop]: e.target.value }));
-  });
-
   const handleClickSignUp = (e) => {
     e.preventDefault();
 
@@ -108,7 +104,7 @@ const SignUpForm = () => {
         fullWidth
         autoFocus
         value={formData.email}
-        onChange={handleChangeTextField("email")}
+        onChange={utils.handleChangeTextField(setFormData, "email")}
         inputRef={emailRef}
       />
       <TextField
@@ -118,7 +114,7 @@ const SignUpForm = () => {
         required
         fullWidth
         value={formData.username}
-        onChange={handleChangeTextField("username")}
+        onChange={utils.handleChangeTextField(setFormData, "username")}
         inputRef={usernameRef}
       />
       <TextField
@@ -129,7 +125,7 @@ const SignUpForm = () => {
         required
         fullWidth
         value={formData.password}
-        onChange={handleChangeTextField("password")}
+        onChange={utils.handleChangeTextField(setFormData, "password")}
         inputRef={passwordRef}
       />
       <TextField
@@ -140,7 +136,7 @@ const SignUpForm = () => {
         required
         fullWidth
         value={formData.passwordConfirm}
-        onChange={handleChangeTextField("passwordConfirm")}
+        onChange={utils.handleChangeTextField(setFormData, "passwordConfirm")}
         inputRef={passwordConfirmRef}
       />
       <div>
