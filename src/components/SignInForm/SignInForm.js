@@ -46,6 +46,14 @@ const SignInForm = () => {
     ]);
 
     if (fp.isUndefined(result)) {
+      dispatch(
+        userActions.AUTHENTICATION({
+          user: {
+            email: formData.email,
+            password: formData.password,
+          },
+        })
+      );
     } else {
       dispatch(
         userActions.AUTHENTICATION_FAILURE({
@@ -69,6 +77,8 @@ const SignInForm = () => {
         required
         fullWidth
         autoFocus
+        onChange={utils.handleChangeTextField(setFormData, "email")}
+        value={formData.email}
       />
       <TextField
         className={classes.margin}
@@ -77,6 +87,8 @@ const SignInForm = () => {
         label="Password"
         required
         fullWidth
+        onChange={utils.handleChangeTextField(setFormData, "password")}
+        value={formData.password}
       />
       <div>
         <Button

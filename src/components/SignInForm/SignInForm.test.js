@@ -1,11 +1,11 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import SignInForm from "./SignInForm";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import utils from "../../utils/utils";
 import { createStore } from "redux";
-import userReducer, { userActions } from "../../reducers/user/userReducer";
 import { Provider } from "react-redux";
+import SignInForm from "./SignInForm";
+import utils from "../../utils/utils";
+import userReducer, { userActions } from "../../reducers/user/userReducer";
 
 describe("[SignInForm]", () => {
   beforeEach(() => {
@@ -57,6 +57,20 @@ describe("[SignInForm]", () => {
         userEvent.click(screen.getByRole("button", { name: "sign-in" }));
         expect(authenticationFailureCall).toHaveBeenCalled();
       });
+    });
+
+    it("유효한 정보 입력시, user/AUTHENTICATION 호출", () => {
+      const authenticationCall = jest.spyOn(userActions, "AUTHENTICATION");
+
+      fireEvent.change(screen.getByRole("input", { name: "e-mail" }), {
+        target: { value: "test@email.com" },
+      });
+      fireEvent.change(
+        screen.getByRole("input", { name: "password" }),
+        { target: { value: "as1@#5g@" } }
+      );
+      userEvent.click(screen.getByRole("button", { name: "sign-in" }));
+      expect(authenticationCall).toHaveBeenCalled();
     });
   });
 });

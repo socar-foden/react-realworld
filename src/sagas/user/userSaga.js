@@ -7,6 +7,6 @@ import utils from "../../utils/utils";
 export default function* userSaga() {
   yield all([
     utils.watchSaga(userActions.REGISTRATION, mock_user_service.registration),
-    utils.watchSaga(userActions.REGISTRATION, mock_user_service.authentication),
+    utils.watchSaga(userActions.AUTHENTICATION, mock_user_service.authentication),
   ]);
 }
