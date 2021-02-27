@@ -4,6 +4,8 @@ require("dotenv").config({ path: path.join(__dirname, `./.env.${process.env.NODE
 
 const app = express();
 
+app.use(express.static('dist'));
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./dist/index.html"));
 });
