@@ -7,14 +7,13 @@ import { createMemoryHistory } from "history";
 import { createStore } from "redux";
 import SignUpForm from "./SignUpForm";
 import utils from "../../utils/utils";
-import rootReducer from "../../reducers/rootReducer";
-import { userActions } from "../../reducers/user/userReducer";
+import userReducer, { userActions } from "../../reducers/user/userReducer";
 
 describe("[SignUpForm]", () => {
   let history;
 
   const renderSignUpForm = () => {
-    const store = createStore(rootReducer);
+    const store = createStore(userReducer);
     history = createMemoryHistory();
     const route = "/sign-up";
     history.push(route);
