@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "webpack serve --config ./webpack.config.dev.js",
     "test": "jest --passWithNoTests --watchAll --coverage --verbose --config=./jest.config.js",
-    "build": "webpack build --config ./webpack.config.prod.js",
-    "build:dev": "webpack build --config ./webpack.config.dev.js",
+    "build": "npm i && webpack build --config ./webpack.config.prod.js",
+    "build:dev": "npm i && webpack build --config ./webpack.config.dev.js",
     "start": "npm run build && cross-env NODE_ENV=production node ./server.js",
     "start:dev": "npm run build:dev && cross-env NODE_ENV=development node ./server.js"
   },
