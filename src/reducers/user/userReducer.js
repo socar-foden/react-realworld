@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   registration: { request: false, success: false, failure: "" },
+  authentication: { request: false, success: false, failure: "" },
 };
 
 const userSlice = createSlice({
