@@ -14,15 +14,8 @@ const userSlice = createSlice({
     REGISTRATION_SUCCESS(state) {
       state.registration = { request: false, success: true, failure: "" };
     },
-    REGISTRATION_FAILURE(
-      state,
-      {
-        payload: {
-          errors: { body },
-        },
-      }
-    ) {
-      state.registration = { request: false, success: false, failure: body };
+    REGISTRATION_FAILURE(state, { payload: { errors } }) {
+      state.registration = { request: false, success: false, failure: errors };
     },
 
     AUTHENTICATION(state) {
@@ -31,15 +24,12 @@ const userSlice = createSlice({
     AUTHENTICATION_SUCCESS(state) {
       state.authentication = { request: false, success: true, failure: "" };
     },
-    AUTHENTICATION_FAILURE(
-      state,
-      {
-        payload: {
-          errors: { body },
-        },
-      }
-    ) {
-      state.authentication = { request: false, success: false, failure: body };
+    AUTHENTICATION_FAILURE(state, { payload: { errors } }) {
+      state.authentication = {
+        request: false,
+        success: false,
+        failure: errors,
+      };
     },
   },
 });

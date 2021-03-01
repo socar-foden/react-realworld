@@ -9,13 +9,13 @@ const utils = {
         const res = yield call(api, payload);
         yield put({ type: `${type}_SUCCESS`, payload: res });
       } catch (e) {
-        console.error(`[Saga-${type}] ERROR :: `, e);
-        yield put({ type: `${type}_FAILURE`, payload: e });
+        console.error(`[Saga - ${type}] ERROR :: `, e.response.data);
+        yield put({ type: `${type}_FAILURE`, payload: e.response.data });
       }
     },
-  watchSaga: (action, api) =>
+  watchSaga: (type, api) =>
     fork(function* () {
-      yield takeLatest(action, utils.createAsyncSaga(action.type, api));
+      yield takeLatest(type, utils.createAsyncSaga(type, api));
     }),
   handleChangeTextField: fp.curry((setState, prop, e) => {
     setState((prev) => ({ ...prev, [prop]: e.target.value }));

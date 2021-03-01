@@ -57,7 +57,7 @@ const SignInForm = () => {
     } else {
       dispatch(
         userActions.AUTHENTICATION_FAILURE({
-          errors: { body: fp.get("message", result) },
+          errors: fp.get("message", result),
         })
       );
     }

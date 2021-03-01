@@ -87,7 +87,7 @@ const SignUpForm = () => {
       fp.invoke(["el", "current", "focus"], result);
       dispatch(
         userActions.REGISTRATION_FAILURE({
-          errors: { body: fp.get("message", result) },
+          errors: fp.get("message", result),
         })
       );
     }
