@@ -4,9 +4,9 @@ import { useHistory } from "react-router";
 import fp from "lodash/fp";
 import { useDispatch } from "react-redux";
 import email_validator from "email-validator";
-import useStyles from "./SignInForm.style";
 import utils from "../../utils/utils";
 import { userActions } from "../../reducers/user/userReducer";
+import useStyles from "./SignInForm.style";
 
 const SignInForm = () => {
   const classes = useStyles();

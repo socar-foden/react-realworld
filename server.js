@@ -1,5 +1,5 @@
-const express = require("express");
 const path = require("path");
+const express = require("express");
 require("dotenv").config({ path: path.join(__dirname, `./.env.${process.env.NODE_ENV}`) });
 
 const app = express();

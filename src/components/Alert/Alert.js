@@ -1,7 +1,7 @@
 import React from "react";
 import MuiAlert from "@material-ui/lab/Alert";
-import useStyles from "./Alert.style";
 import { Snackbar } from "@material-ui/core";
+import useStyles from "./Alert.style";
 
 const Alert = ({
   severity = "error",
