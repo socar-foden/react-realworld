@@ -9,8 +9,18 @@ const utils = {
         const res = yield call(api, payload);
         yield put({ type: `${type}_SUCCESS`, payload: res });
       } catch (e) {
-        console.error(`[Saga - ${type}] ERROR :: `, e.response.data);
-        yield put({ type: `${type}_FAILURE`, payload: e.response.data });
+        const { errors } = e.response.data;
+        console.error(`[Saga - ${type}] ERROR :: `, errors);
+        yield put({
+          type: `${type}_FAILURE`,
+          payload: {
+            errors: fp.pipe(
+              fp.keys,
+              fp.map((k) => `${k} ${errors[k]}`),
+              fp.join("\n")
+            )(errors),
+          },
+        });
       }
     },
   watchSaga: (type, api) =>
