@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import Alert from "../../components/Alert/Alert";
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
 import { userActions } from "../../reducers/user/userReducer";
@@ -9,10 +10,12 @@ const SignUp = () => {
   const classes = useStyles();
   const {
     registration: {
+      success: registration_success,
       failure: registration_failure,
     },
   } = useSelector((rootReducer) => rootReducer.userReducer);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const init_registration_failure = () => {
     dispatch(
@@ -24,6 +27,11 @@ const SignUp = () => {
 
   const handleCloseErrorAlert = () => {
     init_registration_failure();
+  };
+
+  const handleCloseSuccessAlert = () => {
+    init_registration_failure();
+    history.push("/");
   };
 
   useEffect(() => {
@@ -39,6 +47,14 @@ const SignUp = () => {
           message={registration_failure}
           severity={"error"}
           handleOnClose={handleCloseErrorAlert}
+        />
+      )}
+
+      {registration_success && (
+        <Alert
+          message={"You have been signed up. Please log in."}
+          severity={"success"}
+          handleOnClose={handleCloseSuccessAlert}
         />
       )}
     </div>
