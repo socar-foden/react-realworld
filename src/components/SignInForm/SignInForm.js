@@ -55,6 +55,7 @@ const SignInForm = () => {
         })
       );
     } else {
+      fp.invoke(["el", "current", "focus"], result);
       dispatch(
         userActions.AUTHENTICATION_FAILURE({
           errors: fp.get("message", result),
@@ -79,6 +80,7 @@ const SignInForm = () => {
         autoFocus
         onChange={utils.handleChangeTextField(setFormData, "email")}
         value={formData.email}
+        inputRef={emailRef}
       />
       <TextField
         className={classes.margin}
@@ -89,6 +91,7 @@ const SignInForm = () => {
         fullWidth
         onChange={utils.handleChangeTextField(setFormData, "password")}
         value={formData.password}
+        inputRef={passwordRef}
       />
       <div>
         <Button
