@@ -17,7 +17,6 @@ const Alert = ({
       autoHideDuration={autoHideDuration}
       open={true}
       onClose={handleOnClose}
-      on
     >
       <MuiAlert elevation={6} variant="filled" severity={severity}>
         {message}
