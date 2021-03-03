@@ -39,38 +39,28 @@ describe("[SignInForm]", () => {
     });
 
     it("Sign in 클릭시, validate 함수를 호출한다.", () => {
-      const validateCall = jest.spyOn(utils, "validate");
+      const mockCall = jest.spyOn(utils, "validate");
 
       userEvent.click(screen.getByRole("button", { name: "sign-in" }));
-      expect(validateCall).toHaveBeenCalled();
+      expect(mockCall).toHaveBeenCalled();
     });
   });
 
   describe("상태 테스트", () => {
     describe("Sign in 버튼 클릭", () => {
       it("validate를 통과하지 못하면, user/AUTHENTICATION_FAILURE를 호출", () => {
-        const authenticationFailureCall = jest.spyOn(
+        const mockCall = jest.spyOn(
           userActions,
           "AUTHENTICATION_FAILURE"
         );
 
         userEvent.click(screen.getByRole("button", { name: "sign-in" }));
-        expect(authenticationFailureCall).toHaveBeenCalled();
+        expect(mockCall).toHaveBeenCalled();
       });
     });
 
-    it("유효한 정보 입력시, user/AUTHENTICATION 호출", () => {
-      const authenticationCall = jest.spyOn(userActions, "AUTHENTICATION");
-
-      fireEvent.change(screen.getByRole("input", { name: "e-mail" }), {
-        target: { value: "test@email.com" },
-      });
-      fireEvent.change(
-        screen.getByRole("input", { name: "password" }),
-        { target: { value: "as1@#5g@" } }
-      );
-      userEvent.click(screen.getByRole("button", { name: "sign-in" }));
-      expect(authenticationCall).toHaveBeenCalled();
+        const mockCall = jest.spyOn(userActions, "AUTHENTICATION");
+        expect(mockCall).toHaveBeenCalled();
     });
   });
 });
