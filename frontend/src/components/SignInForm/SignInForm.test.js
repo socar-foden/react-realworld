@@ -59,8 +59,17 @@ describe("[SignInForm]", () => {
       });
     });
 
-        const mockCall = jest.spyOn(userActions, "AUTHENTICATION");
-        expect(mockCall).toHaveBeenCalled();
+    it("유효한 정보 입력시, user/AUTHENTICATION 호출", () => {
+      const mockCall = jest.spyOn(userActions, "AUTHENTICATION");
+
+      fireEvent.change(screen.getByRole("input", { name: "e-mail" }), {
+        target: { value: "test@email.com" },
+      });
+      fireEvent.change(screen.getByRole("input", { name: "password" }), {
+        target: { value: "as1@#5g@" },
+      });
+      userEvent.click(screen.getByRole("button", { name: "sign-in" }));
+      expect(mockCall).toHaveBeenCalled();
     });
   });
 });
