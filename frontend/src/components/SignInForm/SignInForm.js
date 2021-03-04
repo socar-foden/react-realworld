@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Button, TextField } from "@material-ui/core";
 import { useHistory } from "react-router";
 import fp from "lodash/fp";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import email_validator from "email-validator";
 import utils from "../../utils/utils";
 import { userActions } from "../../reducers/user/userReducer";
@@ -18,6 +18,11 @@ const SignInForm = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const dispatch = useDispatch();
+  const {
+    authentication: {
+      success: authentication_success,
+    },
+  } = useSelector((rootReducer) => rootReducer.userReducer);
 
   const handleClickSignIn = (e) => {
     e.preventDefault();
@@ -101,6 +106,7 @@ const SignInForm = () => {
           color="primary"
           aria-label="sign-in"
           onClick={handleClickSignIn}
+          disabled={authentication_success}
         >
           Sign in
         </Button>
@@ -110,6 +116,7 @@ const SignInForm = () => {
           color="secondary"
           aria-label="sign-up"
           onClick={handleClickSignUp}
+          disabled={authentication_success}
         >
           Sign up
         </Button>

@@ -5,11 +5,12 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import SignInForm from "./SignInForm";
 import utils from "../../utils/utils";
-import userReducer, { userActions } from "../../reducers/user/userReducer";
+import { userActions } from "../../reducers/user/userReducer";
+import rootReducer from "../../reducers/rootReducer";
 
 describe("[SignInForm]", () => {
   beforeEach(() => {
-    const store = createStore(userReducer);
+    const store = createStore(rootReducer);
 
     render(
       <Provider store={store}>
