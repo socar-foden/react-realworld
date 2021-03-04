@@ -47,7 +47,6 @@ const SignIn = () => {
           message={authentication_fuilure}
           severity={"error"}
           handleOnClose={handleCloseErrorAlert}
-
         />
       )}
 
