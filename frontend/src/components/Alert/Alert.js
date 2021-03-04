@@ -3,11 +3,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import { Snackbar } from "@material-ui/core";
 import useStyles from "./Alert.style";
 
-const Alert = ({
-  severity = "error",
-  message,
-  handleOnClose,
-}) => {
+const Alert = ({ severity = "error", message, handleOnClose }) => {
   const classes = useStyles();
 
   return (
@@ -17,7 +13,12 @@ const Alert = ({
       open={true}
       onClose={handleOnClose}
     >
-      <MuiAlert elevation={6} variant="filled" severity={severity}>
+      <MuiAlert
+        elevation={6}
+        variant="filled"
+        severity={severity}
+        aria-label={severity}
+      >
         {message}
       </MuiAlert>
     </Snackbar>
