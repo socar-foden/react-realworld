@@ -1,4 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import React from "react";
 import { Provider } from "react-redux";
@@ -32,6 +36,19 @@ describe("[SignUp]", () => {
         expect(
           screen.getByRole("alert", { name: "success" })
         ).toBeInTheDocument();
+      });
+
+      it("알림창이 사라지면 /main으로 이동한다.", async () => {
+        store.dispatch({ type: userActions.AUTHENTICATION_SUCCESS.type });
+        expect(
+          screen.getByRole("alert", { name: "success" })
+        ).toBeInTheDocument();
+
+        await waitForElementToBeRemoved(
+          screen.getByRole("alert", { name: "success" }),
+          { timeout: 3000 }
+        );
+        expect(history.location.pathname).toBe("/main");
       });
     });
   });

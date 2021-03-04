@@ -9,7 +9,7 @@ const Alert = ({ severity = "error", message, handleOnClose }) => {
   return (
     <Snackbar
       className={classes.root}
-      autoHideDuration={null}
+      autoHideDuration={3000}
       open={true}
       onClose={handleOnClose}
     >
