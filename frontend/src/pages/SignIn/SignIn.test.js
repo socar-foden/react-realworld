@@ -31,15 +31,17 @@ describe("[SignUp]", () => {
 
   describe("상태 테스트", () => {
     describe("로그인 성공시", () => {
-      it("성공 알림창이 뜬다.", () => {
+      beforeEach(() => {
         store.dispatch({ type: userActions.AUTHENTICATION_SUCCESS.type });
+      });
+
+      it("성공 알림창이 뜬다.", () => {
         expect(
           screen.getByRole("alert", { name: "success" })
         ).toBeInTheDocument();
       });
 
       it("알림창이 사라지면 /main으로 이동한다.", async () => {
-        store.dispatch({ type: userActions.AUTHENTICATION_SUCCESS.type });
         expect(
           screen.getByRole("alert", { name: "success" })
         ).toBeInTheDocument();
@@ -50,6 +52,16 @@ describe("[SignUp]", () => {
         );
         expect(history.location.pathname).toBe("/main");
       });
+    });
+  });
+
+  describe("로그인 실패시", () => {
+    it("실패 알림창이 뜬다.", () => {
+      store.dispatch({
+        type: userActions.AUTHENTICATION_FAILURE.type,
+        payload: { errors: "not exist" },
+      });
+      expect(screen.getByRole("alert", { name: "error" })).toBeInTheDocument();
     });
   });
 });

@@ -47,6 +47,7 @@ const SignIn = () => {
           message={authentication_fuilure}
           severity={"error"}
           handleOnClose={handleCloseErrorAlert}
+
         />
       )}
 
@@ -55,7 +56,6 @@ const SignIn = () => {
           message={"You have been signed up. Please log in."}
           severity={"success"}
           handleOnClose={handleCloseSuccessAlert}
-          aria-label="success"
         />
       )}
     </div>
