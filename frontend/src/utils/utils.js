@@ -6,8 +6,9 @@ const utils = {
   createAsyncSaga: (type, api) =>
     function* ({ payload }) {
       try {
-        const res = yield call(api, payload);
-        yield put({ type: `${type}_SUCCESS`, payload: res });
+        const { data } = yield call(api, payload);
+        yield put({ type: `${type}_SUCCESS`, payload: data });
+        console.log(`[Saga - ${type}] :: `, data);
       } catch (e) {
         const { errors } = e.response.data;
         console.error(`[Saga - ${type}] ERROR :: `, errors);
