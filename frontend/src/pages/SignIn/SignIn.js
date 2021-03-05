@@ -31,7 +31,7 @@ const SignIn = () => {
 
   const handleCloseSuccessAlert = () => {
     init_registration_failure();
-    history.push("/main");
+    history.push("/");
   };
 
   useEffect(() => {
