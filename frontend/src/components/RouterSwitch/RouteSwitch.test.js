@@ -14,8 +14,10 @@ describe("[RouterSwitch]", () => {
     store = createStore(rootReducer);
   });
 
-  it("/로 접근시 SignIn 페이지 노출", () => {
+  it("/sign-in으로 접근시 SignIn 페이지 노출", () => {
     const history = createMemoryHistory();
+    const route = "/sign-in";
+    history.push(route);
     const { getByRole, unmount } = render(
       <Provider store={store}>
         <Router history={history}>

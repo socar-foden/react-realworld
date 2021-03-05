@@ -8,13 +8,13 @@ const RouteSwitch = () => {
   return (
     <Switch>
       <Route path="/" exact>
-        <SignIn />
+        <Main />
       </Route>
       <Route path="/sign-up">
         <SignUp />
       </Route>
-      <Route path="/main">
-        <Main />
+      <Route path="/sign-in">
+        <SignIn />
       </Route>
     </Switch>
   );
