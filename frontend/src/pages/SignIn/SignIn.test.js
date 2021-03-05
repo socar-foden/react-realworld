@@ -32,7 +32,16 @@ describe("[SignUp]", () => {
   describe("상태 테스트", () => {
     describe("로그인 성공시", () => {
       beforeEach(() => {
-        store.dispatch({ type: userActions.AUTHENTICATION_SUCCESS.type });
+        store.dispatch({
+          type: userActions.AUTHENTICATION_SUCCESS.type,
+          payload: {
+            user: {
+              email: "jake@jake.jake",
+              token: "token~~!@~!@",
+              username: "jacob",
+            },
+          },
+        });
       });
 
       it("성공 알림창이 뜬다.", () => {
