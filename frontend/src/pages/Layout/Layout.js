@@ -11,7 +11,7 @@ const Layout = () => {
   return (
     <>
       <Header setOpenSide={setOpenSide} />
-      <SideNav open={openSide} setOpenSide={setOpenSide} />
+      <SideNav open={openSide} setOpen={setOpenSide} />
       <main>
         <BrowserRouter>
           <Switch>

@@ -31,7 +31,7 @@ const MenuList = [
   },
 ];
 
-const SideNav = ({ open, setOpenSide }) => {
+const SideNav = ({ open, setOpen }) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -45,7 +45,7 @@ const SideNav = ({ open, setOpenSide }) => {
       <SwipeableDrawer
         anchor="left"
         open={open}
-        onClose={() => setOpenSide(false)}
+        onClose={() => setOpen(false)}
         onOpen={() => {}}
         role="navigation"
         aria-label="side-nav"
