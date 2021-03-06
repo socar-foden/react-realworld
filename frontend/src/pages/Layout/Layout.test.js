@@ -13,7 +13,9 @@ describe("[Layout]", () => {
     });
 
     it("사이드 메뉴가 존재한다.", () => {
-      expect(screen.getByRole("navigation", { name: "side-nav" })).toBeInTheDocument();
+      expect(
+        screen.getByRole("navigation", { name: "side-nav" })
+      ).toBeInTheDocument();
     });
   });
 });
