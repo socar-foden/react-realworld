@@ -9,25 +9,36 @@ import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import HomeIcon from "@material-ui/icons/Home";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import React from "react";
+import { useHistory } from "react-router";
+import fp from "lodash/fp";
 import useStyles from "./SideNav.style";
 
 const MenuList = [
   {
     text: "Main",
     icon: <HomeIcon />,
+    path: "/",
   },
   {
     text: "Friends",
     icon: <SupervisorAccountIcon />,
+    path: "/friends",
   },
   {
     text: "Account",
     icon: <PermIdentityIcon />,
+    path: "/account",
   },
 ];
 
 const SideNav = ({ open, setOpenSide }) => {
   const classes = useStyles();
+  const history = useHistory();
+
+  // eslint-disable-next-line no-unused-vars
+  const handleClickListItem = fp.curry((path, e) => {
+    history.push(path);
+  });
 
   return (
     <nav aria-label="side-nav">
@@ -41,7 +52,11 @@ const SideNav = ({ open, setOpenSide }) => {
       >
         <List className={classes.list}>
           {MenuList.map((item) => (
-            <ListItem button key={item.text}>
+            <ListItem
+              button
+              key={item.text}
+              onClick={handleClickListItem(item.path)}
+            >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItem>
