@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import {
   AppBar,
@@ -8,13 +8,22 @@ import {
   Typography,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import Profile from "../Profile/Profile";
 import useStyles from "./Header.style";
 
 const Header = ({ setOpenSide }) => {
   const classes = useStyles();
+  const [openProfile, setOpenProfile] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClickMenuIcon = () => {
     setOpenSide((prev) => !prev);
+  };
+
+  const handleAccountCircleIcon = (e) => {
+    setOpenProfile(true);
+    console.log('!!!', e.currentTarget);
+    setAnchorEl(e.currentTarget);
   };
 
   return (
@@ -33,7 +42,12 @@ const Header = ({ setOpenSide }) => {
           RealWorld
         </Typography>
         <Button color="inherit">
-          <AccountCircleIcon />
+          <AccountCircleIcon onClick={handleAccountCircleIcon} />
+          <Profile
+            open={openProfile}
+            setOpen={setOpenProfile}
+            anchorEl={anchorEl}
+          />
         </Button>
       </Toolbar>
     </AppBar>

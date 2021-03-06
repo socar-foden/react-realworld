@@ -4,6 +4,7 @@ const initialState = {
   user: {},
   registration: { request: false, success: false, failure: "" },
   authentication: { request: false, success: false, failure: "" },
+  getCurrentUser: { request: false, success: false, failure: "" },
 };
 
 const userSlice = createSlice({
@@ -29,6 +30,21 @@ const userSlice = createSlice({
     },
     AUTHENTICATION_FAILURE(state, { payload: { errors } }) {
       state.authentication = {
+        request: false,
+        success: false,
+        failure: errors,
+      };
+    },
+
+    GET_CURRENT_USER(state) {
+      state.getCurrentUser = { request: true, success: false, failure: "" };
+    },
+    GET_CURRENT_USER_SUCCESS(state, { payload: { user } }) {
+      state.user = user;
+      state.getCurrentUser = { request: false, success: true, failure: "" };
+    },
+    GET_CURRENT_USER_FAILURE(state, { payload: { errors } }) {
+      state.getCurrentUser = {
         request: false,
         success: false,
         failure: errors,

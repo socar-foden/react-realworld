@@ -12,6 +12,11 @@ const mock_user_service = {
     mock.onPost("/api/users/login").reply(200, user);
     return axios.post("/api/users/login");
   },
+  getCurrentUser: () => {
+    const mock = new MockAdapter(axios);
+    mock.onGet("/api/user").reply(200,);
+    return axios.post("/api/user");
+  },
 };
 
 export default mock_user_service;
