@@ -8,15 +8,20 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 const RouteSwitch = () => {
   return (
     <Switch>
-      <PrivateRoute path="/" exact>
-        <Main />
-      </PrivateRoute>
       <Route path="/sign-up">
         <SignUp />
       </Route>
       <Route path="/sign-in">
         <SignIn />
       </Route>
+      <PrivateRoute path="/">
+        <Switch>
+          <Route path="/" exact>
+            <Main />
+          </Route>
+        </Switch>
+      </PrivateRoute>
+      
     </Switch>
   );
 };
