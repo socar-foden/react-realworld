@@ -17,7 +17,6 @@ const RouteSwitch = () => {
       <PrivateRoute path="/">
         <Layout />
       </PrivateRoute>
-      
     </Switch>
   );
 };

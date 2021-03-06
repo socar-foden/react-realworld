@@ -1,6 +1,5 @@
-import { Switch } from "@material-ui/core";
 import React from "react";
-import { Route } from "react-router";
+import { Route, Switch } from "react-router";
 import Header from "../../components/Header/Header";
 import Main from "./Main/Main";
 
