@@ -24,7 +24,7 @@ const SignUpForm = () => {
   const passwordConfirmRef = useRef();
 
   const handleClickCancel = () => {
-    history.push("/");
+    history.push("/sign-in");
   };
 
   const handleClickSignUp = (e) => {

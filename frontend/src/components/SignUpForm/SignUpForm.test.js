@@ -55,9 +55,9 @@ describe("[SignUpForm]", () => {
       expect(screen.getByRole("input", { name: "e-mail" })).toHaveFocus();
     });
 
-    it("CANCEL 버튼 클릭시 /로 이동", () => {
+    it("CANCEL 버튼 클릭시 /sign-in로 이동", () => {
       userEvent.click(screen.getByRole("button", { name: "cancel" }));
-      expect(history.location.pathname).toBe("/");
+      expect(history.location.pathname).toBe("/sign-in");
     });
 
     it("SIGN UP 버튼 클릭시 validate 함수를 호출", () => {
