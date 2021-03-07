@@ -38,6 +38,7 @@ const SideNav = ({ open, setOpen }) => {
   // eslint-disable-next-line no-unused-vars
   const handleClickListItem = fp.curry((path, e) => {
     history.push(path);
+    setOpen(false);
   });
 
   return (
