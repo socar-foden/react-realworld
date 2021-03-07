@@ -22,7 +22,6 @@ const Header = ({ setOpenSide }) => {
 
   const handleAccountCircleIcon = (e) => {
     setOpenProfile(true);
-    console.log('!!!', e.currentTarget);
     setAnchorEl(e.currentTarget);
   };
 
