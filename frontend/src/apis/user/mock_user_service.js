@@ -13,17 +13,17 @@ const mockUser = {
 const mock_user_service = {
   registration: ({ signUpInfo }) => {
     const mock = new MockAdapter(axios);
-    mock.onPost("/api/users").reply(200, mockUser);
+    mock.onPost("/api/users").reply(200, { user: mockUser });
     return axios.post("/api/users");
   },
   authentication: ({ signInInfo }) => {
     const mock = new MockAdapter(axios);
-    mock.onPost("/api/users/login").reply(200, mockUser);
+    mock.onPost("/api/users/login").reply(200, { user: mockUser });
     return axios.post("/api/users/login");
   },
   getCurrentUser: () => {
     const mock = new MockAdapter(axios);
-    mock.onGet("/api/user").reply(200, {});
+    mock.onGet("/api/user").reply(200, { user: mockUser });
     return axios.get("/api/user");
   },
 };
