@@ -14,7 +14,7 @@ import useStyles from "./Header.style";
 const Header = ({ setOpenSide }) => {
   const classes = useStyles();
   const [openProfile, setOpenProfile] = useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClickMenuIcon = () => {
     setOpenSide((prev) => !prev);
