@@ -12,15 +12,23 @@ const useStyles = makeStyles((theme) => ({
     flex: "1 0 auto",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "start",
+    justifyContent: "center",
     width: 210,
+    padding: theme.spacing(1, 2),
+    paddingBottom: `${theme.spacing(1)}px !important`,
   },
   cover: {
-    width: 120,
-    height: 118,
+    width: 80,
+    height: "100%",
   },
   marginTop: {
     marginTop: theme.spacing(1),
+  },
+  imageWrapper: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 80,
   },
 }));
 

@@ -41,7 +41,7 @@ const Profile = ({ open, setOpen, anchorEl }) => {
           <CardContent className={classes.content}>
             <div role="figure" aria-label="email">
               {!fp.isEmpty(user) ? (
-                <Typography component="h5" variant="h5">
+                <Typography component="h5" variant="h6">
                   {user.username}
                 </Typography>
               ) : (
@@ -63,7 +63,7 @@ const Profile = ({ open, setOpen, anchorEl }) => {
             </div>
           </CardContent>
         </div>
-        <div role="figure" aria-label="image">
+        <div role="figure" aria-label="image" className={classes.imageWrapper}>
           {!fp.isEmpty(user) ? (
             user.image ? (
               <CardMedia
@@ -75,7 +75,7 @@ const Profile = ({ open, setOpen, anchorEl }) => {
               <AccountBoxIcon className={classes.cover} />
             )
           ) : (
-            <Skeleton variant="rect" width={120} height={118} />
+            <Skeleton variant="rect" width={50} height={50} />
           )}
         </div>
       </Card>

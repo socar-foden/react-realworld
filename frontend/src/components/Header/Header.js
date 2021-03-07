@@ -41,7 +41,7 @@ const Header = ({ setOpenSide }) => {
           RealWorld
         </Typography>
         <Button color="inherit">
-          <AccountCircleIcon onClick={handleAccountCircleIcon} />
+          <AccountCircleIcon onClick={handleAccountCircleIcon} fontSize="large" />
           <Profile
             open={openProfile}
             setOpen={setOpenProfile}
