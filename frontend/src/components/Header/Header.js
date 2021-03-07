@@ -40,14 +40,14 @@ const Header = ({ setOpenSide }) => {
         <Typography variant="h6" className={classes.title}>
           RealWorld
         </Typography>
-        <Button color="inherit">
-          <AccountCircleIcon onClick={handleAccountCircleIcon} fontSize="large" />
-          <Profile
-            open={openProfile}
-            setOpen={setOpenProfile}
-            anchorEl={anchorEl}
-          />
+        <Button color="inherit" onClick={handleAccountCircleIcon}>
+          <AccountCircleIcon fontSize="large" />
         </Button>
+        <Profile
+          open={openProfile}
+          setOpen={setOpenProfile}
+          anchorEl={anchorEl}
+        />
       </Toolbar>
     </AppBar>
   );
