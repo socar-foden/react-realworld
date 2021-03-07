@@ -7,6 +7,7 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import MenuIcon from "@material-ui/icons/Menu";
 import Profile from "../Profile/Profile";
 import useStyles from "./Header.style";
@@ -40,8 +41,18 @@ const Header = ({ setOpenSide }) => {
         <Typography variant="h6" className={classes.title}>
           RealWorld
         </Typography>
-        <Button color="inherit" onClick={handleAccountCircleIcon}>
+        <Button
+          aria-label="profile"
+          color="inherit"
+          onClick={handleAccountCircleIcon}
+        >
           <AccountCircleIcon fontSize="large" />
+        </Button>
+        <Button
+          aria-label="sign-out"
+          color="inherit"
+        >
+          <ExitToAppIcon fontSize="large" />
         </Button>
         <Profile
           open={openProfile}
