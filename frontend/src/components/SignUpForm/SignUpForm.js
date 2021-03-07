@@ -76,7 +76,7 @@ const SignUpForm = () => {
     if (fp.isUndefined(result)) {
       dispatch(
         userActions.REGISTRATION({
-          user: {
+          signUpInfo: {
             username: formData.username,
             email: formData.email,
             password: formData.password,

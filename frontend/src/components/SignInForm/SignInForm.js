@@ -53,7 +53,7 @@ const SignInForm = () => {
     if (fp.isUndefined(result)) {
       dispatch(
         userActions.AUTHENTICATION({
-          user: {
+          signInInfo: {
             email: formData.email,
             password: formData.password,
           },

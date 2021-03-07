@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const user_mock_service = {
-  registration: ({ user }) => axios.post("/api/users", { user }),
-  authentication: ({ user }) => axios.post("/api/users/login", { user }),
+  registration: ({ signUpInfo }) => axios.post("/api/users", { user: signUpInfo }),
+  authentication: ({ SignInInfo }) => axios.post("/api/users/login", { user: SignInInfo }),
   getCurrentUser: () => axios.get("/api/user"),
 };
 
