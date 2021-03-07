@@ -1,4 +1,5 @@
 import axios from "axios";
+import { TOKEN_KEY } from "../axiosSetUp";
 import { userActions } from "../reducers/user/userReducer";
 
 const authentication = () => (next) => (action) => {
@@ -7,7 +8,8 @@ const authentication = () => (next) => (action) => {
     const {
       user: { token },
     } = payload;
-    localStorage.setItem("jwt", token);
+    
+    localStorage.setItem(TOKEN_KEY, token);
     axios.interceptors.request.use((config) => {
       config.headers.Authorization = `Token ${token}`;
       return config;

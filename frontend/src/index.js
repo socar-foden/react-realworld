@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import axios from "axios";
 import { PersistGate } from "redux-persist/integration/react";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
@@ -10,11 +9,10 @@ import "regenerator-runtime/runtime";
 // https://redux-saga.js.org/
 import App from "./components/App";
 import configureStore from "./configureStore";
+import axiosSetUp from "./axiosSetUp";
 
 const { store, persistor } = configureStore();
-
-axios.defaults.baseURL =
-  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "????";
+axiosSetUp();
 
 ReactDOM.render(
   <Provider store={store}>
