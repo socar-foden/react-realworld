@@ -7,23 +7,33 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import MenuIcon from "@material-ui/icons/Menu";
 import Profile from "../Profile/Profile";
+import { userActions } from "../../reducers/user/userReducer";
 import useStyles from "./Header.style";
 
 const Header = ({ setOpenSide }) => {
   const classes = useStyles();
   const [openProfile, setOpenProfile] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleClickMenuIcon = () => {
     setOpenSide((prev) => !prev);
   };
 
-  const handleAccountCircleIcon = (e) => {
+  const handleClickAccountCircleIcon = (e) => {
     setOpenProfile(true);
     setAnchorEl(e.currentTarget);
+  };
+
+  const handleClickSignOutIcon = () => {
+    dispatch(userActions.SIGN_OUT());
+    history.push("/sign-in");
   };
 
   return (
@@ -44,13 +54,14 @@ const Header = ({ setOpenSide }) => {
         <Button
           aria-label="profile"
           color="inherit"
-          onClick={handleAccountCircleIcon}
+          onClick={handleClickAccountCircleIcon}
         >
           <AccountCircleIcon fontSize="large" />
         </Button>
         <Button
           aria-label="sign-out"
           color="inherit"
+          onClick={handleClickSignOutIcon}
         >
           <ExitToAppIcon fontSize="large" />
         </Button>

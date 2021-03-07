@@ -50,6 +50,8 @@ const userSlice = createSlice({
         failure: errors,
       };
     },
+
+    SIGN_OUT() {},
   },
 });
 
