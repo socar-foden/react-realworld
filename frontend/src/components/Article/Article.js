@@ -101,7 +101,6 @@ const Article = () => {
       </CardContent>
       <CardContent>
         <TextField
-          id="comment"
           label="Add a comment.."
           multiline
           size="small"
