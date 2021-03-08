@@ -11,6 +11,10 @@ const useStyles = makeStyles(() => ({
   margin_1: {
     margin: 1,
   },
+  noPaddingVertical: {
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
 }));
 
 export default useStyles;

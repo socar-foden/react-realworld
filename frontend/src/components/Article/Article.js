@@ -43,7 +43,7 @@ const Article = () => {
         role="header"
       />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography variant="body2" color="textPrimary" component="p">
           This impressive paella is a perfect party dish and a fun meal to cook
           together with your guests. Add 1 cup of frozen peas along with the
           mussels, if you like.
@@ -57,10 +57,24 @@ const Article = () => {
           <ShareIcon />
         </IconButton>
       </CardActions>
+
+      <CardContent
+        role="figure"
+        aria-label="number-of-likes"
+        className={classes.noPaddingVertical}
+      >
+        <Typography variant="body2" component="p">
+          likes 111
+        </Typography>
+      </CardContent>
       <CardContent role="figure" aria-label="tags">
         <Chip size="small" label="#Basic" className={classes.margin_1} />
       </CardContent>
-      <CardContent role="figure" aria-label="comments">
+      <CardContent
+        role="figure"
+        aria-label="comments"
+        className={classes.noPaddingVertical}
+      >
         <Typography paragraph>Method:</Typography>
         <Typography paragraph>
           Heat 1/2 cup of the broth in a pot until simmering, add saffron and

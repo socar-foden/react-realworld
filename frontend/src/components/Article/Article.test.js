@@ -12,6 +12,9 @@ describe("[Article]", () => {
       expect(screen.getByRole("header", { name: "info" })).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "like" })).toBeInTheDocument();
       expect(
+        screen.getByRole("figure", { name: "number-of-likes" })
+      ).toBeInTheDocument();
+      expect(
         screen.getByRole("button", { name: "settings" })
       ).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "share" })).toBeInTheDocument();
