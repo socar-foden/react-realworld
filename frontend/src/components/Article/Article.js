@@ -29,7 +29,7 @@ const Article = () => {
             color="inherit"
             // onClick={handleClickSignOutIcon}
           >
-            <AccountCircleIcon className={classes.cover} />
+            <AccountCircleIcon className={classes.cover} fontSize="large" />
           </Button>
         }
         action={
