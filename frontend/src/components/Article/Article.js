@@ -3,7 +3,7 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
-import { Button, TextField } from "@material-ui/core";
+import { Button, Chip, TextField } from "@material-ui/core";
 import CardActions from "@material-ui/core/CardActions";
 import Avatar from "@material-ui/core/Avatar";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -58,6 +58,9 @@ const Article = () => {
         </IconButton>
       </CardActions>
       <CardContent role="figure" aria-label="tags">
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+      </CardContent>
+      <CardContent role="figure" aria-label="comments">
         <Typography paragraph>Method:</Typography>
         <Typography paragraph>
           Heat 1/2 cup of the broth in a pot until simmering, add saffron and
@@ -66,20 +69,15 @@ const Article = () => {
       </CardContent>
       <CardContent>
         <TextField
-          id="filled-textarea"
-          label="Multiline Placeholder"
-          placeholder="Placeholder"
+          id="comment"
+          label="Add a comment.."
           multiline
+          size="small"
+          fullWidth
+          rowsMax={4}
           variant="filled"
           inputProps={{ role: "input", "aria-label": "add-comment" }}
         />
-      </CardContent>
-      <CardContent role="figure" aria-label="comments">
-        <Typography paragraph>Method:</Typography>
-        <Typography paragraph>
-          Heat 1/2 cup of the broth in a pot until simmering, add saffron and
-          set aside for 10 minutes.
-        </Typography>
       </CardContent>
     </Card>
   );

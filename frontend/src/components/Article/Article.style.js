@@ -8,6 +8,9 @@ const useStyles = makeStyles(() => ({
   avatar: {
     backgroundColor: red[500],
   },
+  margin_1: {
+    margin: 1,
+  },
 }));
 
 export default useStyles;
