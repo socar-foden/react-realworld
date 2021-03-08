@@ -5,6 +5,8 @@ const useStyles = makeStyles(() => ({
     width: "100%",
     height: `calc(100% - 64px)`,
     overflowX: "scroll",
+    display: "flex",
+    justifyContent: "center",
   },
 }));
 
