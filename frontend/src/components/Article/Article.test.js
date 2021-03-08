@@ -11,6 +11,8 @@ describe("[Article]", () => {
     it("구성요소 테스트", () => {
       expect(screen.getByRole("header", { name: "info" })).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "like" })).toBeInTheDocument();
+      expect(screen.getByRole("figure", { name: "body" })).toBeInTheDocument();
+      expect(screen.getByRole("figure", { name: "description" })).toBeInTheDocument();
       expect(
         screen.getByRole("figure", { name: "number-of-likes" })
       ).toBeInTheDocument();

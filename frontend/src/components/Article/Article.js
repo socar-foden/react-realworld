@@ -43,13 +43,30 @@ const Article = () => {
         role="header"
       />
       <CardContent>
-        <Typography variant="body2" color="textPrimary" component="p">
+        <Typography
+          variant="body2"
+          color="textPrimary"
+          component="p"
+          role="figure"
+          aria-label="body"
+        >
           This impressive paella is a perfect party dish and a fun meal to cook
           together with your guests. Add 1 cup of frozen peas along with the
           mussels, if you like.
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
+      <CardContent className={classes.noPaddingVertical}>
+        <Typography
+          variant="caption"
+          color="textSecondary"
+          component="p"
+          role="figure"
+          aria-label="description"
+        >
+          this is description
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing className={classes.noPaddingVertical}>
         <IconButton aria-label="like">
           <FavoriteIcon />
         </IconButton>
@@ -58,12 +75,13 @@ const Article = () => {
         </IconButton>
       </CardActions>
 
-      <CardContent
-        role="figure"
-        aria-label="number-of-likes"
-        className={classes.noPaddingVertical}
-      >
-        <Typography variant="body2" component="p">
+      <CardContent className={classes.noPaddingVertical}>
+        <Typography
+          variant="body2"
+          component="p"
+          role="figure"
+          aria-label="number-of-likes"
+        >
           likes 111
         </Typography>
       </CardContent>
