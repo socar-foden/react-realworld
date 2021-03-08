@@ -9,7 +9,7 @@ import React, { useEffect } from "react";
 import fp from "lodash/fp";
 import { useDispatch, useSelector } from "react-redux";
 import Skeleton from "@material-ui/lab/Skeleton";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { userActions } from "../../reducers/user/userReducer";
 import useStyles from "./Profile.style";
 
@@ -72,7 +72,7 @@ const Profile = ({ open, setOpen, anchorEl }) => {
                 title="Live from space album cover"
               />
             ) : (
-              <AccountBoxIcon className={classes.cover} />
+              <AccountCircleIcon className={classes.cover} />
             )
           ) : (
             <Skeleton variant="rect" width={50} height={50} />
