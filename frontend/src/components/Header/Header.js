@@ -37,7 +37,7 @@ const Header = ({ setOpenSide }) => {
   };
 
   return (
-    <AppBar position="static" role="banner">
+    <AppBar position="sticky" role="banner">
       <Toolbar>
         <IconButton
           edge="start"
