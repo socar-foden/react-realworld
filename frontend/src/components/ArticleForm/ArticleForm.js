@@ -1,11 +1,13 @@
 import { Button, TextField } from "@material-ui/core";
 import React, { useState } from "react";
+import fp from "lodash/fp";
 import utils from "../../utils/utils";
 import useStyles from "./ArticleForm.style";
 
 const ArticleForm = () => {
   const classes = useStyles();
   const [formData, setFormData] = useState({
+    title: "",
     body: "",
     description: "",
     tags: [],
@@ -13,6 +15,14 @@ const ArticleForm = () => {
 
   return (
     <form className={classes.root}>
+      <TextField
+        inputProps={{ "aria-label": "title", role: "input" }}
+        label="Title"
+        fullWidth
+        onChange={utils.handleChangeTextField(setFormData, "title")}
+        value={formData.email}
+        //   inputRef={emailRef}
+      />
       <TextField
         label="Article"
         multiline
@@ -49,7 +59,11 @@ const ArticleForm = () => {
           color="primary"
           aria-label="submit"
           //  onClick={handleClickSignIn}
-          disabled={!formData.body}
+          disabled={fp.some(fp.isEmpty, [
+            formData.title,
+            formData.body,
+            formData.description,
+          ])}
         >
           Submit
         </Button>
