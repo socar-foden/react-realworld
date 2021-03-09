@@ -10,8 +10,21 @@ const ArticleForm = () => {
     title: "",
     body: "",
     description: "",
+    tag: "",
     tags: [],
   });
+
+  const handleKeyPressTag = (e) => {
+    const { tag, tags } = formData;
+
+    if (e.code === "Enter" && !!fp.trim(tag)) {
+      setFormData((prev) => ({
+        ...prev,
+        tag: "",
+        tags: [...tags, tag],
+      }));
+    }
+  };
 
   return (
     <form className={classes.root}>
@@ -50,34 +63,26 @@ const ArticleForm = () => {
         inputProps={{ "aria-label": "tags", role: "input" }}
         label="Tags"
         fullWidth
-        onChange={utils.handleChangeTextField(setFormData, "tags")}
-        value={formData.email}
+        onChange={utils.handleChangeTextField(setFormData, "tag")}
+        value={formData.tag}
         //   inputRef={emailRef}
+        onKeyPress={handleKeyPressTag}
         margin="dense"
       />
       <div role="figure" aria-label="tags">
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basdasdasdasic" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basdsdsic" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basicasdasd" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basiasdasdc" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        {fp.map(
+          (tag, index) => (
+            <Chip
+              key={index + tag}
+              size="small"
+              label={`#${tag}`}
+              className={classes.margin_1}
+              role="figure"
+              aria-label="tag"
+            />
+          ),
+          formData.tags
+        )}
       </div>
       <div>
         <Button
