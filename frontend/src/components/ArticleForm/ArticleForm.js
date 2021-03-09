@@ -1,4 +1,4 @@
-import { Button, TextField } from "@material-ui/core";
+import { Button, Chip, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import fp from "lodash/fp";
 import utils from "../../utils/utils";
@@ -50,11 +50,35 @@ const ArticleForm = () => {
         inputProps={{ "aria-label": "tags", role: "input" }}
         label="Tags"
         fullWidth
-        onChange={utils.handleChangeTextField(setFormData, "email")}
+        onChange={utils.handleChangeTextField(setFormData, "tags")}
         value={formData.email}
         //   inputRef={emailRef}
         margin="dense"
       />
+      <div role="figure" aria-label="tags">
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basdasdasdasic" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basdsdsic" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basicasdasd" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basiasdasdc" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        <Chip size="small" label="#Basic" className={classes.margin_1} />
+      </div>
       <div>
         <Button
           className={classes.margin}

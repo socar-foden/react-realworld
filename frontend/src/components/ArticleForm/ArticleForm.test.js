@@ -18,6 +18,9 @@ describe("[ArticleForm]", () => {
       expect(
         screen.getByRole("button", { name: "submit" })
       ).toBeInTheDocument();
+      expect(
+        screen.getByRole("figure", { name: "tags" })
+      ).toBeInTheDocument();
     });
   });
 
