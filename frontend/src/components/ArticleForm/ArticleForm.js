@@ -22,6 +22,7 @@ const ArticleForm = () => {
         onChange={utils.handleChangeTextField(setFormData, "title")}
         value={formData.email}
         //   inputRef={emailRef}
+        margin="dense"
       />
       <TextField
         label="Article"
@@ -34,6 +35,7 @@ const ArticleForm = () => {
         inputProps={{ role: "input", "aria-label": "body" }}
         onChange={utils.handleChangeTextField(setFormData, "body")}
         value={formData.body}
+        margin="dense"
       />
       <TextField
         inputProps={{ "aria-label": "description", role: "input" }}
@@ -42,6 +44,7 @@ const ArticleForm = () => {
         onChange={utils.handleChangeTextField(setFormData, "description")}
         value={formData.description}
         //   inputRef={emailRef}
+        margin="dense"
       />
       <TextField
         inputProps={{ "aria-label": "tags", role: "input" }}
@@ -50,6 +53,7 @@ const ArticleForm = () => {
         onChange={utils.handleChangeTextField(setFormData, "email")}
         value={formData.email}
         //   inputRef={emailRef}
+        margin="dense"
       />
       <div>
         <Button
