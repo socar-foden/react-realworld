@@ -1,3 +1,4 @@
+import { Container } from "@material-ui/core";
 import React, { useState } from "react";
 import { Route, Switch } from "react-router";
 import { BrowserRouter } from "react-router-dom";
@@ -15,13 +16,15 @@ const Layout = () => {
       <Header setOpenSide={setOpenSide} />
       <SideNav open={openSide} setOpen={setOpenSide} />
       <main className={classes.root}>
-        <BrowserRouter>
-          <Switch>
-            <Route path="/" exact>
-              <Main />
-            </Route>
-          </Switch>
-        </BrowserRouter>
+        <Container maxWidth="sm">
+          <BrowserRouter>
+            <Switch>
+              <Route path="/" exact>
+                <Main />
+              </Route>
+            </Switch>
+          </BrowserRouter>
+        </Container>
       </main>
     </>
   );
