@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import ArticleForm from "./ArticleForm";
 
@@ -13,12 +13,19 @@ describe("[ArticleForm]", () => {
       expect(
         screen.getByRole("input", { name: "description" })
       ).toBeInTheDocument();
-      expect(
-        screen.getByRole("input", { name: "tags" })
-      ).toBeInTheDocument();
+      expect(screen.getByRole("input", { name: "tags" })).toBeInTheDocument();
       expect(
         screen.getByRole("button", { name: "submit" })
       ).toBeInTheDocument();
+    });
+  });
+
+  describe("UX 테스트", () => {
+    it("body 내용이 없으면 submit 버튼은 비활성화", () => {
+      fireEvent.change(screen.getByRole("input", { name: "body" }), {
+        target: { value: "" },
+      });
+      expect(screen.getByRole("button", { name: "submit" })).toBeDisabled();
     });
   });
 });

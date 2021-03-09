@@ -8,6 +8,7 @@ const ArticleForm = () => {
   const [formData, setFormData] = useState({
     body: "",
     description: "",
+    tags: [],
   });
 
   return (
@@ -21,13 +22,15 @@ const ArticleForm = () => {
         rows={2}
         variant="filled"
         inputProps={{ role: "input", "aria-label": "body" }}
+        onChange={utils.handleChangeTextField(setFormData, "body")}
+        value={formData.body}
       />
       <TextField
         inputProps={{ "aria-label": "description", role: "input" }}
         label="Description"
         fullWidth
-        onChange={utils.handleChangeTextField(setFormData, "email")}
-        value={formData.email}
+        onChange={utils.handleChangeTextField(setFormData, "description")}
+        value={formData.description}
         //   inputRef={emailRef}
       />
       <TextField
@@ -46,7 +49,7 @@ const ArticleForm = () => {
           color="primary"
           aria-label="submit"
           //  onClick={handleClickSignIn}
-          //  disabled={authentication_success}
+           disabled={!formData.body}
         >
           Submit
         </Button>
