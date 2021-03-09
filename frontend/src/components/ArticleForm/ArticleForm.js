@@ -44,7 +44,7 @@ const ArticleForm = () => {
           type="submit"
           variant="contained"
           color="primary"
-          aria-label="sign-in"
+          aria-label="submit"
           //  onClick={handleClickSignIn}
           //  disabled={authentication_success}
         >

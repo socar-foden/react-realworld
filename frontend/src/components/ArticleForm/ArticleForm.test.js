@@ -16,6 +16,9 @@ describe("[ArticleForm]", () => {
       expect(
         screen.getByRole("input", { name: "tags" })
       ).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: "submit" })
+      ).toBeInTheDocument();
     });
   });
 });
