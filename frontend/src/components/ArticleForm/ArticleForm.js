@@ -49,7 +49,7 @@ const ArticleForm = () => {
           color="primary"
           aria-label="submit"
           //  onClick={handleClickSignIn}
-           disabled={!formData.body}
+          disabled={!formData.body}
         >
           Submit
         </Button>
