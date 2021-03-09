@@ -21,11 +21,20 @@ describe("[ArticleForm]", () => {
   });
 
   describe("UX 테스트", () => {
-    it("body 내용이 없으면 submit 버튼은 비활성화", () => {
-      fireEvent.change(screen.getByRole("input", { name: "body" }), {
-        target: { value: "" },
+    describe("body 내용이", () => {
+      it("없으면 submit 버튼은 비활성화", () => {
+        fireEvent.change(screen.getByRole("input", { name: "body" }), {
+          target: { value: "" },
+        });
+        expect(screen.getByRole("button", { name: "submit" })).toBeDisabled();
       });
-      expect(screen.getByRole("button", { name: "submit" })).toBeDisabled();
+
+      it("있으면 submit 버튼은 활성화", () => {
+        fireEvent.change(screen.getByRole("input", { name: "body" }), {
+          target: { value: "test-body" },
+        });
+        expect(screen.getByRole("button", { name: "submit" })).toBeEnabled();
+      });
     });
   });
 });
