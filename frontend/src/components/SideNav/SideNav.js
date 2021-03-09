@@ -9,7 +9,7 @@ import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import HomeIcon from "@material-ui/icons/Home";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import React from "react";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import fp from "lodash/fp";
 import useStyles from "./SideNav.style";
 
@@ -34,6 +34,7 @@ const MenuList = [
 const SideNav = ({ open, setOpen }) => {
   const classes = useStyles();
   const history = useHistory();
+  const location = useLocation();
 
   // eslint-disable-next-line no-unused-vars
   const handleClickListItem = fp.curry((path, e) => {
@@ -57,6 +58,7 @@ const SideNav = ({ open, setOpen }) => {
               button
               key={item.text}
               onClick={handleClickListItem(item.path)}
+              selected={location.pathname === item.path}
             >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />

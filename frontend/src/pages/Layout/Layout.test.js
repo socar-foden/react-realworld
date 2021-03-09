@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
+import { createMemoryHistory } from "history";
 import React from "react";
 import { Provider } from "react-redux";
+import { Router } from "react-router";
 import { createStore } from "redux";
 import rootReducer from "../../reducers/rootReducer";
 import Layout from "./Layout";
@@ -9,7 +11,9 @@ describe("[Layout]", () => {
   beforeEach(() => {
     render(
       <Provider store={createStore(rootReducer)}>
-        <Layout />
+        <Router history={createMemoryHistory()}>
+          <Layout />
+        </Router>
       </Provider>
     );
   });
