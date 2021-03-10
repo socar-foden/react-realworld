@@ -14,23 +14,23 @@ const ArticleForm = () => {
     body: "",
     description: "",
     tag: "",
-    tags: [],
+    tagList: [],
   });
   const dispatch = useDispatch();
 
   const handleKeyPressTag = (e) => {
-    const { tag, tags } = formData;
+    const { tag, tagList } = formData;
     const newTag = fp.trim(tag);
 
     if (
       fp.isEqual(e.code, "Enter") &&
       !!newTag &&
-      !fp.find(fp.isEqual(newTag), formData.tags)
+      !fp.find(fp.isEqual(newTag), formData.tagList)
     ) {
       setFormData((prev) => ({
         ...prev,
         tag: "",
-        tags: [...tags, newTag],
+        tagList: [...tagList, newTag],
       }));
     }
   };
@@ -39,7 +39,7 @@ const ArticleForm = () => {
   const handleOnDeleteTag = fp.curry((targetTag, e) => {
     setFormData((prev) => ({
       ...prev,
-      tags: fp.filter(fp.negate(fp.isEqual(targetTag)), prev.tags),
+      tagList: fp.filter(fp.negate(fp.isEqual(targetTag)), prev.tagList),
     }));
   });
 
@@ -113,7 +113,7 @@ const ArticleForm = () => {
               deleteIcon={<CloseIcon role="button" aria-label="tag-delete" />}
             />
           ),
-          formData.tags
+          formData.tagList
         )}
       </div>
       <div>
