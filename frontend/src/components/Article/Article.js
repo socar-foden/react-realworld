@@ -8,8 +8,9 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
+// import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import dateFormat from "dateformat";
 import fp from "lodash/fp";
 import useStyles from "./Article.style";
 
@@ -49,8 +50,7 @@ const Article = ({ article = { author: {}, tagList: [] } }) => {
           </IconButton>
         }
         title={author.username}
-        // TODO: 날짜 포맷
-        subheader="September 14, 2016"
+        subheader={dateFormat(article.createdAt, "fullDate")}
         aria-label="author-info"
         role="header"
       />
