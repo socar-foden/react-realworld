@@ -1,9 +1,9 @@
 import { makeStyles } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    margin: theme.spacing(1),
   },
   avatar: {
     backgroundColor: red[500],
