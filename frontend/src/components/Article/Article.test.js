@@ -10,11 +10,11 @@ describe("[Article]", () => {
   describe("UI 테스트", () => {
     it("구성요소 테스트", () => {
       expect(screen.getByRole("header", { name: "info" })).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: "like" })).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "favorite" })).toBeInTheDocument();
       expect(screen.getByRole("figure", { name: "body" })).toBeInTheDocument();
       expect(screen.getByRole("figure", { name: "description" })).toBeInTheDocument();
       expect(
-        screen.getByRole("figure", { name: "number-of-likes" })
+        screen.getByRole("figure", { name: "number-of-favorites" })
       ).toBeInTheDocument();
       expect(
         screen.getByRole("button", { name: "settings" })

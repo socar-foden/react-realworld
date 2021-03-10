@@ -61,7 +61,7 @@ const Article = ({ article = { tagList: [] } }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing className={classes.noPaddingVertical}>
-        <IconButton aria-label="like">
+        <IconButton aria-label="favorite">
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share">
@@ -74,9 +74,9 @@ const Article = ({ article = { tagList: [] } }) => {
           variant="body2"
           component="p"
           role="figure"
-          aria-label="number-of-likes"
+          aria-label="number-of-favorites"
         >
-          likes {article.favoritesCount}
+          favorites {article.favoritesCount}
         </Typography>
       </CardContent>
       <CardContent role="figure" aria-label="tag-list">
