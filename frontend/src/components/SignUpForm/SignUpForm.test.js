@@ -29,7 +29,6 @@ describe("[SignUpForm]", () => {
   beforeEach(renderSignUpForm);
 
   describe("UI 테스트", () => {
-
     it("폼 구성요소 테스트", () => {
       expect(
         screen.getByRole("input", { name: "username" })
@@ -70,11 +69,8 @@ describe("[SignUpForm]", () => {
 
   describe("상태 테스트", () => {
     describe("SIGN UP 버튼 클릭", () => {
-      it("validate를 통과하지 못하면, user/REGISTRATION_FAILURE 호출한다.", () => {
-        const mockCall = jest.spyOn(
-          userActions,
-          "REGISTRATION_FAILURE"
-        );
+      it(`validate를 통과하지 못하면, ${userActions.REGISTRATION_FAILURE.type} 호출한다.`, () => {
+        const mockCall = jest.spyOn(userActions, "REGISTRATION_FAILURE");
 
         userEvent.click(screen.getByRole("button", { name: "sign-up" }));
         expect(mockCall).toHaveBeenCalled();
@@ -102,7 +98,7 @@ describe("[SignUpForm]", () => {
           );
         });
 
-        it("user/REGISTRATION액션을 호출한다.", () => {
+        it(`${userActions.REGISTRATION.type}액션을 호출한다.`, () => {
           const mockCall = jest.spyOn(userActions, "REGISTRATION");
 
           userEvent.click(screen.getByRole("button", { name: "sign-up" }));

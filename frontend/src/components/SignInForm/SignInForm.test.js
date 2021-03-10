@@ -49,18 +49,15 @@ describe("[SignInForm]", () => {
 
   describe("상태 테스트", () => {
     describe("Sign in 버튼 클릭", () => {
-      it("validate를 통과하지 못하면, user/AUTHENTICATION_FAILURE를 호출", () => {
-        const mockCall = jest.spyOn(
-          userActions,
-          "AUTHENTICATION_FAILURE"
-        );
+      it(`validate를 통과하지 못하면, ${userActions.AUTHENTICATION_FAILURE.type}를 호출`, () => {
+        const mockCall = jest.spyOn(userActions, "AUTHENTICATION_FAILURE");
 
         userEvent.click(screen.getByRole("button", { name: "sign-in" }));
         expect(mockCall).toHaveBeenCalled();
       });
     });
 
-    it("유효한 정보 입력시, user/AUTHENTICATION 호출", () => {
+    it(`유효한 정보 입력시, ${userActions.AUTHENTICATION.type} 호출`, () => {
       const mockCall = jest.spyOn(userActions, "AUTHENTICATION");
 
       fireEvent.change(screen.getByRole("input", { name: "e-mail" }), {
