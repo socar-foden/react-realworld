@@ -66,11 +66,7 @@ const Profile = ({ open, setOpen, anchorEl }) => {
         <div role="figure" aria-label="image" className={classes.imageWrapper}>
           {!fp.isEmpty(user) ? (
             user.image ? (
-              <CardMedia
-                className={classes.cover}
-                image={user.image}
-                title="Live from space album cover"
-              />
+              <CardMedia className={classes.cover} image={user.image} />
             ) : (
               <AccountCircleIcon className={classes.cover} />
             )

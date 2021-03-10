@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
   },
   cover: {
     width: 80,
-    height: "100%",
+    height: "80px",
+    borderRadius: "50%",
   },
   marginTop: {
     marginTop: theme.spacing(1),
