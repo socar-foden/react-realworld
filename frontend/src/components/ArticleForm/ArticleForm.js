@@ -19,9 +19,9 @@ const ArticleForm = () => {
     const newTag = fp.trim(tag);
 
     if (
-      e.code === "Enter" &&
+      fp.isEqual(e.code, "Enter") &&
       !!newTag &&
-      !fp.find((tag) => fp.isEqual(tag, newTag), formData.tags)
+      !fp.find(fp.isEqual(newTag), formData.tags)
     ) {
       setFormData((prev) => ({
         ...prev,
