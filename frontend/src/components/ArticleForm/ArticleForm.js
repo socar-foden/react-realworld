@@ -118,7 +118,7 @@ const ArticleForm = () => {
               key={tag}
               size="small"
               label={`#${tag}`}
-              className={classes.margin_1}
+              className={classes.margin_2}
               role="figure"
               aria-label="tag"
               onDelete={handleOnDeleteTag(tag)}
