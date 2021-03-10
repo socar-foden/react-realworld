@@ -41,7 +41,7 @@ const ArticleForm = () => {
   });
 
   return (
-    <form className={classes.root}>
+    <form className={classes.root} onSubmit={(e) => e.preventDefault()}>
       <TextField
         inputProps={{ "aria-label": "title", role: "input" }}
         label="Title"
