@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const user_mock_service = {
+const user_service = {
   registration: ({ signUpInfo }) => axios.post("/api/users", { user: signUpInfo }),
   authentication: ({ signInInfo }) => axios.post("/api/users/login", { user: signInInfo }),
   getCurrentUser: () => axios.get("/api/user"),
 };
 
-export default user_mock_service;
+export default user_service;
