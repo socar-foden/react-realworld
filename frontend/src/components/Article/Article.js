@@ -83,7 +83,7 @@ const Article = () => {
           likes 111
         </Typography>
       </CardContent>
-      <CardContent role="figure" aria-label="tags">
+      <CardContent role="figure" aria-label="tag-list">
         <Chip size="small" label="#Basic" className={classes.margin_1} />
       </CardContent>
       <CardContent

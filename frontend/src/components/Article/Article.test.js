@@ -20,7 +20,7 @@ describe("[Article]", () => {
         screen.getByRole("button", { name: "settings" })
       ).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "share" })).toBeInTheDocument();
-      expect(screen.getByRole("figure", { name: "tags" })).toBeInTheDocument();
+      expect(screen.getByRole("figure", { name: "tag-list" })).toBeInTheDocument();
       expect(
         screen.getByRole("figure", { name: "comments" })
       ).toBeInTheDocument();

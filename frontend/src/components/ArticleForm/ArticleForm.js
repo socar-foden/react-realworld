@@ -103,7 +103,7 @@ const ArticleForm = () => {
         margin="dense"
       />
       <TextField
-        inputProps={{ "aria-label": "tags", role: "input" }}
+        inputProps={{ "aria-label": "tag-list", role: "input" }}
         label="Tags"
         fullWidth
         onChange={utils.handleChangeTextField(setFormData, "tag")}
@@ -111,7 +111,7 @@ const ArticleForm = () => {
         onKeyPress={handleKeyPressTag}
         margin="dense"
       />
-      <div role="figure" aria-label="tags">
+      <div role="figure" aria-label="tag-list">
         {fp.map(
           (tag) => (
             <Chip

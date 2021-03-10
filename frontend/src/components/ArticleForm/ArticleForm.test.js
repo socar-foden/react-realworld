@@ -22,11 +22,11 @@ describe("[ArticleForm]", () => {
       expect(
         screen.getByRole("input", { name: "description" })
       ).toBeInTheDocument();
-      expect(screen.getByRole("input", { name: "tags" })).toBeInTheDocument();
+      expect(screen.getByRole("input", { name: "tag-list" })).toBeInTheDocument();
       expect(
         screen.getByRole("button", { name: "submit" })
       ).toBeInTheDocument();
-      expect(screen.getByRole("figure", { name: "tags" })).toBeInTheDocument();
+      expect(screen.getByRole("figure", { name: "tag-list" })).toBeInTheDocument();
     });
   });
 
