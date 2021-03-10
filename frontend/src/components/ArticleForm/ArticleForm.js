@@ -47,7 +47,7 @@ const ArticleForm = () => {
     e.preventDefault();
     dispatch(
       articleActions.CREATE_ARTICLE({
-        article: formData,
+        articleInfo: formData,
       })
     );
   };

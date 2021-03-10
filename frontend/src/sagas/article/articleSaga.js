@@ -6,7 +6,7 @@ import utils from "../../utils/utils";
 export default function* articleSaga() {
   yield all([
     utils.watchSaga(
-      articleActions.REGISTRATION.type,
+      articleActions.CREATE_ARTICLE.type,
       article_service.createArticle
     ),
   ]);
