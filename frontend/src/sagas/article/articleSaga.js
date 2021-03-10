@@ -9,5 +9,9 @@ export default function* articleSaga() {
       articleActions.CREATE_ARTICLE.type,
       article_service.createArticle
     ),
+    utils.watchSaga(
+      articleActions.LIST_ARTICLES.type,
+      article_service.listArticles
+    ),
   ]);
 }
