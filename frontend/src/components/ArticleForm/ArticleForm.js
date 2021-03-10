@@ -1,6 +1,7 @@
 import { Button, Chip, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import fp from "lodash/fp";
+import CloseIcon from "@material-ui/icons/Close";
 import utils from "../../utils/utils";
 import useStyles from "./ArticleForm.style";
 
@@ -30,6 +31,14 @@ const ArticleForm = () => {
       }));
     }
   };
+
+  // eslint-disable-next-line no-unused-vars
+  const handleOnDeleteTag = fp.curry((targetTag, e) => {
+    setFormData((prev) => ({
+      ...prev,
+      tags: fp.filter(fp.negate(fp.isEqual(targetTag)), prev.tags),
+    }));
+  });
 
   return (
     <form className={classes.root}>
@@ -84,6 +93,8 @@ const ArticleForm = () => {
               className={classes.margin_1}
               role="figure"
               aria-label="tag"
+              onDelete={handleOnDeleteTag(tag)}
+              deleteIcon={<CloseIcon role="button" aria-label="tag-delete" />}
             />
           ),
           formData.tags
