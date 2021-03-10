@@ -8,10 +8,10 @@ const utils = {
       try {
         const { data } = yield call(api, payload);
         yield put({ type: `${type}_SUCCESS`, payload: data });
-        console.log(`[Saga - ${type}] :: `, data);
+        console.log(`✅ [Saga - ${type}] :: `, data);
       } catch (e) {
         const { errors } = e.response.data;
-        console.error(`[Saga - ${type}] ERROR :: `, errors);
+        console.error(`❌ [Saga - ${type}] ERROR :: `, errors);
         yield put({
           type: `${type}_FAILURE`,
           payload: {
