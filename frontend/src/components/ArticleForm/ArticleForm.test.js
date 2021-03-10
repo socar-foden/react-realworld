@@ -1,10 +1,18 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import rootReducer from "../../reducers/rootReducer";
+import { userActions } from "../../reducers/user/userReducer";
 import ArticleForm from "./ArticleForm";
 
 describe("[ArticleForm]", () => {
   beforeEach(() => {
-    render(<ArticleForm />);
+    render(
+      <Provider store={createStore(rootReducer)}>
+        <ArticleForm />
+      </Provider>
+    );
   });
 
   describe("UI 테스트", () => {
@@ -72,6 +80,24 @@ describe("[ArticleForm]", () => {
         });
         expect(screen.getByRole("button", { name: "submit" })).toBeEnabled();
       });
+    });
+  });
+
+  describe("상태 테스트", () => {
+    it(`올바른 title, body, description 입력후 submit시 ${userActions.CREATE_ARTICLE.type}을 호출한다.`, () => {
+      const mockCall = jest.spyOn(userActions, "CREATE_ARTICLE");
+
+      fireEvent.change(screen.getByRole("input", { name: "title" }), {
+        target: { value: "test-title" },
+      });
+      fireEvent.change(screen.getByRole("input", { name: "body" }), {
+        target: { value: "test-body" },
+      });
+      fireEvent.change(screen.getByRole("input", { name: "description" }), {
+        target: { value: "test-description" },
+      });
+      fireEvent.submit(screen.getByRole("form", { name: "article" }));
+      expect(mockCall).toHaveBeenCalled();
     });
   });
 });

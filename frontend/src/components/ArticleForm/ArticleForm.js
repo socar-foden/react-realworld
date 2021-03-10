@@ -1,8 +1,10 @@
 import { Button, Chip, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import fp from "lodash/fp";
+import { useDispatch } from "react-redux";
 import CloseIcon from "@material-ui/icons/Close";
 import utils from "../../utils/utils";
+import { userActions } from "../../reducers/user/userReducer";
 import useStyles from "./ArticleForm.style";
 
 const ArticleForm = () => {
@@ -14,6 +16,7 @@ const ArticleForm = () => {
     tag: "",
     tags: [],
   });
+  const dispatch = useDispatch();
 
   const handleKeyPressTag = (e) => {
     const { tag, tags } = formData;
@@ -40,8 +43,21 @@ const ArticleForm = () => {
     }));
   });
 
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    dispatch(
+      userActions.CREATE_ARTICLE({
+        article: formData,
+      })
+    );
+  };
+
   return (
-    <form className={classes.root} onSubmit={(e) => e.preventDefault()}>
+    <form
+      className={classes.root}
+      onSubmit={handleSubmitForm}
+      aria-label="article"
+    >
       <TextField
         inputProps={{ "aria-label": "title", role: "input" }}
         label="Title"
