@@ -2,7 +2,7 @@ import React from "react";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
-import { Button, Chip, TextField } from "@material-ui/core";
+import { Button, CardMedia, Chip, TextField } from "@material-ui/core";
 import CardActions from "@material-ui/core/CardActions";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import IconButton from "@material-ui/core/IconButton";
@@ -13,19 +13,34 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import fp from "lodash/fp";
 import useStyles from "./Article.style";
 
-const Article = ({ article = { tagList: [] } }) => {
+const Article = ({ article = { author: {}, tagList: [] } }) => {
   const classes = useStyles();
+  const { author, tagList } = article;
 
   return (
     <Card className={classes.root}>
+      <CardHeader
+        title={
+          <Typography variant="h6" component="h6">
+            {article.title}
+          </Typography>
+        }
+        aria-label="title"
+        role="header"
+      />
       <CardHeader
         avatar={
           <Button
             aria-label="author"
             color="inherit"
             // onClick={handleClickSignOutIcon}
+            className={classes.imageWrapper}
           >
-            <AccountCircleIcon fontSize="large" />
+            {author.image ? (
+              <CardMedia className={classes.cover} image={author.image} />
+            ) : (
+              <AccountCircleIcon fontSize="large" className={classes.cover} />
+            )}
           </Button>
         }
         action={
@@ -33,9 +48,10 @@ const Article = ({ article = { tagList: [] } }) => {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
+        title={author.username}
+        // TODO: 날짜 포맷
         subheader="September 14, 2016"
-        aria-label="info"
+        aria-label="author-info"
         role="header"
       />
       <CardContent>
@@ -62,11 +78,11 @@ const Article = ({ article = { tagList: [] } }) => {
       </CardContent>
       <CardActions disableSpacing className={classes.noPaddingVertical}>
         <IconButton aria-label="favorite">
-          <FavoriteIcon />
+          <FavoriteIcon color={article.favorited ? "error" : "inherit"} />
         </IconButton>
-        <IconButton aria-label="share">
+        {/* <IconButton aria-label="share">
           <ShareIcon />
-        </IconButton>
+        </IconButton> */}
       </CardActions>
 
       <CardContent className={classes.noPaddingVertical}>
@@ -89,7 +105,7 @@ const Article = ({ article = { tagList: [] } }) => {
               className={classes.margin_2}
             />
           ),
-          article.tagList
+          tagList
         )}
       </CardContent>
       <CardContent

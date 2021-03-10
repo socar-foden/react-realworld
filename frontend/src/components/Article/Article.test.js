@@ -9,18 +9,25 @@ describe("[Article]", () => {
 
   describe("UI 테스트", () => {
     it("구성요소 테스트", () => {
-      expect(screen.getByRole("header", { name: "info" })).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: "favorite" })).toBeInTheDocument();
+      expect(screen.getByRole("header", { name: "title" })).toBeInTheDocument();
+      expect(screen.getByRole("header", { name: "author-info" })).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: "favorite" })
+      ).toBeInTheDocument();
       expect(screen.getByRole("figure", { name: "body" })).toBeInTheDocument();
-      expect(screen.getByRole("figure", { name: "description" })).toBeInTheDocument();
+      expect(
+        screen.getByRole("figure", { name: "description" })
+      ).toBeInTheDocument();
       expect(
         screen.getByRole("figure", { name: "number-of-favorites" })
       ).toBeInTheDocument();
       expect(
         screen.getByRole("button", { name: "settings" })
       ).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: "share" })).toBeInTheDocument();
-      expect(screen.getByRole("figure", { name: "tag-list" })).toBeInTheDocument();
+      // expect(screen.getByRole("button", { name: "share" })).toBeInTheDocument();
+      expect(
+        screen.getByRole("figure", { name: "tag-list" })
+      ).toBeInTheDocument();
       expect(
         screen.getByRole("figure", { name: "comments" })
       ).toBeInTheDocument();
