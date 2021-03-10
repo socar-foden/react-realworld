@@ -10,18 +10,16 @@ import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import fp from "lodash/fp";
 import useStyles from "./Article.style";
 
-const Article = () => {
+const Article = ({ article = { tagList: [] } }) => {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          //  <Avatar aria-label="recipe" className={classes.avatar}>
-          //    R
-          //  </Avatar>
           <Button
             aria-label="author"
             color="inherit"
@@ -48,9 +46,7 @@ const Article = () => {
           role="figure"
           aria-label="body"
         >
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          {article.body}
         </Typography>
       </CardContent>
       <CardContent className={classes.noPaddingVertical}>
@@ -61,7 +57,7 @@ const Article = () => {
           role="figure"
           aria-label="description"
         >
-          this is description
+          {article.description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing className={classes.noPaddingVertical}>
@@ -80,11 +76,21 @@ const Article = () => {
           role="figure"
           aria-label="number-of-likes"
         >
-          likes 111
+          likes {article.favoritesCount}
         </Typography>
       </CardContent>
       <CardContent role="figure" aria-label="tag-list">
-        <Chip size="small" label="#Basic" className={classes.margin_1} />
+        {fp.map(
+          (tag) => (
+            <Chip
+              key={tag}
+              size="small"
+              label={`#${tag}`}
+              className={classes.margin_2}
+            />
+          ),
+          article.tagList
+        )}
       </CardContent>
       <CardContent
         role="figure"
