@@ -29,7 +29,7 @@ const articleSlice = createSlice({
     LIST_ARTICLES(state) {
       state.listArticles = { request: true, success: false, failure: "" };
     },
-    LIST_ARTICLES_SUCCESS(state, { payload: articles }) {
+    LIST_ARTICLES_SUCCESS(state, { payload: { articles } }) {
       state.articles = articles;
       state.listArticles = { request: false, success: true, failure: "" };
     },
