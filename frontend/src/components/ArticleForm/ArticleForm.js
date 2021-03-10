@@ -16,12 +16,17 @@ const ArticleForm = () => {
 
   const handleKeyPressTag = (e) => {
     const { tag, tags } = formData;
+    const newTag = fp.trim(tag);
 
-    if (e.code === "Enter" && !!fp.trim(tag)) {
+    if (
+      e.code === "Enter" &&
+      !!newTag &&
+      !fp.find((tag) => fp.isEqual(tag, newTag), formData.tags)
+    ) {
       setFormData((prev) => ({
         ...prev,
         tag: "",
-        tags: [...tags, tag],
+        tags: [...tags, newTag],
       }));
     }
   };
@@ -71,9 +76,9 @@ const ArticleForm = () => {
       />
       <div role="figure" aria-label="tags">
         {fp.map(
-          (tag, index) => (
+          (tag) => (
             <Chip
-              key={index + tag}
+              key={tag}
               size="small"
               label={`#${tag}`}
               className={classes.margin_1}
