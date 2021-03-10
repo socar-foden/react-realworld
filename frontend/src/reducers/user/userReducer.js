@@ -4,13 +4,9 @@ const initialState = {
   user: {},
 
   // [요청 관련상태]
-  // user
   registration: { request: false, success: false, failure: "" },
   authentication: { request: false, success: false, failure: "" },
   getCurrentUser: { request: false, success: false, failure: "" },
-
-  // article
-  createArticle: { request: false, success: false, failure: "" },
 };
 
 const userSlice = createSlice({
@@ -51,20 +47,6 @@ const userSlice = createSlice({
     },
     GET_CURRENT_USER_FAILURE(state, { payload: { errors } }) {
       state.getCurrentUser = {
-        request: false,
-        success: false,
-        failure: errors,
-      };
-    },
-
-    CREATE_ARTICLE(state) {
-      state.createArticle = { request: true, success: false, failure: "" };
-    },
-    CREATE_ARTICLE_SUCCESS(state) {
-      state.createArticle = { request: false, success: true, failure: "" };
-    },
-    CREATE_ARTICLE_FAILURE(state, { payload: { errors } }) {
-      state.createArticle = {
         request: false,
         success: false,
         failure: errors,

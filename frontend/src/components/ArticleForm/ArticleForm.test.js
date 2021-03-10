@@ -2,8 +2,8 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
+import { articleActions } from "../../reducers/article/articleReducer";
 import rootReducer from "../../reducers/rootReducer";
-import { userActions } from "../../reducers/user/userReducer";
 import ArticleForm from "./ArticleForm";
 
 describe("[ArticleForm]", () => {
@@ -84,8 +84,8 @@ describe("[ArticleForm]", () => {
   });
 
   describe("상태 테스트", () => {
-    it(`올바른 title, body, description 입력후 submit시 ${userActions.CREATE_ARTICLE.type}을 호출한다.`, () => {
-      const mockCall = jest.spyOn(userActions, "CREATE_ARTICLE");
+    it(`올바른 title, body, description 입력후 submit시 ${articleActions.CREATE_ARTICLE.type}을 호출한다.`, () => {
+      const mockCall = jest.spyOn(articleActions, "CREATE_ARTICLE");
 
       fireEvent.change(screen.getByRole("input", { name: "title" }), {
         target: { value: "test-title" },

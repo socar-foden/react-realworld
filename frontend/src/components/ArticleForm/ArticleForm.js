@@ -4,7 +4,7 @@ import fp from "lodash/fp";
 import { useDispatch } from "react-redux";
 import CloseIcon from "@material-ui/icons/Close";
 import utils from "../../utils/utils";
-import { userActions } from "../../reducers/user/userReducer";
+import { articleActions } from "../../reducers/article/articleReducer";
 import useStyles from "./ArticleForm.style";
 
 const ArticleForm = () => {
@@ -46,7 +46,7 @@ const ArticleForm = () => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     dispatch(
-      userActions.CREATE_ARTICLE({
+      articleActions.CREATE_ARTICLE({
         article: formData,
       })
     );
