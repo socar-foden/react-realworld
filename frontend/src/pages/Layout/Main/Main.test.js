@@ -33,7 +33,6 @@ describe("[Main]", () => {
           <Main />
         </Provider>
       );
-
       expect(mockCall).toHaveBeenCalledTimes(1);
     });
   });
