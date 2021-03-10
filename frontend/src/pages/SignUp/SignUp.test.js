@@ -56,7 +56,7 @@ describe("[SignUp]", () => {
   describe("로그인 실패시", () => {
     it("실패 알림창이 뜬다.", () => {
       store.dispatch({
-        type: userActions.REGISTRATION_FAILURE,
+        type: userActions.REGISTRATION_FAILURE.type,
         payload: { errors: "already exist" },
       });
       expect(screen.getByRole("alert", { name: "error" })).toBeInTheDocument();
