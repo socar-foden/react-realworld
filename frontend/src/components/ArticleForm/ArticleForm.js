@@ -1,26 +1,35 @@
 import { Button, Chip, TextField } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import fp from "lodash/fp";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CloseIcon from "@material-ui/icons/Close";
 import utils from "../../utils/utils";
 import { articleActions } from "../../reducers/article/articleReducer";
 import useStyles from "./ArticleForm.style";
 
+const initFormData = {
+  title: "",
+  body: "",
+  description: "",
+  tag: "",
+  tagList: [],
+};
+
 const ArticleForm = () => {
   const classes = useStyles();
-  const [formData, setFormData] = useState({
-    title: "",
-    body: "",
-    description: "",
-    tag: "",
-    tagList: [],
-  });
+  const [formData, setFormData] = useState(initFormData);
   const dispatch = useDispatch();
+  const {
+    createArticle: { success },
+  } = useSelector((rootReducer) => rootReducer.articleReducer);
 
   const handleKeyPressTag = (e) => {
     const { tag, tagList } = formData;
     const newTag = fp.trim(tag);
+
+    if (fp.isEqual(e.code, "Enter")) {
+      e.preventDefault();
+    }
 
     if (
       fp.isEqual(e.code, "Enter") &&
@@ -52,6 +61,12 @@ const ArticleForm = () => {
     );
   };
 
+  useEffect(() => {
+    if (success) {
+      setFormData(initFormData);
+    }
+  }, [success]);
+
   return (
     <form
       className={classes.root}
@@ -63,8 +78,7 @@ const ArticleForm = () => {
         label="Title"
         fullWidth
         onChange={utils.handleChangeTextField(setFormData, "title")}
-        value={formData.email}
-        //   inputRef={emailRef}
+        value={formData.title}
         margin="dense"
       />
       <TextField
@@ -86,7 +100,6 @@ const ArticleForm = () => {
         fullWidth
         onChange={utils.handleChangeTextField(setFormData, "description")}
         value={formData.description}
-        //   inputRef={emailRef}
         margin="dense"
       />
       <TextField
@@ -95,7 +108,6 @@ const ArticleForm = () => {
         fullWidth
         onChange={utils.handleChangeTextField(setFormData, "tag")}
         value={formData.tag}
-        //   inputRef={emailRef}
         onKeyPress={handleKeyPressTag}
         margin="dense"
       />
