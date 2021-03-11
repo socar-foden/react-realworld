@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import storage from "redux-persist/lib/storage/session";
 import createSagaMiddleware from "redux-saga";
 import authentication from "./middlewares/authentication";
 import rootReducer from "./reducers/rootReducer";
