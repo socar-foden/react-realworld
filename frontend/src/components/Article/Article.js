@@ -123,7 +123,13 @@ const Article = ({ article = { author: {}, tagList: [] } }) => {
       <CardContent
         className={clsx(classes.noPaddingVertical, classes.padding_bottom_10)}
       >
-        <Button variant="outlined" size="small" color="primary" fullWidth>
+        <Button
+          variant="outlined"
+          size="small"
+          color="primary"
+          fullWidth
+          aria-label="view-details"
+        >
           View Details..
         </Button>
       </CardContent>
