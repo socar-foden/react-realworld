@@ -6,6 +6,7 @@ import userEvent from "@testing-library/user-event";
 import { articleActions } from "../../reducers/article/articleReducer";
 import rootReducer from "../../reducers/rootReducer";
 import Article from "./Article";
+import { commentActions } from "../../reducers/comment/commentReducer";
 
 describe("[Article]", () => {
   beforeEach(() => {
@@ -58,10 +59,20 @@ describe("[Article]", () => {
   });
 
   describe("상태 테스트", () => {
-    it(`favorite 버튼을 누르면 ${articleActions.FAVORITE_ARTICLE.type}이 호출된다.`, () => {
+    it(`favorite 버튼을 클릭하면, ${articleActions.FAVORITE_ARTICLE.type}이 호출된다.`, () => {
       const mockCall = jest.spyOn(articleActions, "FAVORITE_ARTICLE");
 
       userEvent.click(screen.getByRole("button", { name: "favorite" }));
+      expect(mockCall).toHaveBeenCalled();
+    });
+
+    it(`view-details 버튼을 클릭하면, ${commentActions.GET_COMMENTS_FROM_AN_ARTICLE.type}이 호출된다.`, () => {
+      const mockCall = jest.spyOn(
+        commentActions,
+        "GET_COMMENTS_FROM_AN_ARTICLE"
+      );
+
+      userEvent.click(screen.getByRole("button", { name: "view-details" }));
       expect(mockCall).toHaveBeenCalled();
     });
   });

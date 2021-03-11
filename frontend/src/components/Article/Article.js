@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import dateFormat from "dateformat";
 import fp from "lodash/fp";
 import { articleActions } from "../../reducers/article/articleReducer";
+import { commentActions } from "../../reducers/comment/commentReducer";
 import ArticleDetails from "../ArticleDetails/ArticleDetails";
 import useStyles from "./Article.style";
 
@@ -42,6 +43,9 @@ const Article = ({
 
   const handleClickViewDetails = () => {
     setOpenDetails(true);
+    dispatch(
+      commentActions.GET_COMMENTS_FROM_AN_ARTICLE({ slug: article.slug })
+    );
   };
 
   return (
