@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import dateFormat from "dateformat";
 import fp from "lodash/fp";
 import { articleActions } from "../../reducers/article/articleReducer";
+import ArticleDetails from "../ArticleDetails/ArticleDetails";
 import useStyles from "./Article.style";
 
 const Article = ({
@@ -27,7 +28,7 @@ const Article = ({
     favorited: article.favorited,
     favoritesCount: article.favoritesCount,
   });
-
+  const [openDetails, setOpenDetails] = useState(false);
   const dispatch = useDispatch();
 
   // eslint-disable-next-line no-unused-vars
@@ -38,6 +39,10 @@ const Article = ({
     }));
     dispatch(articleActions.FAVORITE_ARTICLE({ slug }));
   });
+
+  const handleClickViewDetails = () => {
+    setOpenDetails(true);
+  };
 
   return (
     <Card className={classes.root}>
@@ -155,10 +160,13 @@ const Article = ({
           color="primary"
           fullWidth
           aria-label="view-details"
+          onClick={handleClickViewDetails}
         >
           View Details..
         </Button>
       </CardContent>
+
+      <ArticleDetails open={openDetails} handleClose={setOpenDetails} />
     </Card>
   );
 };

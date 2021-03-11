@@ -48,6 +48,15 @@ describe("[Article]", () => {
     });
   });
 
+  describe("UX 테스트", () => {
+    it("view-details 버튼을 클릭하면, view-details가 열린다.", () => {
+      userEvent.click(screen.getByRole("button", { name: "view-details" }));
+      expect(
+        screen.getByRole("presentation", { name: "view-details" })
+      ).toBeVisible();
+    });
+  });
+
   describe("상태 테스트", () => {
     it(`favorite 버튼을 누르면 ${articleActions.FAVORITE_ARTICLE.type}이 호출된다.`, () => {
       const mockCall = jest.spyOn(articleActions, "FAVORITE_ARTICLE");
