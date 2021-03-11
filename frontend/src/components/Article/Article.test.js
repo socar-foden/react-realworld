@@ -10,7 +10,9 @@ describe("[Article]", () => {
   describe("UI 테스트", () => {
     it("구성요소 테스트", () => {
       expect(screen.getByRole("header", { name: "title" })).toBeInTheDocument();
-      expect(screen.getByRole("header", { name: "author-info" })).toBeInTheDocument();
+      expect(
+        screen.getByRole("header", { name: "author-info" })
+      ).toBeInTheDocument();
       expect(
         screen.getByRole("button", { name: "favorite" })
       ).toBeInTheDocument();
@@ -28,11 +30,11 @@ describe("[Article]", () => {
       expect(
         screen.getByRole("figure", { name: "tag-list" })
       ).toBeInTheDocument();
+      // expect(
+      //   screen.getByRole("input", { name: "add-comment" })
+      // ).toBeInTheDocument();
       expect(
-        screen.getByRole("figure", { name: "comments" })
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("input", { name: "add-comment" })
+        screen.getByRole("button", { name: "view-details" })
       ).toBeInTheDocument();
     });
   });
