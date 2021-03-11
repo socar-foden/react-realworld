@@ -8,6 +8,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import clsx from "clsx";
 // import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
@@ -90,14 +91,12 @@ const Article = ({
         </Typography>
       </CardContent>
       <CardActions disableSpacing className={classes.noPaddingVertical}>
-        <IconButton
-          aria-label="favorite"
-          onClick={handleClickFavorite}
-          className={clsx({
-            [classes.favorited]: favoritedInfo.favorited,
-          })}
-        >
-          <FavoriteIcon />
+        <IconButton aria-label="favorite" onClick={handleClickFavorite}>
+          {favoritedInfo.favorited ? (
+            <FavoriteIcon color="error" />
+          ) : (
+            <FavoriteBorderIcon />
+          )}
         </IconButton>
         {/* <IconButton aria-label="share">
           <ShareIcon />

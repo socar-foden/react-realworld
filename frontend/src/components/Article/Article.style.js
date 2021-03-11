@@ -31,9 +31,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     width: 40,
   },
-  favorited: {
-    color: theme.palette.error.main,
-  },
 }));
 
 export default useStyles;
