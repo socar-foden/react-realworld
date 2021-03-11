@@ -27,6 +27,7 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@reduxjs/toolkit": "^1.5.0",
     "axios": "^0.21.1",
+    "clsx": "^1.1.1",
     "core-js": "^3.9.0",
     "dateformat": "^4.5.1",
     "dotenv": "^8.2.0",
