@@ -17,19 +17,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1, 2),
     paddingBottom: `${theme.spacing(1)}px !important`,
   },
-  cover: {
-    width: 80,
-    height: "80px",
-    borderRadius: "50%",
-  },
   marginTop: {
     marginTop: theme.spacing(1),
-  },
-  imageWrapper: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: 80,
   },
 }));
 

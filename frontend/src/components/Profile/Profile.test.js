@@ -29,7 +29,6 @@ describe("[Profile]", () => {
       expect(
         screen.getByRole("figure", { name: "username" })
       ).toBeInTheDocument();
-      expect(screen.getByRole("figure", { name: "image" })).toBeInTheDocument();
     });
   });
 });

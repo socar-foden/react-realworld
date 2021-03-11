@@ -1,15 +1,8 @@
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Popover,
-  Typography,
-} from "@material-ui/core";
+import { Card, CardContent, Popover, Typography } from "@material-ui/core";
 import React, { useEffect } from "react";
 import fp from "lodash/fp";
 import { useDispatch, useSelector } from "react-redux";
 import Skeleton from "@material-ui/lab/Skeleton";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { userActions } from "../../reducers/user/userReducer";
 import useStyles from "./Profile.style";
 
@@ -62,17 +55,6 @@ const Profile = ({ open, setOpen, anchorEl }) => {
               )}
             </div>
           </CardContent>
-        </div>
-        <div role="figure" aria-label="image" className={classes.imageWrapper}>
-          {!fp.isEmpty(user) ? (
-            user.image ? (
-              <CardMedia className={classes.cover} image={user.image} />
-            ) : (
-              <AccountCircleIcon className={classes.cover} />
-            )
-          ) : (
-            <Skeleton variant="rect" width={50} height={50} />
-          )}
         </div>
       </Card>
     </Popover>
