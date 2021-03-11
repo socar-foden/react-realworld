@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
@@ -15,9 +15,22 @@ import dateFormat from "dateformat";
 import fp from "lodash/fp";
 import useStyles from "./Article.style";
 
-const Article = ({ article = { author: {}, tagList: [] } }) => {
+const Article = ({
+  article = { author: {}, tagList: [], favoritesCount: 0 },
+}) => {
   const classes = useStyles();
   const { author, tagList } = article;
+  const [favoritedInfo, setFavoritedInfo] = useState({
+    favorited: author.favorited,
+    favoritesCount: article.favoritesCount,
+  });
+
+  const handleClickFavorite = () => {
+    setFavoritedInfo((prev) => ({
+      favorited: !prev.favorited,
+      favoritesCount: prev.favoritesCount + (prev.favorited ? -1 : 1),
+    }));
+  };
 
   return (
     <Card className={classes.root}>
@@ -35,7 +48,6 @@ const Article = ({ article = { author: {}, tagList: [] } }) => {
           <Button
             aria-label="author"
             color="inherit"
-            // onClick={handleClickSignOutIcon}
             className={classes.imageWrapper}
           >
             {author.image ? (
@@ -78,8 +90,14 @@ const Article = ({ article = { author: {}, tagList: [] } }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing className={classes.noPaddingVertical}>
-        <IconButton aria-label="favorite">
-          <FavoriteIcon color={article.favorited ? "error" : "inherit"} />
+        <IconButton
+          aria-label="favorite"
+          onClick={handleClickFavorite}
+          className={clsx({
+            [classes.favorited]: favoritedInfo.favorited,
+          })}
+        >
+          <FavoriteIcon />
         </IconButton>
         {/* <IconButton aria-label="share">
           <ShareIcon />
@@ -93,7 +111,7 @@ const Article = ({ article = { author: {}, tagList: [] } }) => {
           role="figure"
           aria-label="number-of-favorites"
         >
-          favorites {article.favoritesCount}
+          favorites {favoritedInfo.favoritesCount}
         </Typography>
       </CardContent>
       <CardContent role="figure" aria-label="tag-list">

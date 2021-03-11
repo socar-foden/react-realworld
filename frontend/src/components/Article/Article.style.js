@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 0,
   },
   padding_bottom_10: {
-    paddingBottom: '10px !important',
+    paddingBottom: "10px !important",
   },
   // TODO: 프로필 사진 관련 컴포넌트로 빼기
   // 바깥 영역 너비에 맞게
@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     width: 40,
+  },
+  favorited: {
+    color: theme.palette.error.main,
   },
 }));
 
