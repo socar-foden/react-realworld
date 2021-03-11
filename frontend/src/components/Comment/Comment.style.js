@@ -1,9 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-     width: 313
-  },
+  root: {},
   inline: {
     margin: theme.spacing(0, 1, 0, 0),
   },
