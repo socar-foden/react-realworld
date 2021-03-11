@@ -18,7 +18,7 @@ const Comment = () => {
         <Button
           aria-label="username"
           color="inherit"
-          // onClick={handleClickSignOutIcon}
+          // onClick={handleClickSignOut}
         >
           <AccountCircleIcon fontSize="large" />
         </Button>

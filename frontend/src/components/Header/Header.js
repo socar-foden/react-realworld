@@ -22,16 +22,16 @@ const Header = ({ setOpenSide }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleClickMenuIcon = () => {
+  const handleClickMenu = () => {
     setOpenSide((prev) => !prev);
   };
 
-  const handleClickAccountCircleIcon = (e) => {
+  const handleClickAccountCircle = (e) => {
     setOpenProfile(true);
     setAnchorEl(e.currentTarget);
   };
 
-  const handleClickSignOutIcon = () => {
+  const handleClickSignOut = () => {
     dispatch(userActions.SIGN_OUT());
     history.push("/sign-in");
   };
@@ -44,7 +44,7 @@ const Header = ({ setOpenSide }) => {
           className={classes.menuButton}
           color="inherit"
           aria-label="menu"
-          onClick={handleClickMenuIcon}
+          onClick={handleClickMenu}
         >
           <MenuIcon />
         </IconButton>
@@ -54,14 +54,14 @@ const Header = ({ setOpenSide }) => {
         <Button
           aria-label="profile"
           color="inherit"
-          onClick={handleClickAccountCircleIcon}
+          onClick={handleClickAccountCircle}
         >
           <AccountCircleIcon fontSize="large" />
         </Button>
         <Button
           aria-label="sign-out"
           color="inherit"
-          onClick={handleClickSignOutIcon}
+          onClick={handleClickSignOut}
         >
           <ExitToAppIcon fontSize="large" />
         </Button>
