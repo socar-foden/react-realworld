@@ -39,7 +39,7 @@ describe("[SignUp]", () => {
         ).toBeInTheDocument();
       });
 
-      it("알림창이 사라지면 /로 이동한다.", async () => {
+      it("알림창이 사라지면 /sign-in으로 이동한다.", async () => {
         expect(
           screen.getByRole("alert", { name: "success" })
         ).toBeInTheDocument();
@@ -48,7 +48,7 @@ describe("[SignUp]", () => {
           screen.getByRole("alert", { name: "success" }),
           { timeout: 3000 }
         );
-        expect(history.location.pathname).toBe("/");
+        expect(history.location.pathname).toBe("/sign-in");
       });
     });
   });
