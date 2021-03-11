@@ -17,7 +17,7 @@ import dateFormat from "dateformat";
 import fp from "lodash/fp";
 import { articleActions } from "../../reducers/article/articleReducer";
 import { commentActions } from "../../reducers/comment/commentReducer";
-import ArticleDetails from "../ArticleDetails/ArticleDetails";
+import CommentsPresentation from "../CommentsPresentation/CommentsPresentation";
 import useStyles from "./Article.style";
 
 const Article = ({
@@ -163,18 +163,14 @@ const Article = ({
           size="small"
           color="primary"
           fullWidth
-          aria-label="view-details"
+          aria-label="view-comments"
           onClick={handleClickViewDetails}
         >
-          View Details..
+          View Comments..
         </Button>
       </CardContent>
 
-      <ArticleDetails
-        article={article}
-        open={openDetails}
-        handleClose={setOpenDetails}
-      />
+      <CommentsPresentation open={openDetails} handleClose={setOpenDetails} />
     </Card>
   );
 };

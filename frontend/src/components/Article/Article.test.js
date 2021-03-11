@@ -44,16 +44,16 @@ describe("[Article]", () => {
       //   screen.getByRole("input", { name: "add-comment" })
       // ).toBeInTheDocument();
       expect(
-        screen.getByRole("button", { name: "view-details" })
+        screen.getByRole("button", { name: "view-comments" })
       ).toBeInTheDocument();
     });
   });
 
   describe("UX 테스트", () => {
-    it("view-details 버튼을 클릭하면, view-details가 열린다.", () => {
-      userEvent.click(screen.getByRole("button", { name: "view-details" }));
+    it("view-comments 버튼을 클릭하면, comments dialog가 열린다.", () => {
+      userEvent.click(screen.getByRole("button", { name: "view-comments" }));
       expect(
-        screen.getByRole("presentation", { name: "view-details" })
+        screen.getByRole("presentation", { name: "comments" })
       ).toBeVisible();
     });
   });
@@ -66,13 +66,13 @@ describe("[Article]", () => {
       expect(mockCall).toHaveBeenCalled();
     });
 
-    it(`view-details 버튼을 클릭하면, ${commentActions.GET_COMMENTS_FROM_AN_ARTICLE.type}이 호출된다.`, () => {
+    it(`view-comments 버튼을 클릭하면, ${commentActions.GET_COMMENTS_FROM_AN_ARTICLE.type}이 호출된다.`, () => {
       const mockCall = jest.spyOn(
         commentActions,
         "GET_COMMENTS_FROM_AN_ARTICLE"
       );
 
-      userEvent.click(screen.getByRole("button", { name: "view-details" }));
+      userEvent.click(screen.getByRole("button", { name: "view-comments" }));
       expect(mockCall).toHaveBeenCalled();
     });
   });
