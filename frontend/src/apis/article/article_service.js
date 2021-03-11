@@ -5,6 +5,7 @@ const article_service = {
     axios.post("/api/articles", { article: articleInfo }),
   listArticles: ({ queryParameters }) =>
     axios.get("/api/articles", { params: { ...queryParameters } }),
+  favoriteArticle: ({ slug }) => axios.post(`/api/articles/${slug}/favorite`),
 };
 
 export default article_service;

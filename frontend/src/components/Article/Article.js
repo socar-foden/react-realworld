@@ -12,8 +12,10 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import clsx from "clsx";
 // import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { useDispatch } from "react-redux";
 import dateFormat from "dateformat";
 import fp from "lodash/fp";
+import { articleActions } from "../../reducers/article/articleReducer";
 import useStyles from "./Article.style";
 
 const Article = ({
@@ -22,16 +24,20 @@ const Article = ({
   const classes = useStyles();
   const { author, tagList } = article;
   const [favoritedInfo, setFavoritedInfo] = useState({
-    favorited: author.favorited,
+    favorited: article.favorited,
     favoritesCount: article.favoritesCount,
   });
 
-  const handleClickFavorite = () => {
+  const dispatch = useDispatch();
+
+  // eslint-disable-next-line no-unused-vars
+  const handleClickFavorite = fp.curry((slug, e) => {
     setFavoritedInfo((prev) => ({
       favorited: !prev.favorited,
       favoritesCount: prev.favoritesCount + (prev.favorited ? -1 : 1),
     }));
-  };
+    dispatch(articleActions.FAVORITE_ARTICLE({ slug }));
+  });
 
   return (
     <Card className={classes.root}>
@@ -91,7 +97,10 @@ const Article = ({
         </Typography>
       </CardContent>
       <CardActions disableSpacing className={classes.noPaddingVertical}>
-        <IconButton aria-label="favorite" onClick={handleClickFavorite}>
+        <IconButton
+          aria-label="favorite"
+          onClick={handleClickFavorite(article.slug)}
+        >
           {favoritedInfo.favorited ? (
             <FavoriteIcon color="error" />
           ) : (

@@ -6,6 +6,7 @@ const initialState = {
   // [요청 관련상태]
   createArticle: { request: false, success: false, failure: "" },
   listArticles: { request: false, success: false, failure: "" },
+  favoriteArticle: { request: false, success: false, failure: "" },
 };
 
 const articleSlice = createSlice({
@@ -35,6 +36,20 @@ const articleSlice = createSlice({
     },
     LIST_ARTICLES_FAILURE(state, { payload: { errors } }) {
       state.listArticles = {
+        request: false,
+        success: false,
+        failure: errors,
+      };
+    },
+
+    FAVORITE_ARTICLE(state) {
+      state.favoriteArticle = { request: true, success: false, failure: "" };
+    },
+    FAVORITE_ARTICLE_SUCCESS(state) {
+      state.favoriteArticle = { request: false, success: true, failure: "" };
+    },
+    FAVORITE_ARTICLE_FAILURE(state, { payload: { errors } }) {
+      state.favoriteArticle = {
         request: false,
         success: false,
         failure: errors,

@@ -13,5 +13,9 @@ export default function* articleSaga() {
       articleActions.LIST_ARTICLES.type,
       article_service.listArticles
     ),
+    utils.watchSaga(
+      articleActions.FAVORITE_ARTICLE.type,
+      article_service.favoriteArticle
+    ),
   ]);
 }
