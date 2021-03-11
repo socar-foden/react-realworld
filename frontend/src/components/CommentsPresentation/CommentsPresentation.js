@@ -14,7 +14,12 @@ const CommentsPresentation = ({
       aria-label="comments"
       role="presentation"
     >
-      <CommentList comments={[1, 1, 1, 1, 1]} />
+      <CommentList comments={comments} />
+      
+      {/* TODO: 컴포넌트로 빼기 */}
+      <div role="figure" aria-label="add-comment">
+
+      </div>
     </Dialog>
   );
 };
