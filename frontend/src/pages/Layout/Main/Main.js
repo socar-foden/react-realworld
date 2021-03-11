@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import ArticleForm from "../../../components/ArticleForm/ArticleForm";
 import { articleActions } from "../../../reducers/article/articleReducer";
 import ArticleList from "../../../components/ArticleList/ArticleList";
+import useStyles from "./Main.style";
 
 const Main = () => {
   const dispatch = useDispatch();
   const { articles } = useSelector((rootReducer) => rootReducer.articleReducer);
+  const classes = useStyles();
 
   useEffect(() => {
     dispatch(
@@ -17,7 +19,7 @@ const Main = () => {
   }, []);
 
   return (
-    <div>
+    <div className={classes.root}>
       <ArticleForm />
 
       <ArticleList articles={articles} />
