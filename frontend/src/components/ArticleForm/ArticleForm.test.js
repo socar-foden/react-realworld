@@ -7,9 +7,13 @@ import rootReducer from "../../reducers/rootReducer";
 import ArticleForm from "./ArticleForm";
 
 describe("[ArticleForm]", () => {
+  let store;
+
   beforeEach(() => {
+    store = createStore(rootReducer);
+
     render(
-      <Provider store={createStore(rootReducer)}>
+      <Provider store={store}>
         <ArticleForm />
       </Provider>
     );
@@ -22,11 +26,15 @@ describe("[ArticleForm]", () => {
       expect(
         screen.getByRole("input", { name: "description" })
       ).toBeInTheDocument();
-      expect(screen.getByRole("input", { name: "tag-list" })).toBeInTheDocument();
+      expect(
+        screen.getByRole("input", { name: "tag-list" })
+      ).toBeInTheDocument();
       expect(
         screen.getByRole("button", { name: "submit" })
       ).toBeInTheDocument();
-      expect(screen.getByRole("figure", { name: "tag-list" })).toBeInTheDocument();
+      expect(
+        screen.getByRole("figure", { name: "tag-list" })
+      ).toBeInTheDocument();
     });
   });
 
@@ -98,6 +106,24 @@ describe("[ArticleForm]", () => {
       });
       fireEvent.submit(screen.getByRole("form", { name: "article" }));
       expect(mockCall).toHaveBeenCalled();
+    });
+
+    it(`${articleActions.CREATE_ARTICLE_SUCCESS.type} 호출시, 추가된 article이 articles에 추가된다.`, () => {
+      const article = {
+        title: "How to train your dragon",
+        description: "Ever wonder how?",
+        body: "You have to believe",
+        tagList: ["reactjs", "angularjs", "dragons"],
+      };
+
+      expect(store.getState().articleReducer.articles).not.toContain(article);
+      store.dispatch({
+        type: articleActions.CREATE_ARTICLE_SUCCESS.type,
+        payload: {
+          article,
+        },
+      });
+      expect(store.getState().articleReducer.articles).toContain(article);
     });
   });
 });

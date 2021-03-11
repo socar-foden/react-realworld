@@ -16,7 +16,8 @@ const articleSlice = createSlice({
     CREATE_ARTICLE(state) {
       state.createArticle = { request: true, success: false, failure: "" };
     },
-    CREATE_ARTICLE_SUCCESS(state) {
+    CREATE_ARTICLE_SUCCESS(state, { payload: { article } }) {
+      state.articles = [article, ...state.articles];
       state.createArticle = { request: false, success: true, failure: "" };
     },
     CREATE_ARTICLE_FAILURE(state, { payload: { errors } }) {
