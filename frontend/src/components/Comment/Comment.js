@@ -9,7 +9,7 @@ import React from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import useStyles from "./Comment.style";
 
-const Comment = () => {
+const Comment = ({ comment }) => {
   const classes = useStyles();
 
   return (
