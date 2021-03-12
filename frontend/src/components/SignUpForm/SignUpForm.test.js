@@ -59,20 +59,20 @@ describe("[SignUpForm]", () => {
       expect(history.location.pathname).toBe("/sign-in");
     });
 
-    it("SIGN UP 버튼 클릭시 validate 함수를 호출", () => {
+    it("폼 제출 시 validate 함수를 호출", () => {
       const mockCall = jest.spyOn(utils, "validate");
 
-      userEvent.click(screen.getByRole("button", { name: "sign-up" }));
+      fireEvent.submit(screen.getByRole("form", { name: "sign-up" }));
       expect(mockCall).toHaveBeenCalled();
     });
   });
 
   describe("상태 테스트", () => {
-    describe("SIGN UP 버튼 클릭", () => {
+    describe("폼 제출 시", () => {
       it(`validate를 통과하지 못하면, ${userActions.REGISTRATION_FAILURE.type} 호출한다.`, () => {
         const mockCall = jest.spyOn(userActions, "REGISTRATION_FAILURE");
 
-        userEvent.click(screen.getByRole("button", { name: "sign-up" }));
+        fireEvent.submit(screen.getByRole("form", { name: "sign-up" }));
         expect(mockCall).toHaveBeenCalled();
       });
 

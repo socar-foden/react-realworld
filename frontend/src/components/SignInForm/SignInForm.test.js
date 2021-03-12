@@ -39,20 +39,20 @@ describe("[SignInForm]", () => {
       expect(screen.getByRole("input", { name: "e-mail" })).toHaveFocus();
     });
 
-    it("Sign in 클릭시, validate 함수를 호출한다.", () => {
+    it("폼 제출 시 validate 함수를 호출한다.", () => {
       const mockCall = jest.spyOn(utils, "validate");
 
-      userEvent.click(screen.getByRole("button", { name: "sign-in" }));
+      fireEvent.submit(screen.getByRole("form", { name: "sign-in" }));
       expect(mockCall).toHaveBeenCalled();
     });
   });
 
   describe("상태 테스트", () => {
-    describe("Sign in 버튼 클릭", () => {
+    describe("폼 제출 시", () => {
       it(`validate를 통과하지 못하면, ${userActions.AUTHENTICATION_FAILURE.type}를 호출`, () => {
         const mockCall = jest.spyOn(userActions, "AUTHENTICATION_FAILURE");
 
-        userEvent.click(screen.getByRole("button", { name: "sign-in" }));
+        fireEvent.submit(screen.getByRole("form", { name: "sign-in" }));
         expect(mockCall).toHaveBeenCalled();
       });
     });

@@ -27,7 +27,7 @@ const SignUpForm = () => {
     history.push("/sign-in");
   };
 
-  const handleClickSignUp = (e) => {
+  const handleSubmitForm = (e) => {
     e.preventDefault();
 
     const result = utils.validate([
@@ -93,7 +93,11 @@ const SignUpForm = () => {
   };
 
   return (
-    <form className={classes.root}>
+    <form
+      className={classes.root}
+      aria-label="sign-up"
+      onSubmit={handleSubmitForm}
+    >
       <TextField
         className={classes.margin}
         inputProps={{ "aria-label": "e-mail", role: "input" }}
@@ -145,7 +149,6 @@ const SignUpForm = () => {
           variant="contained"
           color="secondary"
           aria-label="sign-up"
-          onClick={handleClickSignUp}
         >
           Sign up
         </Button>

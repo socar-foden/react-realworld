@@ -19,12 +19,10 @@ const SignInForm = () => {
   const passwordRef = useRef();
   const dispatch = useDispatch();
   const {
-    authentication: {
-      success: authentication_success,
-    },
+    authentication: { success: authentication_success },
   } = useSelector((rootReducer) => rootReducer.userReducer);
 
-  const handleClickSignIn = (e) => {
+  const handleClickForm = (e) => {
     e.preventDefault();
 
     const result = utils.validate([
@@ -74,7 +72,11 @@ const SignInForm = () => {
   };
 
   return (
-    <form className={classes.root}>
+    <form
+      className={classes.root}
+      aria-label="sign-in"
+      onSubmit={handleClickForm}
+    >
       <TextField
         className={classes.margin}
         inputProps={{ "aria-label": "e-mail", role: "input" }}
@@ -105,7 +107,6 @@ const SignInForm = () => {
           variant="contained"
           color="primary"
           aria-label="sign-in"
-          onClick={handleClickSignIn}
           disabled={authentication_success}
         >
           Sign in
