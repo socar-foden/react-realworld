@@ -11,8 +11,6 @@ const CommentForm = () => {
         <Grid item xs={9}>
           <TextField
             label="Add Comment.."
-            multiline
-            rowsMax={2}
             variant="filled"
             fullWidth
             inputProps={{ "aria-label": "body", role: "input" }}
