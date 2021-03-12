@@ -13,7 +13,10 @@ const Main = () => {
   useEffect(() => {
     dispatch(
       articleActions.LIST_ARTICLES({
-        queryParameters: {},
+        queryParameters: {
+          limit: 5,
+          offset: 0,
+        },
       })
     );
   }, []);
