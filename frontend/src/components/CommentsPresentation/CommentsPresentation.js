@@ -1,5 +1,6 @@
 import { Dialog } from "@material-ui/core";
 import React from "react";
+import CommentForm from "../CommentForm/CommentForm";
 import CommentList from "../CommentList/CommentList";
 
 const CommentsPresentation = ({ open, handleClose, comments = [] }) => {
@@ -12,11 +13,8 @@ const CommentsPresentation = ({ open, handleClose, comments = [] }) => {
       fullWidth
     >
       <CommentList comments={comments} />
-      
-      {/* TODO: 컴포넌트로 빼기 */}
-      <div role="figure" aria-label="add-comment">
 
-      </div>
+      <CommentForm />
     </Dialog>
   );
 };

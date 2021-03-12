@@ -8,13 +8,11 @@ describe("[CommentsPresentation]", () => {
   });
 
   describe("UI 테스트", () => {
-    it("comment-list, add-comment영역이 존재한다.", () => {
+    it("comment-list 영역, comment 폼이 존재한다.", () => {
       expect(
         screen.getByRole("figure", { name: "comment-list" })
       ).toBeInTheDocument();
-      expect(
-        screen.getByRole("figure", { name: "add-comment" })
-      ).toBeInTheDocument();
+      expect(screen.getByRole("form", { name: "comment" })).toBeInTheDocument();
     });
   });
 });
