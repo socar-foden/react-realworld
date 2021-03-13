@@ -8,9 +8,13 @@ import CommentForm from "./CommentForm";
 import rootReducer from "../../reducers/rootReducer";
 
 describe("[CommentForm]", () => {
+  let store;
+
   beforeEach(() => {
+    store = createStore(rootReducer);
+
     render(
-      <Provider store={createStore(rootReducer)}>
+      <Provider store={store}>
         <CommentForm article={{}} />
       </Provider>
     );
@@ -47,6 +51,30 @@ describe("[CommentForm]", () => {
       });
       userEvent.click(screen.getByRole("button", { name: "submit" }));
       expect(mockCall).toHaveBeenCalled();
+    });
+
+    it(`${commentActions.ADD_COMMENTS_TO_AN_ARTICLE_SUCCESS.type}가 호출되면, 추가한 comment가 comments에 추가된다.`, () => {
+      const comment = {
+        id: 1,
+        createdAt: "2016-02-18T03:22:56.637Z",
+        updatedAt: "2016-02-18T03:22:56.637Z",
+        body: "It takes a Jacobian",
+        author: {
+          username: "jake",
+          bio: "I work at statefarm",
+          image: "https://i.stack.imgur.com/xHWG8.jpg",
+          following: false,
+        },
+      };
+
+      expect(store.getState().commentReducer.comments).not.toContain(comment);
+      store.dispatch({
+        type: commentActions.ADD_COMMENTS_TO_AN_ARTICLE_SUCCESS.type,
+        payload: {
+          comment,
+        },
+      });
+      expect(store.getState().commentReducer.comments).toContain(comment);
     });
   });
 });
