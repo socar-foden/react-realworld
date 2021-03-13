@@ -1,6 +1,7 @@
 import {
   Button,
   CardMedia,
+  IconButton,
   ListItem,
   ListItemAvatar,
   ListItemText,
@@ -9,6 +10,7 @@ import {
 import React from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import dateFormat from "dateformat";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 import useStyles from "./Comment.style";
 
 const Comment = ({ comment = { author: {} } }) => {
@@ -65,6 +67,9 @@ const Comment = ({ comment = { author: {} } }) => {
           </Typography>
         }
       />
+      <IconButton aria-label="settings" className={classes.settings}>
+        <MoreVertIcon />
+      </IconButton>
     </ListItem>
   );
 };

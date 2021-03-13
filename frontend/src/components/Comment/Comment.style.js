@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     width: 40,
   },
+  settings: {
+    alignSelf: "end",
+  },
 }));
 
 export default useStyles;

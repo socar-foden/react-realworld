@@ -13,6 +13,7 @@ describe("[Comment]", () => {
       expect(screen.getByRole("figure", { name: "username" })).toBeInTheDocument();
       expect(screen.getByRole("figure", { name: "created-at" })).toBeInTheDocument();
       expect(screen.getByRole("figure", { name: "body" })).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "settings" })).toBeInTheDocument();
     });
   });
 });
