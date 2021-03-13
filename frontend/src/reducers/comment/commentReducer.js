@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const commentSlice = createSlice({
-  name: "article",
+  name: "comment",
   initialState,
   reducers: {
     GET_COMMENTS_FROM_AN_ARTICLE(state) {
