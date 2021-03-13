@@ -9,5 +9,9 @@ export default function* commentSaga() {
       commentActions.GET_COMMENTS_FROM_AN_ARTICLE.type,
       comment_service.getCommentsFromAnArticle
     ),
+    utils.watchSaga(
+      commentActions.ADD_COMMENTS_TO_AN_ARTICLE.type,
+      comment_service.addCommentsToAnArticle
+    ),
   ]);
 }
