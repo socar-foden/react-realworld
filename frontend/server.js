@@ -15,6 +15,8 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./dist/index.html"));
 });
 
+
+// TODO: 공유기 포트 8080도 열어주기
 app.listen(process.env.PORT || 80, () => {
   console.log(`✅ Server is running on [ PORT: ${process.env.PORT} ]`);
 });
