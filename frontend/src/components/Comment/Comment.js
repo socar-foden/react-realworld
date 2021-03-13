@@ -1,5 +1,6 @@
 import {
   Button,
+  CardMedia,
   ListItem,
   ListItemAvatar,
   ListItemText,
@@ -7,20 +8,26 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import dateFormat from "dateformat";
 import useStyles from "./Comment.style";
 
-const Comment = ({ comment }) => {
+const Comment = ({ comment = { author: {} } }) => {
   const classes = useStyles();
+  const { author } = comment;
 
   return (
     <ListItem className={classes.root}>
       <ListItemAvatar role="figure" aria-label="image">
         <Button
-          aria-label="username"
+          aria-label="author"
           color="inherit"
-          // onClick={handleClickSignOut}
+          className={classes.imageWrapper}
         >
-          <AccountCircleIcon fontSize="large" />
+          {author.image ? (
+            <CardMedia className={classes.cover} image={author.image} />
+          ) : (
+            <AccountCircleIcon fontSize="large" className={classes.cover} />
+          )}
         </Button>
       </ListItemAvatar>
       <ListItemText
@@ -33,7 +40,7 @@ const Comment = ({ comment }) => {
               role="figure"
               aria-label="username"
             >
-              Ali Connors
+              {author.username}
             </Typography>
             <Typography
               component="div"
@@ -42,7 +49,7 @@ const Comment = ({ comment }) => {
               role="figure"
               aria-label="created-at"
             >
-              September 14, 2016
+              {dateFormat(comment.createdAt, "fullDate")}
             </Typography>
           </>
         }
@@ -54,7 +61,7 @@ const Comment = ({ comment }) => {
             role="figure"
             aria-label="body"
           >
-            — Ill be in your neighborhood doing errands this…
+            {comment.body}
           </Typography>
         }
       />

@@ -5,6 +5,17 @@ const useStyles = makeStyles((theme) => ({
   inline: {
     margin: theme.spacing(0, 1, 0, 0),
   },
+  cover: {
+    width: 40,
+    height: "40px",
+    borderRadius: "50%",
+  },
+  imageWrapper: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 40,
+  },
 }));
 
 export default useStyles;

@@ -12,7 +12,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import clsx from "clsx";
 // import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import dateFormat from "dateformat";
 import fp from "lodash/fp";
 import { articleActions } from "../../reducers/article/articleReducer";
@@ -31,6 +31,7 @@ const Article = ({
   });
   const [openDetails, setOpenDetails] = useState(false);
   const dispatch = useDispatch();
+  const { comments } = useSelector((rootReducer) => rootReducer.commentReducer);
 
   // eslint-disable-next-line no-unused-vars
   const handleClickFavorite = fp.curry((slug, e) => {
@@ -172,6 +173,7 @@ const Article = ({
 
       <CommentsPresentation
         article={article}
+        comments={comments}
         open={openDetails}
         handleClose={setOpenDetails}
       />
