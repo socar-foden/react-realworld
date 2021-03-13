@@ -25,6 +25,7 @@ const CommentForm = ({ article = {} }) => {
         },
       })
     );
+    setFormData(initFormData);
   };
 
   return (
@@ -52,6 +53,7 @@ const CommentForm = ({ article = {} }) => {
             type="submit"
             fullWidth
             className={classes.fullHeight}
+            disabled={!formData.body}
           >
             Submit
           </Button>
