@@ -1,10 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import rootReducer from "../../reducers/rootReducer";
 import CommentsPresentation from "./CommentsPresentation";
 
 describe("[CommentsPresentation]", () => {
   beforeEach(() => {
-    render(<CommentsPresentation open={true} />);
+    render(
+      <Provider store={createStore(rootReducer)}>
+        <CommentsPresentation article={{}} open={true} />
+      </Provider>
+    );
   });
 
   describe("UI 테스트", () => {

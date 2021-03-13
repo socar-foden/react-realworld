@@ -170,7 +170,11 @@ const Article = ({
         </Button>
       </CardContent>
 
-      <CommentsPresentation open={openDetails} handleClose={setOpenDetails} />
+      <CommentsPresentation
+        article={article}
+        open={openDetails}
+        handleClose={setOpenDetails}
+      />
     </Card>
   );
 };

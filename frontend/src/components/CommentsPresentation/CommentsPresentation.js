@@ -3,7 +3,12 @@ import React from "react";
 import CommentForm from "../CommentForm/CommentForm";
 import CommentList from "../CommentList/CommentList";
 
-const CommentsPresentation = ({ open, handleClose, comments = [] }) => {
+const CommentsPresentation = ({
+  open,
+  handleClose,
+  article = {},
+  comments = [],
+}) => {
   return (
     <Dialog
       open={open}
@@ -14,7 +19,7 @@ const CommentsPresentation = ({ open, handleClose, comments = [] }) => {
     >
       <CommentList comments={comments} />
 
-      <CommentForm />
+      <CommentForm article={article} />
     </Dialog>
   );
 };
