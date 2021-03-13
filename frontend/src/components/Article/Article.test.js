@@ -66,6 +66,26 @@ describe("[Article]", () => {
       expect(mockCall).toHaveBeenCalled();
     });
 
+    it(`unfavorite 버튼을 클릭하면, ${articleActions.UNFAVORITE_ARTICLE.type}이 호출된다.`, () => {
+      render(
+        <Provider store={createStore(rootReducer)}>
+          <Article
+            article={{
+              favorited: true,
+              author: {},
+              tagList: [],
+              favoritesCount: 0,
+            }}
+          />
+        </Provider>
+      );
+
+      const mockCall = jest.spyOn(articleActions, "UNFAVORITE_ARTICLE");
+
+      userEvent.click(screen.getByRole("button", { name: "unfavorite" }));
+      expect(mockCall).toHaveBeenCalled();
+    });
+
     it(`view-comments 버튼을 클릭하면, ${commentActions.GET_COMMENTS_FROM_AN_ARTICLE.type}이 호출된다.`, () => {
       const mockCall = jest.spyOn(
         commentActions,

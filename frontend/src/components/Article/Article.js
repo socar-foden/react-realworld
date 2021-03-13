@@ -36,10 +36,19 @@ const Article = ({
   // eslint-disable-next-line no-unused-vars
   const handleClickFavorite = fp.curry((slug, e) => {
     setFavoritedInfo((prev) => ({
-      favorited: !prev.favorited,
-      favoritesCount: prev.favoritesCount + (prev.favorited ? -1 : 1),
+      favorited: true,
+      favoritesCount: prev.favoritesCount + 1,
     }));
     dispatch(articleActions.FAVORITE_ARTICLE({ slug }));
+  });
+
+  // eslint-disable-next-line no-unused-vars
+  const handleClickUnfavorite = fp.curry((slug, e) => {
+    setFavoritedInfo((prev) => ({
+      favorited: false,
+      favoritesCount: prev.favoritesCount - 1,
+    }));
+    dispatch(articleActions.UNFAVORITE_ARTICLE({ slug }));
   });
 
   const handleClickViewDetails = () => {
@@ -107,16 +116,21 @@ const Article = ({
         </Typography>
       </CardContent>
       <CardActions disableSpacing className={classes.noPaddingVertical}>
-        <IconButton
-          aria-label="favorite"
-          onClick={handleClickFavorite(article.slug)}
-        >
-          {favoritedInfo.favorited ? (
+        {favoritedInfo.favorited ? (
+          <IconButton
+            aria-label="unfavorite"
+            onClick={handleClickUnfavorite(article.slug)}
+          >
             <FavoriteIcon color="error" />
-          ) : (
+          </IconButton>
+        ) : (
+          <IconButton
+            aria-label="favorite"
+            onClick={handleClickFavorite(article.slug)}
+          >
             <FavoriteBorderIcon />
-          )}
-        </IconButton>
+          </IconButton>
+        )}
         {/* <IconButton aria-label="share">
           <ShareIcon />
         </IconButton> */}

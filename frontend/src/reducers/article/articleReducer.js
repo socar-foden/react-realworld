@@ -7,6 +7,7 @@ const initialState = {
   createArticle: { request: false, success: false, failure: "" },
   listArticles: { request: false, success: false, failure: "" },
   favoriteArticle: { request: false, success: false, failure: "" },
+  unfavoriteArticle: { request: false, success: false, failure: "" },
 };
 
 const articleSlice = createSlice({
@@ -51,6 +52,20 @@ const articleSlice = createSlice({
     },
     FAVORITE_ARTICLE_FAILURE(state, { payload: { errors } }) {
       state.favoriteArticle = {
+        request: false,
+        success: false,
+        failure: errors,
+      };
+    },
+
+    UNFAVORITE_ARTICLE(state) {
+      state.unfavoriteArticle = { request: true, success: false, failure: "" };
+    },
+    UNFAVORITE_ARTICLE_SUCCESS(state) {
+      state.unfavoriteArticle = { request: false, success: true, failure: "" };
+    },
+    UNFAVORITE_ARTICLE_FAILURE(state, { payload: { errors } }) {
+      state.unfavoriteArticle = {
         request: false,
         success: false,
         failure: errors,
