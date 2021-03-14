@@ -14,11 +14,6 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SettingsList from "../SettingsList/SettingsList";
 import useStyles from "./Comment.style";
 
-const commentSettingsList = [
-  { name: "DELETE", handleClick: () => {} },
-  { name: "CANCEL", handleClick: () => {} },
-];
-
 const Comment = ({ comment = { author: {} } }) => {
   const classes = useStyles();
   const { author } = comment;
@@ -31,6 +26,11 @@ const Comment = ({ comment = { author: {} } }) => {
   const handleOnClose = () => {
     setOpenSettings(false);
   };
+
+  const commentSettingsList = [
+    { name: "DELETE", handleClick: () => {} },
+    { name: "CANCEL", handleClick: () => setOpenSettings(false) },
+  ];
 
   return (
     <ListItem className={classes.root}>
