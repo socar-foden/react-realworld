@@ -29,6 +29,9 @@ describe("[Profile]", () => {
       expect(
         screen.getByRole("figure", { name: "username" })
       ).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: "sign-out" })
+      ).toBeInTheDocument();
     });
   });
 });

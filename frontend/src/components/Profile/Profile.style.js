@@ -4,10 +4,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
-  details: {
-    display: "flex",
-    flexDirection: "column",
-  },
+  // details: {
+  //   display: "flex",
+  //   flexDirection: "column",
+  // },
   content: {
     flex: "1 0 auto",
     display: "flex",

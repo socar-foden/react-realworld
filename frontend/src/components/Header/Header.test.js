@@ -19,9 +19,6 @@ describe("[Header]", () => {
       expect(
         screen.getByRole("button", { name: "profile" })
       ).toBeInTheDocument();
-      expect(
-        screen.getByRole("button", { name: "sign-out" })
-      ).toBeInTheDocument();
     });
   });
 });
