@@ -15,23 +15,27 @@ const SettingsList = ({ settingsList = [], open, handleClose = () => {} }) => {
   return (
     <Dialog open={open} onClose={handleClose} fullWidth>
       <List>
-        {fp.map(
-          (settings) => (
-            <>
+        {fp.flow(
+          fp.entries,
+          fp.map(([index, settings]) => (
+            <li key={settings.name}>
               <ListItem button>
                 <ListItemText
                   primary={settings.name}
                   onClick={settings.handleClick || function () {}}
                   className={
-                    fp.isEqual(settings.name, "DELETE") && classes.deleteButton
+                    fp.isEqual(settings.name, "DELETE")
+                      ? classes.deleteButton
+                      : ""
                   }
                 />
               </ListItem>
-              <Divider />
-            </>
-          ),
-          settingsList
-        )}
+              {!fp.isEqual(fp.toNumber(index), settingsList.length - 1) && (
+                <Divider />
+              )}
+            </li>
+          ))
+        )(settingsList)}
       </List>
     </Dialog>
   );
