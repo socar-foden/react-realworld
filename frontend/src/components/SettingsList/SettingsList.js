@@ -19,10 +19,9 @@ const SettingsList = ({ settingsList = [], open, handleClose = () => {} }) => {
           fp.entries,
           fp.map(([index, settings]) => (
             <li key={settings.name}>
-              <ListItem button>
+              <ListItem button onClick={settings.handleClick || fp.noop}>
                 <ListItemText
                   primary={settings.name}
-                  onClick={settings.handleClick || fp.noop}
                   className={
                     fp.isEqual(settings.name, "DELETE")
                       ? classes.deleteButton
