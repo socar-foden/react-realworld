@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
   settings: {
     alignSelf: "end",
   },
+  commentBody: {
+    overflowWrap: "anywhere",
+  },
 }));
 
 export default useStyles;

@@ -62,6 +62,7 @@ const Comment = ({ comment = { author: {} } }) => {
             color="textPrimary"
             role="figure"
             aria-label="body"
+            className={classes.commentBody}
           >
             {comment.body}
           </Typography>
