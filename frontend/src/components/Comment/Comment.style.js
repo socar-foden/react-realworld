@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
   settings: {
     alignSelf: "end",
   },
+  deleteButton: {
+    color: theme.palette.error.main,
+  },
   commentBody: {
     overflowWrap: "anywhere",
   },

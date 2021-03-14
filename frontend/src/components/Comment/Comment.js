@@ -1,13 +1,15 @@
 import {
   Button,
   CardMedia,
+  Dialog,
+  Divider,
   IconButton,
   ListItem,
   ListItemAvatar,
   ListItemText,
   Typography,
 } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import dateFormat from "dateformat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
@@ -16,6 +18,15 @@ import useStyles from "./Comment.style";
 const Comment = ({ comment = { author: {} } }) => {
   const classes = useStyles();
   const { author } = comment;
+  const [openSettings, setOpenSettings] = useState(false);
+
+  const handleClickSettings = () => {
+    setOpenSettings(true);
+  };
+
+  const handleOnClose = () => {
+    setOpenSettings(false);
+  };
 
   return (
     <ListItem className={classes.root}>
@@ -68,9 +79,23 @@ const Comment = ({ comment = { author: {} } }) => {
           </Typography>
         }
       />
-      <IconButton aria-label="settings" className={classes.settings}>
+      <IconButton
+        aria-label="settings"
+        className={classes.settings}
+        onClick={handleClickSettings}
+      >
         <MoreVertIcon />
       </IconButton>
+
+      <Dialog open={openSettings} onClose={handleOnClose} fullWidth>
+        <ListItem button>
+          <ListItemText primary="DELETE" className={classes.deleteButton} />
+        </ListItem>
+        <Divider />
+        <ListItem button>
+          <ListItemText primary="CANCEL" onClick={handleOnClose} />
+        </ListItem>
+      </Dialog>
     </ListItem>
   );
 };
