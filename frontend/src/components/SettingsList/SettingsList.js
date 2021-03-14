@@ -21,7 +21,7 @@ const SettingsList = ({ settingsList = [], open, handleClose = () => {} }) => {
               <ListItem button>
                 <ListItemText
                   primary={settings.name}
-                  onClick={settings.handleClick}
+                  onClick={settings.handleClick || function () {}}
                   className={
                     fp.isEqual(settings.name, "DELETE") && classes.deleteButton
                   }
