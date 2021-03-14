@@ -3,7 +3,7 @@ import { Button, TextField } from "@material-ui/core";
 import { useHistory } from "react-router";
 import fp from "lodash/fp";
 import email_validator from "email-validator";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import utils from "../../utils/utils";
 import { userActions } from "../../reducers/user/userReducer";
 import useStyles from "./SignUpForm.style";
@@ -22,6 +22,9 @@ const SignUpForm = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
+  const {
+    registration: { success: registration_success },
+  } = useSelector((rootReducer) => rootReducer.userReducer);
 
   const handleClickCancel = () => {
     history.push("/sign-in");
@@ -149,6 +152,7 @@ const SignUpForm = () => {
           variant="contained"
           color="secondary"
           aria-label="sign-up"
+          disabled={registration_success}
         >
           Sign up
         </Button>
@@ -157,6 +161,7 @@ const SignUpForm = () => {
           variant="contained"
           aria-label="cancel"
           onClick={handleClickCancel}
+          disabled={registration_success}
         >
           Cancel
         </Button>
