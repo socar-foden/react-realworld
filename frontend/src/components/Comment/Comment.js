@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import dateFormat from "dateformat";
 import fp from "lodash/fp";
+import { useSelector } from "react-redux";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SettingsList from "../SettingsList/SettingsList";
 import useStyles from "./Comment.style";
@@ -19,6 +20,7 @@ const Comment = ({ comment = { author: {} } }) => {
   const classes = useStyles();
   const { author } = comment;
   const [openSettings, setOpenSettings] = useState(false);
+  const { user } = useSelector((rootReducer) => rootReducer.userReducer);
 
   const handleClickSettings = () => {
     setOpenSettings(true);
@@ -84,19 +86,24 @@ const Comment = ({ comment = { author: {} } }) => {
           </Typography>
         }
       />
-      <IconButton
-        aria-label="settings"
-        className={classes.settings}
-        onClick={handleClickSettings}
-      >
-        <MoreVertIcon />
-      </IconButton>
 
-      <SettingsList
-        open={openSettings}
-        handleClose={handleOnClose}
-        settingsList={commentSettingsList}
-      />
+      {fp.isEqual(author.username, user.username) && (
+        <>
+          <IconButton
+            aria-label="settings"
+            className={classes.settings}
+            onClick={handleClickSettings}
+          >
+            <MoreVertIcon />
+          </IconButton>
+
+          <SettingsList
+            open={openSettings}
+            handleClose={handleOnClose}
+            settingsList={commentSettingsList}
+          />
+        </>
+      )}
     </ListItem>
   );
 };
