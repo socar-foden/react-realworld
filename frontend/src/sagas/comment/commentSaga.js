@@ -13,5 +13,9 @@ export default function* commentSaga() {
       commentActions.ADD_COMMENTS_TO_AN_ARTICLE.type,
       comment_service.addCommentsToAnArticle
     ),
+    utils.watchSaga(
+      commentActions.DELETE_COMMENTS.type,
+      comment_service.deleteComment
+    ),
   ]);
 }

@@ -11,16 +11,18 @@ import React, { useState } from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import dateFormat from "dateformat";
 import fp from "lodash/fp";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { commentActions } from "../../reducers/comment/commentReducer";
 import SettingsList from "../SettingsList/SettingsList";
 import useStyles from "./Comment.style";
 
-const Comment = ({ comment = { author: {} } }) => {
+const Comment = ({ comment = { author: {} }, article = {} }) => {
   const classes = useStyles();
   const { author } = comment;
   const [openSettings, setOpenSettings] = useState(false);
   const { user } = useSelector((rootReducer) => rootReducer.userReducer);
+  const dispatch = useDispatch();
 
   const handleClickSettings = () => {
     setOpenSettings(true);
@@ -31,7 +33,16 @@ const Comment = ({ comment = { author: {} } }) => {
   };
 
   const commentSettingsList = [
-    { name: "DELETE", handleClick: fp.noop },
+    {
+      name: "DELETE",
+      handleClick: () =>
+        dispatch(
+          commentActions.DELETE_COMMENTS({
+            slug: article.slug,
+            id: comment.id,
+          })
+        ),
+    },
     { name: "CANCEL", handleClick: () => setOpenSettings(false) },
   ];
 

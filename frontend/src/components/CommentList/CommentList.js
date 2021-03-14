@@ -4,7 +4,7 @@ import { CardContent, Typography } from "@material-ui/core";
 import Comment from "../Comment/Comment";
 import useStyles from "./CommentList.style";
 
-const CommentList = ({ comments = [] }) => {
+const CommentList = ({ comments = [], article = {} }) => {
   const classes = useStyles();
 
   return (
@@ -17,7 +17,9 @@ const CommentList = ({ comments = [] }) => {
         </CardContent>
       ) : (
         fp.map(
-          (comment) => <Comment key={comment.id} comment={comment} />,
+          (comment) => (
+            <Comment key={comment.id} comment={comment} article={article} />
+          ),
           comments
         )
       )}

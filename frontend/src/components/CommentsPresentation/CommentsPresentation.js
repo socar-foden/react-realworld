@@ -17,7 +17,7 @@ const CommentsPresentation = ({
       role="presentation"
       fullWidth
     >
-      <CommentList comments={comments} />
+      <CommentList comments={comments} article={article} />
 
       <CommentForm article={article} />
     </Dialog>

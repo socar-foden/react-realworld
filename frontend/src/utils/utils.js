@@ -12,7 +12,11 @@ const utils = {
       try {
         const { data } = yield call(api, payload);
 
-        yield put({ type: `${type}_SUCCESS`, payload: data });
+        yield put({
+          type: `${type}_SUCCESS`,
+          payload: data,
+          orgPayload: payload,
+        });
         utils.log(`✅ [Saga - ${type}] :: `, data);
       } catch (e) {
         const { errors } = e.response.data;
