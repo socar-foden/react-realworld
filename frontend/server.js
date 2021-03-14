@@ -6,13 +6,15 @@ require("dotenv").config({
 });
 
 const app = express();
-const root = path.join(__dirname, "/dist");
+const root = path.join(__dirname, `/dist/${process.env.NODE_ENV}`);
 
 app.use(express.static(root));
 app.use(fallback("index.html", { root: root }));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./dist/index.html"));
+  res.sendFile(
+    path.join(__dirname, `./dist/${process.env.NODE_ENV}/index.html`)
+  );
 });
 
 app.listen(process.env.PORT || 80, () => {
