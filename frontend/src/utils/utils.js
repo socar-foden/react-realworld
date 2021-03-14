@@ -1,7 +1,11 @@
 import fp from "lodash/fp";
 import { call, fork, put, takeLatest } from "redux-saga/effects";
 
+const isDevelopment = fp.isEqual(process.env.NODE_ENV, "development");
+
 const utils = {
+  log: isDevelopment ? console.log : fp.noop,
+  error: console.error,
   validate: fp.find(({ v, pred }) => !pred(v)),
   createAsyncSaga: (type, api) =>
     function* ({ payload }) {
@@ -9,7 +13,7 @@ const utils = {
         const { data } = yield call(api, payload);
 
         yield put({ type: `${type}_SUCCESS`, payload: data });
-        console.log(`✅ [Saga - ${type}] :: `, data);
+        utils.log(`✅ [Saga - ${type}] :: `, data);
       } catch (e) {
         const { errors } = e.response.data;
 
