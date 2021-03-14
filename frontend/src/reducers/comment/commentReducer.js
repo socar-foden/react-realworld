@@ -45,7 +45,7 @@ const commentSlice = createSlice({
       };
     },
     ADD_COMMENTS_TO_AN_ARTICLE_SUCCESS(state, { payload: { comment } }) {
-      state.comments = [...state.comments, comment];
+      state.comments = [comment, ...state.comments];
       state.addCommentsToAnArticle = {
         request: false,
         success: true,
