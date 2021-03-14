@@ -10,6 +10,7 @@ import {
 import React, { useState } from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import dateFormat from "dateformat";
+import fp from "lodash/fp";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import SettingsList from "../SettingsList/SettingsList";
 import useStyles from "./Comment.style";
@@ -28,7 +29,7 @@ const Comment = ({ comment = { author: {} } }) => {
   };
 
   const commentSettingsList = [
-    { name: "DELETE", handleClick: () => {} },
+    { name: "DELETE", handleClick: fp.noop },
     { name: "CANCEL", handleClick: () => setOpenSettings(false) },
   ];
 
