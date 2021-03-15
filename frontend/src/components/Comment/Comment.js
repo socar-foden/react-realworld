@@ -24,14 +24,10 @@ const Comment = ({ comment = { author: {} }, article = {} }) => {
   const { user } = useSelector((rootReducer) => rootReducer.userReducer);
   const dispatch = useDispatch();
 
-  const handleClickSettings = () => {
-    setOpenSettings(true);
-  };
+  const handleClickSettings = () => setOpenSettings(true);
 
-  const handleOnClose = () => {
-    setOpenSettings(false);
-  };
-
+  const handleOnClose = () => setOpenSettings(false);
+  
   const commentSettingsList = [
     {
       name: "DELETE",
