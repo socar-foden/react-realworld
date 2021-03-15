@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
@@ -35,8 +35,13 @@ const Article = ({
   const [openSettings, setOpenSettings] = useState(false);
   const [openEditForm, setOpenEditForm] = useState(false);
   const dispatch = useDispatch();
-  const { comments } = useSelector((rootReducer) => rootReducer.commentReducer);
-  const { user } = useSelector((rootReducer) => rootReducer.userReducer);
+  const {
+    userReducer: { user },
+    commentReducer: { comments },
+    articleReducer: {
+      updateArticle: { success: update_success },
+    },
+  } = useSelector(fp.identity);
 
   // eslint-disable-next-line no-unused-vars
   const handleClickFavorite = fp.curry((slug, e) => {
@@ -80,6 +85,13 @@ const Article = ({
   ];
 
   const handleCloseEditForm = () => setOpenEditForm(false);
+
+  useEffect(() => {
+    if (update_success) {
+      setOpenEditForm(false);
+      setOpenSettings(false);
+    }
+  }, [update_success]);
 
   return (
     <Card className={classes.root}>

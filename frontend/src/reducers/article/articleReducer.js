@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import fp from "lodash/fp";
 
 const initialState = {
   articles: [],
@@ -77,7 +78,15 @@ const articleSlice = createSlice({
       state.updateArticle = { request: true, success: false, failure: "" };
     },
     UPDATE_ARTICLE_SUCCESS(state, { payload: { article } }) {
-      state.updateArticle = { request: false, success: true, failure: "" };
+      state.articles = fp.map(
+        (item) => (fp.isEqual(article.slug, item.slug) ? article : item),
+        state.articles
+      );
+      state.updateArticle = {
+        request: false,
+        success: true,
+        failure: "",
+      };
     },
     UPDATE_ARTICLE_FAILURE(state, { payload: { errors } }) {
       state.updateArticle = {

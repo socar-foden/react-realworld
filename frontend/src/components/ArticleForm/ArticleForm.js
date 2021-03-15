@@ -17,7 +17,7 @@ const initFormData = {
 
 const ArticleForm = ({ article = initFormData }) => {
   const classes = useStyles();
-  const [formData, setFormData] = useState(article);
+  const [formData, setFormData] = useState({ ...article, tag: "" });
   const dispatch = useDispatch();
   const {
     createArticle: { success },
