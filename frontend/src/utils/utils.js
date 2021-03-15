@@ -5,7 +5,7 @@ const isDevelopment = fp.isEqual(process.env.NODE_ENV, "development");
 
 const utils = {
   log: isDevelopment ? console.log : fp.noop,
-  error: console.error,
+  error: isDevelopment ? console.error : fp.noop,
   validate: fp.find(({ v, pred }) => !pred(v)),
   createAsyncSaga: (type, api) =>
     function* ({ payload }) {
