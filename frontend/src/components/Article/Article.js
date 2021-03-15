@@ -159,17 +159,6 @@ const Article = ({
           tagList
         )}
       </CardContent>
-      {/* <CardContent>
-        <TextField
-          label="Add a comment.."
-          multiline
-          size="small"
-          fullWidth
-          rowsMax={4}
-          variant="filled"
-          inputProps={{ role: "input", "aria-label": "add-comment" }}
-        />
-      </CardContent> */}
       <CardContent
         className={clsx(classes.noPaddingVertical, classes.padding_bottom_10)}
       >
