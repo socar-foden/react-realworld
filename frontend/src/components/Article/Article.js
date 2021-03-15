@@ -88,7 +88,8 @@ const Article = ({
   const confirmList = [
     {
       name: "DELETE",
-      // handleClick: () => dispatch({type: }),
+      handleClick: () =>
+        dispatch(articleActions.DELETE_ARTICLE({ slug: article.slug })),
     },
     { name: "CANCEL", handleClick: () => setOpenConfirm(false) },
   ];

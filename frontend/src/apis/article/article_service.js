@@ -10,6 +10,7 @@ const article_service = {
     axios.delete(`/api/articles/${slug}/favorite`),
   updateArticle: ({ articleInfo, slug }) =>
     axios.put(`/api/articles/${slug}`, { article: articleInfo }),
+  deleteArticle: ({ slug }) => axios.delete(`/api/articles/${slug}`),
 };
 
 export default article_service;

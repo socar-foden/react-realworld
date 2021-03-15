@@ -25,5 +25,9 @@ export default function* articleSaga() {
       articleActions.UPDATE_ARTICLE.type,
       article_service.updateArticle
     ),
+    utils.watchSaga(
+      articleActions.DELETE_ARTICLE.type,
+      article_service.deleteArticle
+    ),
   ]);
 }

@@ -10,6 +10,7 @@ const initialState = {
   favoriteArticle: { request: false, success: false, failure: "" },
   unfavoriteArticle: { request: false, success: false, failure: "" },
   updateArticle: { request: false, success: false, failure: "" },
+  deleteArticle: { request: false, success: false, failure: "" },
 };
 
 const articleSlice = createSlice({
@@ -90,6 +91,28 @@ const articleSlice = createSlice({
     },
     UPDATE_ARTICLE_FAILURE(state, { payload: { errors } }) {
       state.updateArticle = {
+        request: false,
+        success: false,
+        failure: errors,
+      };
+    },
+
+    DELETE_ARTICLE(state) {
+      state.deleteArticle = { request: true, success: false, failure: "" };
+    },
+    DELETE_ARTICLE_SUCCESS(state, { orgPayload: { slug } }) {
+      state.articles = fp.filter(
+        (item) => !fp.isEqual(slug, item.slug),
+        state.articles
+      );
+      state.deleteArticle = {
+        request: false,
+        success: true,
+        failure: "",
+      };
+    },
+    DELETE_ARTICLE_FAILURE(state, { payload: { errors } }) {
+      state.deleteArticle = {
         request: false,
         success: false,
         failure: errors,
