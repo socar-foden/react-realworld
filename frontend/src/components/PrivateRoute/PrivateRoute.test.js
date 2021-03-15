@@ -1,12 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import React from "react";
 import { Provider } from "react-redux";
 import { Router } from "react-router";
 import { createStore } from "redux";
-import { TOKEN_KEY } from "../../axiosSetUp";
 import rootReducer from "../../reducers/rootReducer";
-import { userActions } from "../../reducers/user/userReducer";
 import PrivateRoute from "./PrivateRoute";
 
 describe("[PrivateRoute]", () => {
