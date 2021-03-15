@@ -52,7 +52,7 @@ const SignIn = () => {
 
       {authentication_success && (
         <Alert
-          message={"You have been signed up. Please log in."}
+          message={"Welcome."}
           severity={"success"}
           handleOnClose={handleCloseSuccessAlert}
         />
