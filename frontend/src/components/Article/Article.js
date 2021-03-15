@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import dateFormat from "dateformat";
 import fp from "lodash/fp";
 import { articleActions } from "../../reducers/article/articleReducer";
+import SettingsList from "../SettingsList/SettingsList";
 import { commentActions } from "../../reducers/comment/commentReducer";
 import CommentsPresentation from "../CommentsPresentation/CommentsPresentation";
 import useStyles from "./Article.style";
@@ -30,8 +31,10 @@ const Article = ({
     favoritesCount: article.favoritesCount,
   });
   const [openDetails, setOpenDetails] = useState(false);
+  const [openSettings, setOpenSettings] = useState(false);
   const dispatch = useDispatch();
   const { comments } = useSelector((rootReducer) => rootReducer.commentReducer);
+  const { user } = useSelector((rootReducer) => rootReducer.userReducer);
 
   // eslint-disable-next-line no-unused-vars
   const handleClickFavorite = fp.curry((slug, e) => {
@@ -57,6 +60,22 @@ const Article = ({
       commentActions.GET_COMMENTS_FROM_AN_ARTICLE({ slug: article.slug })
     );
   };
+
+  const handleClickSettings = () => setOpenSettings(true);
+
+  const handleOnClose = () => setOpenSettings(false);
+
+  const articleSettingsList = [
+    {
+      name: "UPDATE",
+      handleClick: fp.noop,
+    },
+    {
+      name: "DELETE",
+      handleClick: () => fp.noop,
+    },
+    { name: "CANCEL", handleClick: () => setOpenSettings(false) },
+  ];
 
   return (
     <Card className={classes.root}>
@@ -84,9 +103,11 @@ const Article = ({
           </Button>
         }
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
+          fp.isEqual(author.username, user.username) && (
+            <IconButton aria-label="settings" onClick={handleClickSettings}>
+              <MoreVertIcon />
+            </IconButton>
+          )
         }
         title={author.username}
         subheader={dateFormat(article.createdAt, "fullDate")}
@@ -177,6 +198,14 @@ const Article = ({
         open={openDetails}
         handleClose={setOpenDetails}
       />
+
+      {fp.isEqual(author.username, user.username) && (
+        <SettingsList
+          open={openSettings}
+          handleClose={handleOnClose}
+          settingsList={articleSettingsList}
+        />
+      )}
     </Card>
   );
 };
