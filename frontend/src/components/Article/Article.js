@@ -131,9 +131,6 @@ const Article = ({
             <FavoriteBorderIcon />
           </IconButton>
         )}
-        {/* <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton> */}
       </CardActions>
 
       <CardContent className={classes.noPaddingVertical}>
