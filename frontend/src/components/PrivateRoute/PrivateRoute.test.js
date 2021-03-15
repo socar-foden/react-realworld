@@ -4,6 +4,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { Router } from "react-router";
 import { createStore } from "redux";
+import { TOKEN_KEY } from "../../axiosSetUp";
 import rootReducer from "../../reducers/rootReducer";
 import { userActions } from "../../reducers/user/userReducer";
 import PrivateRoute from "./PrivateRoute";
@@ -31,17 +32,9 @@ describe("[PrivateRoute]", () => {
     expect(history.location.pathname).toBe("/sign-in");
   });
 
-  it("인증이 된 상태면, 받은 컴포넌트를 렌더링", () => {
-    store.dispatch({
-      type: userActions.AUTHENTICATION_SUCCESS.type,
-      payload: {
-        user: {
-          email: "jake@jake.jake",
-          token: "token~~!@~!@",
-          username: "jacob",
-        },
-      },
-    });
-    expect(screen.getByText("test dom")).toBeInTheDocument();
+  it("인증여부를 localStorage의 jwt를 통해 확인한다.", () => {
+    const mockCall = jest.spyOn(localStorage, 'getItem');
+
+    expect(mockCall).toHaveBeenCalled();
   });
 });
