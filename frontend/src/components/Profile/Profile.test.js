@@ -3,6 +3,7 @@ import { render } from "@testing-library/react";
 import React from "react";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
+import fp from "lodash/fp";
 import rootReducer from "../../reducers/rootReducer";
 import Profile from "./Profile";
 
@@ -16,7 +17,7 @@ describe("[Profile]", () => {
       <Provider store={store}>
         <Profile
           open={true}
-          setOpen={() => {}}
+          setOpen={fp.noop}
           anchorEl={document.createElement("button")}
         />
       </Provider>

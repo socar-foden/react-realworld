@@ -48,7 +48,7 @@ const SideNav = ({ open, setOpen }) => {
         anchor="left"
         open={open}
         onClose={() => setOpen(false)}
-        onOpen={() => {}}
+        onOpen={fp.noop}
         role="navigation"
         aria-label="side-nav"
       >

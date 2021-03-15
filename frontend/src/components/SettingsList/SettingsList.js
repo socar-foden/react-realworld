@@ -9,7 +9,7 @@ import React from "react";
 import fp from "lodash/fp";
 import useStyles from "./SettingsList.style";
 
-const SettingsList = ({ settingsList = [], open, handleClose = () => {} }) => {
+const SettingsList = ({ settingsList = [], open, handleClose = fp.noop }) => {
   const classes = useStyles();
 
   return (
