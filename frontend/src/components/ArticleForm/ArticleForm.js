@@ -15,9 +15,9 @@ const initFormData = {
   tagList: [],
 };
 
-const ArticleForm = () => {
+const ArticleForm = ({ article = initFormData }) => {
   const classes = useStyles();
-  const [formData, setFormData] = useState(initFormData);
+  const [formData, setFormData] = useState(article);
   const dispatch = useDispatch();
   const {
     createArticle: { success },
@@ -54,16 +54,26 @@ const ArticleForm = () => {
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    dispatch(
-      articleActions.CREATE_ARTICLE({
-        articleInfo: formData,
-      })
-    );
+
+    if (!article.slug) {
+      dispatch(
+        articleActions.CREATE_ARTICLE({
+          articleInfo: formData,
+        })
+      );
+    } else {
+      dispatch(
+        articleActions.UPDATE_ARTICLE({
+          articleInfo: formData,
+          slug: article.slug,
+        })
+      );
+    }
   };
 
   useEffect(() => {
     if (success) {
-      setFormData(initFormData);
+      setFormData(article);
     }
   }, [success]);
 

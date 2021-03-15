@@ -21,5 +21,9 @@ export default function* articleSaga() {
       articleActions.UNFAVORITE_ARTICLE.type,
       article_service.unfavoriteArticle
     ),
+    utils.watchSaga(
+      articleActions.UPDATE_ARTICLE.type,
+      article_service.updateArticle
+    ),
   ]);
 }

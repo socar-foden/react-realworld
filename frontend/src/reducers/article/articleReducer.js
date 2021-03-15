@@ -8,6 +8,7 @@ const initialState = {
   listArticles: { request: false, success: false, failure: "" },
   favoriteArticle: { request: false, success: false, failure: "" },
   unfavoriteArticle: { request: false, success: false, failure: "" },
+  updateArticle: { request: false, success: false, failure: "" },
 };
 
 const articleSlice = createSlice({
@@ -66,6 +67,20 @@ const articleSlice = createSlice({
     },
     UNFAVORITE_ARTICLE_FAILURE(state, { payload: { errors } }) {
       state.unfavoriteArticle = {
+        request: false,
+        success: false,
+        failure: errors,
+      };
+    },
+
+    UPDATE_ARTICLE(state) {
+      state.updateArticle = { request: true, success: false, failure: "" };
+    },
+    UPDATE_ARTICLE_SUCCESS(state, { payload: { article } }) {
+      state.updateArticle = { request: false, success: true, failure: "" };
+    },
+    UPDATE_ARTICLE_FAILURE(state, { payload: { errors } }) {
+      state.updateArticle = {
         request: false,
         success: false,
         failure: errors,

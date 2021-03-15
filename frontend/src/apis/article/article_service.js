@@ -8,6 +8,8 @@ const article_service = {
   favoriteArticle: ({ slug }) => axios.post(`/api/articles/${slug}/favorite`),
   unfavoriteArticle: ({ slug }) =>
     axios.delete(`/api/articles/${slug}/favorite`),
+  updateArticle: ({ articleInfo, slug }) =>
+    axios.put(`/api/articles/${slug}`, { article: articleInfo }),
 };
 
 export default article_service;

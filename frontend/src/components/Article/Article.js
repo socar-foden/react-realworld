@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
-import { Button, CardMedia, Chip } from "@material-ui/core";
+import { Button, CardMedia, Chip, Dialog } from "@material-ui/core";
 import CardActions from "@material-ui/core/CardActions";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import IconButton from "@material-ui/core/IconButton";
@@ -18,6 +18,7 @@ import fp from "lodash/fp";
 import { articleActions } from "../../reducers/article/articleReducer";
 import SettingsList from "../SettingsList/SettingsList";
 import { commentActions } from "../../reducers/comment/commentReducer";
+import ArticleForm from "../ArticleForm/ArticleForm";
 import CommentsPresentation from "../CommentsPresentation/CommentsPresentation";
 import useStyles from "./Article.style";
 
@@ -32,6 +33,7 @@ const Article = ({
   });
   const [openDetails, setOpenDetails] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
+  const [openEditForm, setOpenEditForm] = useState(false);
   const dispatch = useDispatch();
   const { comments } = useSelector((rootReducer) => rootReducer.commentReducer);
   const { user } = useSelector((rootReducer) => rootReducer.userReducer);
@@ -63,19 +65,21 @@ const Article = ({
 
   const handleClickSettings = () => setOpenSettings(true);
 
-  const handleOnClose = () => setOpenSettings(false);
+  const handleOnCloseSettingsList = () => setOpenSettings(false);
 
   const articleSettingsList = [
     {
       name: "UPDATE",
-      handleClick: fp.noop,
+      handleClick: () => setOpenEditForm(true),
     },
     {
       name: "DELETE",
-      handleClick: () => fp.noop,
+      handleClick: fp.noop,
     },
     { name: "CANCEL", handleClick: () => setOpenSettings(false) },
   ];
+
+  const handleCloseEditForm = () => setOpenEditForm(false);
 
   return (
     <Card className={classes.root}>
@@ -200,11 +204,17 @@ const Article = ({
       />
 
       {fp.isEqual(author.username, user.username) && (
-        <SettingsList
-          open={openSettings}
-          handleClose={handleOnClose}
-          settingsList={articleSettingsList}
-        />
+        <>
+          <SettingsList
+            open={openSettings}
+            handleClose={handleOnCloseSettingsList}
+            settingsList={articleSettingsList}
+          />
+
+          <Dialog open={openEditForm} onClose={handleCloseEditForm} fullWidth>
+            <ArticleForm article={article} />
+          </Dialog>
+        </>
       )}
     </Card>
   );
