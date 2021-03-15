@@ -34,6 +34,7 @@ const Article = ({
   const [openDetails, setOpenDetails] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
   const [openEditForm, setOpenEditForm] = useState(false);
+  const [openConfirm, setOpenConfirm] = useState(false);
   const dispatch = useDispatch();
   const {
     userReducer: { user },
@@ -79,9 +80,17 @@ const Article = ({
     },
     {
       name: "DELETE",
-      handleClick: fp.noop,
+      handleClick: () => setOpenConfirm(true),
     },
     { name: "CANCEL", handleClick: () => setOpenSettings(false) },
+  ];
+
+  const confirmList = [
+    {
+      name: "DELETE",
+      // handleClick: () => dispatch({type: }),
+    },
+    { name: "CANCEL", handleClick: () => setOpenConfirm(false) },
   ];
 
   const handleCloseEditForm = () => setOpenEditForm(false);
@@ -92,6 +101,8 @@ const Article = ({
       setOpenSettings(false);
     }
   }, [update_success]);
+
+  const handleCloseConfirm = () => setOpenConfirm(false);
 
   return (
     <Card className={classes.root}>
@@ -221,6 +232,13 @@ const Article = ({
             open={openSettings}
             handleClose={handleOnCloseSettingsList}
             settingsList={articleSettingsList}
+          />
+
+          <SettingsList
+            open={openConfirm}
+            handleClose={handleCloseConfirm}
+            settingsList={confirmList}
+            title="Are you sure you want to delete it?"
           />
 
           <Dialog open={openEditForm} onClose={handleCloseEditForm} fullWidth>

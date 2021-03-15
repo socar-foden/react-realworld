@@ -1,5 +1,6 @@
 import {
   Dialog,
+  DialogTitle,
   Divider,
   List,
   ListItem,
@@ -9,11 +10,18 @@ import React from "react";
 import fp from "lodash/fp";
 import useStyles from "./SettingsList.style";
 
-const SettingsList = ({ settingsList = [], open, handleClose = fp.noop }) => {
+const SettingsList = ({
+  settingsList = [],
+  open,
+  handleClose = fp.noop,
+  title,
+}) => {
   const classes = useStyles();
 
   return (
     <Dialog open={open} onClose={handleClose} fullWidth>
+      {title && <DialogTitle>{title}</DialogTitle>}
+      
       <List>
         {fp.flow(
           fp.entries,
