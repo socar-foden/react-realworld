@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import fp from "lodash/fp";
 import ArticleForm from "../../../components/ArticleForm/ArticleForm";
 import { articleActions } from "../../../reducers/article/articleReducer";
 import IntersectionObserver from "../../../components/IntersectionObserver/IntersectionObserver";
@@ -13,6 +14,7 @@ const Main = () => {
   const {
     articles,
     listArticles: { request },
+    articlesCount,
   } = useSelector((rootReducer) => rootReducer.articleReducer);
   const classes = useStyles();
   const [offset, setOffset] = useState(-1);
@@ -31,13 +33,19 @@ const Main = () => {
     setOffset(nextOffset);
   };
 
+  useEffect(() => {
+    dispatchListArticle();
+  }, []);
+
   return (
     <div className={classes.root}>
       <ArticleForm />
 
       <ArticleList articles={articles} />
 
-      <IntersectionObserver next={dispatchListArticle} loading={request} />
+      {!fp.isEmpty(articles) && articlesCount > articles.length && (
+        <IntersectionObserver next={dispatchListArticle} loading={request} />
+      )}
     </div>
   );
 };
