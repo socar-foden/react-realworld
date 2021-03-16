@@ -19,6 +19,7 @@ describe("[Header]", () => {
       expect(
         screen.getByRole("button", { name: "profile" })
       ).toBeInTheDocument();
+      expect(screen.getByRole("input", { name: "theme" })).toBeInTheDocument();
     });
   });
 });

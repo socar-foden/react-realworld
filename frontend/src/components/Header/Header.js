@@ -4,6 +4,7 @@ import {
   AppBar,
   Button,
   IconButton,
+  Switch,
   Toolbar,
   Typography,
 } from "@material-ui/core";
@@ -41,13 +42,12 @@ const Header = ({ setOpenSide }) => {
           RealWorld
         </Typography>
 
-        {/* <Button
-          aria-label="sign-out"
-          color="inherit"
-          onClick={handleClickSignOut}
-        >
-          <ExitToAppIcon fontSize="large" />
-        </Button> */}
+        <Switch
+          // checked={state.checkedB}
+          // onChange={handleChange}
+          color="default"
+          inputProps={{ "aria-label": "theme", role: "input" }}
+        />
         <Button
           aria-label="profile"
           color="inherit"
@@ -55,7 +55,7 @@ const Header = ({ setOpenSide }) => {
         >
           <AccountCircleIcon fontSize="large" />
         </Button>
-        
+
         <Profile
           open={openProfile}
           setOpen={setOpenProfile}
