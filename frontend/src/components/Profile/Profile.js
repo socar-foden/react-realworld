@@ -73,7 +73,7 @@ const Profile = ({ open, setOpen, anchorEl }) => {
         <CardActions>
           <Button
             aria-label="sign-out"
-            color="inherit"
+            color="primary"
             onClick={handleClickSignOut}
           >
             <ExitToAppIcon fontSize="large" />
