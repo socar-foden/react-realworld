@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TOKEN_KEY } from "../axiosSetUp";
+import { TOKEN_KEY } from "../axiosDefaultSetUp";
 import { userActions } from "../reducers/user/userReducer";
 
 let axiosInterceptor;

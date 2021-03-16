@@ -10,12 +10,12 @@ import "regenerator-runtime/runtime";
 // core-js/stable, regenerator-runtime/runtime를 임포트 한 후에 redux-saga를 임포트해야함
 // https://redux-saga.js.org/
 import App from "./components/App";
-import axiosSetUp from "./axiosSetUp";
+import axiosDefaultSetUp from "./axiosDefaultSetUp";
 import rootSaga from "./sagas/rootSaga";
 import authentication from "./middlewares/authentication";
 import rootReducer from "./reducers/rootReducer";
 
-axiosSetUp();
+axiosDefaultSetUp();
 
 const sagaMiddleware = createSagaMiddleware(rootSaga);
 const store = createStore(

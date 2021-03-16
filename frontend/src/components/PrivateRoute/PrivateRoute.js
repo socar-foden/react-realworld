@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route } from "react-router";
-import { TOKEN_KEY } from "../../axiosSetUp";
+import { TOKEN_KEY } from "../../axiosDefaultSetUp";
 
 const PrivateRoute = ({ children, ...props }) => {
   const token = localStorage.getItem(TOKEN_KEY);
