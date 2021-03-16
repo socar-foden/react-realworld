@@ -16,17 +16,17 @@ import useStyles from "./SideNav.style";
 const MenuList = [
   {
     text: "Main",
-    icon: <HomeIcon />,
+    icon: <HomeIcon color="primary" />,
     path: "/",
   },
   {
     text: "Friends",
-    icon: <SupervisorAccountIcon />,
+    icon: <SupervisorAccountIcon color="primary" />,
     path: "/friends",
   },
   {
     text: "Account",
-    icon: <PermIdentityIcon />,
+    icon: <PermIdentityIcon color="primary" />,
     path: "/account",
   },
 ];
