@@ -8,7 +8,11 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@material-ui/icons/Menu";
+import fp from "lodash/fp";
+import { uiActions } from "../../reducers/ui/uiReducer";
+import { DARK_THEME, DEFAULT_THEME } from "../App.style";
 import Profile from "../Profile/Profile";
 import useStyles from "./Header.style";
 
@@ -16,6 +20,9 @@ const Header = ({ setOpenSide }) => {
   const classes = useStyles();
   const [openProfile, setOpenProfile] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const { themeName } = useSelector((rootReducer) => rootReducer.uiReducer);
+  const [checked, setChecked] = useState(!fp.isEqual(themeName, DEFAULT_THEME));
+  const dispatch = useDispatch();
 
   const handleClickMenu = () => {
     setOpenSide((prev) => !prev);
@@ -24,6 +31,15 @@ const Header = ({ setOpenSide }) => {
   const handleClickAccountCircle = (e) => {
     setOpenProfile(true);
     setAnchorEl(e.currentTarget);
+  };
+
+  const handleChangeTheme = () => {
+    setChecked(fp.negate(fp.identity));
+    dispatch(
+      uiActions.CHANGE_THEME({
+        themeName: checked ? DEFAULT_THEME : DARK_THEME,
+      })
+    );
   };
 
   return (
@@ -43,8 +59,8 @@ const Header = ({ setOpenSide }) => {
         </Typography>
 
         <Switch
-          // checked={state.checkedB}
-          // onChange={handleChange}
+          checked={checked}
+          onChange={handleChangeTheme}
           color="default"
           inputProps={{ "aria-label": "theme", role: "input" }}
         />

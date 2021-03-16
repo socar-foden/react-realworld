@@ -1,16 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { defaultTheme } from "../../components/App.style";
+import { DEFAULT_THEME } from "../../components/App.style";
 
 const initialState = {
-  theme: defaultTheme,
+  themeName: DEFAULT_THEME,
 };
 
 const uiSlice = createSlice({
   name: "ui",
   initialState,
   reducers: {
-    CHANGE_THEME(state, { payload: { theme } }) {
-      state.theme = theme;
+    CHANGE_THEME(state, { payload: { themeName } }) {
+      state.themeName = themeName;
     },
   },
 });

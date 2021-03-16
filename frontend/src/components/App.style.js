@@ -11,11 +11,11 @@ const globalStyle = {
   },
 };
 
-export const defaultTheme = createMuiTheme({
+const defaultTheme = createMuiTheme({
   overrides: { ...globalStyle },
 });
 
-export const darkTheme = createMuiTheme({
+const darkTheme = createMuiTheme({
   overrides: { ...globalStyle },
   palette: {
     primary: {
@@ -30,3 +30,13 @@ export const darkTheme = createMuiTheme({
     },
   },
 });
+
+export const DEFAULT_THEME = "default";
+export const DARK_THEME = "dark";
+
+const themeMap = {
+  [DEFAULT_THEME]: defaultTheme,
+  [DARK_THEME]: darkTheme,
+};
+
+export default themeMap;
