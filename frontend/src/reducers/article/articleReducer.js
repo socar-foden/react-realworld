@@ -3,6 +3,7 @@ import fp from "lodash/fp";
 
 const initialState = {
   articles: [],
+  articlesCount: 0,
 
   // [요청 관련상태]
   createArticle: { request: false, success: false, failure: "" },
@@ -21,6 +22,7 @@ const articleSlice = createSlice({
       state.createArticle = { request: true, success: false, failure: "" };
     },
     CREATE_ARTICLE_SUCCESS(state, { payload: { article } }) {
+      state.articlesCount++;
       state.articles = [article, ...state.articles];
       state.createArticle = { request: false, success: true, failure: "" };
     },
@@ -35,8 +37,9 @@ const articleSlice = createSlice({
     LIST_ARTICLES(state) {
       state.listArticles = { request: true, success: false, failure: "" };
     },
-    LIST_ARTICLES_SUCCESS(state, { payload: { articles } }) {
+    LIST_ARTICLES_SUCCESS(state, { payload: { articles, articlesCount } }) {
       state.articles = [...state.articles, ...articles];
+      state.articlesCount = articlesCount;
       state.listArticles = { request: false, success: true, failure: "" };
     },
     LIST_ARTICLES_FAILURE(state, { payload: { errors } }) {
@@ -105,6 +108,7 @@ const articleSlice = createSlice({
         (item) => !fp.isEqual(slug, item.slug),
         state.articles
       );
+      state.articlesCount--;
       state.deleteArticle = {
         request: false,
         success: true,
