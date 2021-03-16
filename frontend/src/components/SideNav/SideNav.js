@@ -58,7 +58,7 @@ const SideNav = ({ open, setOpen }) => {
               button
               key={item.text}
               onClick={handleClickListItem(item.path)}
-              selected={location.pathname === item.path}
+              selected={fp.isEqual(location.pathname, item.path)}
             >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
