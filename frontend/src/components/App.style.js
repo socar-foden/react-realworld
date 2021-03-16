@@ -1,16 +1,16 @@
 import { createMuiTheme } from "@material-ui/core";
 
-const theme = createMuiTheme({
-  overrides: {
-    MuiCssBaseline: {
-      "@global": {
-        "html, body, #root": {
-          width: "100%",
-          height: "100%",
-        },
+const globalStyle = {
+  MuiCssBaseline: {
+    "@global": {
+      "html, body, #root": {
+        width: "100%",
+        height: "100%",
       },
     },
   },
-});
+};
 
-export default theme;
+export const defaultTheme = createMuiTheme({
+  overrides: { ...globalStyle },
+});
