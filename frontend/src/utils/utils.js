@@ -21,7 +21,7 @@ const utils = {
       } catch (e) {
         const { errors } = e.response.data;
 
-        console.error(`❌ [Saga - ${type}] ERROR :: `, errors);
+        utils.error(`❌ [Saga - ${type}] ERROR :: `, errors);
         yield put({
           type: `${type}_FAILURE`,
           payload: {
