@@ -14,13 +14,14 @@ import axiosDefaultSetUp from "./axiosDefaultSetUp";
 import rootSaga from "./sagas/rootSaga";
 import authentication from "./middlewares/authentication";
 import rootReducer from "./reducers/rootReducer";
+import theme from "./middlewares/theme";
 
 axiosDefaultSetUp();
 
 const sagaMiddleware = createSagaMiddleware(rootSaga);
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware, authentication))
+  composeWithDevTools(applyMiddleware(sagaMiddleware, authentication, theme))
 );
 
 sagaMiddleware.run(rootSaga);
