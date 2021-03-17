@@ -4,6 +4,7 @@ import { Route, Switch, useLocation } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import SideNav from "../../components/SideNav/SideNav";
+import Account from "./Account/Account";
 import useStyles from "./Layout.style";
 import Main from "./Main/Main";
 
@@ -22,6 +23,9 @@ const Layout = () => {
             <Switch location={location}>
               <Route path="/" exact>
                 <Main />
+              </Route>
+              <Route path="/account">
+                <Account />
               </Route>
             </Switch>
           </BrowserRouter>
