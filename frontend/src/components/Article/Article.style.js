@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   cover: {
     width: 40,
     height: "40px",
+    borderRadius: "50%",
   },
   imageWrapper: {
     display: "flex",
