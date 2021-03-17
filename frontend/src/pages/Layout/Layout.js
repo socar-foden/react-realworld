@@ -18,18 +18,20 @@ const Layout = () => {
       <Header setOpenSide={setOpenSide} />
       <SideNav open={openSide} setOpen={setOpenSide} />
       <main className={classes.root}>
-        <Container maxWidth="sm">
-          <BrowserRouter>
-            <Switch location={location}>
-              <Route path="/" exact>
+        <BrowserRouter>
+          <Switch location={location}>
+            <Route path="/" exact>
+              <Container maxWidth="sm">
                 <Main />
-              </Route>
-              <Route path="/account">
+              </Container>
+            </Route>
+            <Route path="/account">
+              <Container maxWidth="md">
                 <Account />
-              </Route>
-            </Switch>
-          </BrowserRouter>
-        </Container>
+              </Container>
+            </Route>
+          </Switch>
+        </BrowserRouter>
       </main>
     </>
   );
