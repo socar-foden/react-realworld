@@ -4,6 +4,9 @@ const useStyles = makeStyles((theme) => ({
   deleteButton: {
     color: theme.palette.error.main,
   },
+  item: {
+    textAlign: "center",
+  },
 }));
 
 export default useStyles;
