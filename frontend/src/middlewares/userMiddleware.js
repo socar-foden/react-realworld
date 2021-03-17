@@ -11,7 +11,7 @@ const setAxiosAuthorization = (val) =>
     return config;
   }, Promise.reject);
 
-const authentication = () => (next) => (action) => {
+const userMiddleware = () => (next) => (action) => {
   const { type, payload } = action;
   
   if (fp.isEqual(type, userActions.AUTHENTICATION_SUCCESS.type)) {
@@ -29,4 +29,4 @@ const authentication = () => (next) => (action) => {
   return next(action);
 };
 
-export default authentication;
+export default userMiddleware;

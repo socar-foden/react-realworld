@@ -12,19 +12,21 @@ import "regenerator-runtime/runtime";
 import App from "./components/App";
 import axiosDefaultSetUp from "./axiosDefaultSetUp";
 import rootSaga from "./sagas/rootSaga";
-import authentication from "./middlewares/authentication";
+import userMiddleware from "./middlewares/userMiddleware";
 import rootReducer from "./reducers/rootReducer";
-import theme from "./middlewares/theme";
+import uiMiddleware from "./middlewares/uiMiddleware";
 
 axiosDefaultSetUp();
 
-const sagaMiddleware = createSagaMiddleware(rootSaga);
+const mainMiddleWare = createSagaMiddleware(rootSaga);
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware, authentication, theme))
+  composeWithDevTools(
+    applyMiddleware(mainMiddleWare, userMiddleware, uiMiddleware)
+  )
 );
 
-sagaMiddleware.run(rootSaga);
+mainMiddleWare.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>

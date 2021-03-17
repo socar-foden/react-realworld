@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { DEFAULT_THEME } from "../../components/App.style";
-import { THEME } from "../../middlewares/theme";
+import { THEME } from "../../middlewares/uiMiddleware";
 
 const initialState = {
   themeName: localStorage.getItem(THEME) || DEFAULT_THEME,
