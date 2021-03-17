@@ -49,6 +49,10 @@ const articleSlice = createSlice({
         failure: errors,
       };
     },
+    LIST_ARTICLES_INIT(state) {
+      state.articles = [];
+      state.articlesCount = 0;
+    },
 
     FAVORITE_ARTICLE(state) {
       state.favoriteArticle = { request: true, success: false, failure: "" };

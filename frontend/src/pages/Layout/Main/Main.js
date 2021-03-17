@@ -35,6 +35,10 @@ const Main = () => {
 
   useEffect(() => {
     dispatchListArticle();
+
+    return () => {
+      dispatch(articleActions.LIST_ARTICLES_INIT());
+    };
   }, []);
 
   return (
