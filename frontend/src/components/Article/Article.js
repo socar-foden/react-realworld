@@ -109,12 +109,13 @@ const Article = ({
     <Card className={classes.root}>
       <CardHeader
         title={
-          <Typography variant="h6" component="h6">
+          <Typography variant="subtitle1" component="h6">
             {article.title}
           </Typography>
         }
         aria-label="title"
         role="header"
+        className={classes.noPaddingBottom}
       />
       <CardHeader
         avatar={
