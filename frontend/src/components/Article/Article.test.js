@@ -36,13 +36,9 @@ describe("[Article]", () => {
       expect(
         screen.getByRole("button", { name: "settings" })
       ).toBeInTheDocument();
-      // expect(screen.getByRole("button", { name: "share" })).toBeInTheDocument();
       expect(
         screen.getByRole("figure", { name: "tag-list" })
       ).toBeInTheDocument();
-      // expect(
-      //   screen.getByRole("input", { name: "add-comment" })
-      // ).toBeInTheDocument();
       expect(
         screen.getByRole("button", { name: "view-comments" })
       ).toBeInTheDocument();
