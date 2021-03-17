@@ -23,7 +23,7 @@ const SettingsList = ({
     <Dialog open={open} onClose={handleClose} fullWidth>
       {title && <DialogTitle>{title}</DialogTitle>}
 
-      <List>
+      <List className={classes.list}>
         {fp.flow(
           fp.entries,
           fp.map(([index, settings]) => (

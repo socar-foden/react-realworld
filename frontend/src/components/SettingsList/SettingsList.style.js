@@ -7,6 +7,10 @@ const useStyles = makeStyles((theme) => ({
   item: {
     textAlign: "center",
   },
+  list: {
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
 }));
 
 export default useStyles;
