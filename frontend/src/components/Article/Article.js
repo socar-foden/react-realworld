@@ -127,7 +127,11 @@ const Article = ({
             {author.image ? (
               <CardMedia className={classes.cover} image={author.image} />
             ) : (
-              <AccountCircleIcon fontSize="large" className={classes.cover} />
+              <AccountCircleIcon
+                fontSize="large"
+                className={classes.cover}
+                color="primary"
+              />
             )}
           </Button>
         }

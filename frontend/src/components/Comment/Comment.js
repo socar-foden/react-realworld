@@ -27,7 +27,7 @@ const Comment = ({ comment = { author: {} }, article = {} }) => {
   const handleClickSettings = () => setOpenSettings(true);
 
   const handleOnClose = () => setOpenSettings(false);
-  
+
   const commentSettingsList = [
     {
       name: "DELETE",
@@ -53,7 +53,11 @@ const Comment = ({ comment = { author: {} }, article = {} }) => {
           {author.image ? (
             <CardMedia className={classes.cover} image={author.image} />
           ) : (
-            <AccountCircleIcon fontSize="large" className={classes.cover} />
+            <AccountCircleIcon
+              fontSize="large"
+              className={classes.cover}
+              color="primary"
+            />
           )}
         </Button>
       </ListItemAvatar>
