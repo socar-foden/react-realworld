@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   settings: {
     alignSelf: "end",
+    paddingRight: 0,
   },
   commentBody: {
     overflowWrap: "anywhere",
