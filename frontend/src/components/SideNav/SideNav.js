@@ -5,9 +5,8 @@ import {
   ListItemText,
   SwipeableDrawer,
 } from "@material-ui/core";
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import HomeIcon from "@material-ui/icons/Home";
-import PermIdentityIcon from "@material-ui/icons/PermIdentity";
+import SettingsIcon from "@material-ui/icons/Settings";
 import React from "react";
 import { useHistory, useLocation } from "react-router";
 import fp from "lodash/fp";
@@ -20,13 +19,8 @@ const MenuList = [
     path: "/",
   },
   {
-    text: "Friends",
-    icon: <SupervisorAccountIcon color="primary" />,
-    path: "/friends",
-  },
-  {
     text: "Account",
-    icon: <PermIdentityIcon color="primary" />,
+    icon: <SettingsIcon color="primary" />,
     path: "/account",
   },
 ];
