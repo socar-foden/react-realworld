@@ -40,7 +40,7 @@ const Article = ({
     userReducer: { user },
     commentReducer: { comments },
     articleReducer: {
-      updateArticle: { success: update_success },
+      updateArticle: { success: updateArticle_success },
     },
   } = useSelector(fp.identity);
 
@@ -97,11 +97,11 @@ const Article = ({
   const handleCloseEditForm = () => setOpenEditForm(false);
 
   useEffect(() => {
-    if (update_success) {
+    if (updateArticle_success) {
       setOpenEditForm(false);
       setOpenSettings(false);
     }
-  }, [update_success]);
+  }, [updateArticle_success]);
 
   const handleCloseConfirm = () => setOpenConfirm(false);
 
