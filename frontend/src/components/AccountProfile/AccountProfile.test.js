@@ -1,10 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import rootReducer from "../../reducers/rootReducer";
 import AccountProfile from "./AccountProfile";
 
 describe("[AccountProfile]", () => {
   beforeEach(() => {
-    render(<AccountProfile />);
+    render(
+      <Provider store={createStore(rootReducer)}>
+        <AccountProfile />
+      </Provider>
+    );
   });
 
   describe("UI 테스트", () => {
