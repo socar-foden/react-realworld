@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cover: {
     width: 40,
-    height: "40px",
+    height: 40,
     borderRadius: "50%",
   },
   imageWrapper: {

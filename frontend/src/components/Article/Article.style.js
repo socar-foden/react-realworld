@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   // 바깥 영역 너비에 맞게
   cover: {
     width: 40,
-    height: "40px",
+    height: 40,
     borderRadius: "50%",
   },
   imageWrapper: {
