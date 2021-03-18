@@ -1,5 +1,6 @@
 import { Container } from "@material-ui/core";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Route, Switch, useLocation } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Header from "../../components/Header/Header";
@@ -12,6 +13,9 @@ const Layout = () => {
   const [openSide, setOpenSide] = useState(false);
   const classes = useStyles();
   const location = useLocation();
+  const {
+    user: { username },
+  } = useSelector((rootReducer) => rootReducer.userReducer);
 
   return (
     <>
@@ -27,7 +31,7 @@ const Layout = () => {
             </Route>
             <Route path="/account">
               <Container maxWidth="md">
-                <Account />
+                <Account username={username} />
               </Container>
             </Route>
           </Switch>
