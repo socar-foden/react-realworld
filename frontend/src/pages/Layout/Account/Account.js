@@ -4,11 +4,11 @@ import { useSelector } from "react-redux";
 import AccountProfile from "../../../components/AccountProfile/AccountProfile";
 
 const Account = () => {
-  const { user } = useSelector((rootReducer) => rootReducer.userReducer);
+  const { profile } = useSelector((rootReducer) => rootReducer.userReducer);
 
   return (
     <div>
-      <AccountProfile user={user} />
+      <AccountProfile profile={profile} />
       <Divider />
     </div>
   );

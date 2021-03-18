@@ -3,7 +3,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import React from "react";
 import useStyles from "./AccountProfile.style";
 
-const AccountProfile = ({ user = {}, articles = [], feeds = [] }) => {
+const AccountProfile = ({ profile = {}, articles = [], feeds = [] }) => {
   const classes = useStyles();
 
   return (
@@ -15,8 +15,8 @@ const AccountProfile = ({ user = {}, articles = [], feeds = [] }) => {
           color="inherit"
           className={classes.imageWrapper}
         >
-          {user.image ? (
-            <CardMedia className={classes.cover} image={user.image} />
+          {profile.image ? (
+            <CardMedia className={classes.cover} image={profile.image} />
           ) : (
             <AccountCircleIcon
               fontSize="large"
@@ -35,7 +35,7 @@ const AccountProfile = ({ user = {}, articles = [], feeds = [] }) => {
               role="figure"
               aria-label="username"
             >
-              {user.username}
+              {profile.username}
             </Typography>
 
             <Button
@@ -77,7 +77,7 @@ const AccountProfile = ({ user = {}, articles = [], feeds = [] }) => {
             role="figure"
             aria-label="email"
           >
-            {user.email}
+            {profile.email}
           </Typography>
         </section>
       </Grid>
