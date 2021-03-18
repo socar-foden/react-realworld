@@ -5,7 +5,11 @@ import { useSelector } from "react-redux";
 import fp from "lodash/fp";
 import useStyles from "./AccountProfile.style";
 
-const AccountProfile = ({ profile = {}, articles = [], feeds = [] }) => {
+const AccountProfile = ({
+  profile = {},
+  articlesCount = 0,
+  feedsCount = 0,
+}) => {
   const classes = useStyles();
   const {
     user: { username },
@@ -64,18 +68,20 @@ const AccountProfile = ({ profile = {}, articles = [], feeds = [] }) => {
               aria-label="article-count"
             >
               <span className={classes.activeDetailHeader}>Articles</span>{" "}
-              {articles.length}
+              {articlesCount}
             </Typography>
-            <Typography
-              variant="body1"
-              component="h4"
-              className={classes.activeDetail}
-              role="figure"
-              aria-label="feed-count"
-            >
-              <span className={classes.activeDetailHeader}>Feeds</span>{" "}
-              {feeds.length}
-            </Typography>
+            {fp.isEqual(username, profile.username) && (
+              <Typography
+                variant="body1"
+                component="h4"
+                className={classes.activeDetail}
+                role="figure"
+                aria-label="feed-count"
+              >
+                <span className={classes.activeDetailHeader}>Feeds</span>{" "}
+                {feedsCount}
+              </Typography>
+            )}
           </div>
         </section>
       </Grid>

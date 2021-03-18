@@ -4,6 +4,7 @@ import fp from "lodash/fp";
 const initialState = {
   articles: [],
   articlesCount: 0,
+  feeds: [],
 
   // [요청 관련상태]
   createArticle: { request: false, success: false, failure: "" },
@@ -12,6 +13,7 @@ const initialState = {
   unfavoriteArticle: { request: false, success: false, failure: "" },
   updateArticle: { request: false, success: false, failure: "" },
   deleteArticle: { request: false, success: false, failure: "" },
+  feedArticles: { request: false, success: false, failure: "" },
 };
 
 const articleSlice = createSlice({
@@ -125,6 +127,26 @@ const articleSlice = createSlice({
         success: false,
         failure: errors,
       };
+    },
+
+    FEED_ARTICLES(state) {
+      state.feedArticles = { request: true, success: false, failure: "" };
+    },
+    FEED_ARTICLES_SUCCESS(state, { payload: { articles, articlesCount } }) {
+      state.feeds = [...state.feeds, ...articles];
+      state.feedsCount = articlesCount;
+      state.feedArticles = { request: false, success: true, failure: "" };
+    },
+    FEED_ARTICLES_FAILURE(state, { payload: { errors } }) {
+      state.feedArticles = {
+        request: false,
+        success: false,
+        failure: errors,
+      };
+    },
+    FEED_ARTICLES_INIT(state) {
+      state.feeds = [];
+      state.feedsCount = 0;
     },
   },
 });
