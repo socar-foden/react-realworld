@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    width: 40,
   },
   settings: {
     alignSelf: "end",
