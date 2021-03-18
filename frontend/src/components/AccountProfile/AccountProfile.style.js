@@ -35,8 +35,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "5%",
   },
   cover: {
-    width: "10vw",
-    height: "10vw",
+    width: "12vw",
+    height: "12vw",
     borderRadius: "50%",
   },
   imageWrapper: {
