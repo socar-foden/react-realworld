@@ -1,7 +1,9 @@
 import { Divider } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import fp from "lodash/fp";
 import AccountProfile from "../../../components/AccountProfile/AccountProfile";
+import Progress from "../../../components/Progress/Progress";
 import { articleActions } from "../../../reducers/article/articleReducer";
 import { profileActions } from "../../../reducers/profile/profileReducer";
 
@@ -27,14 +29,20 @@ const Account = ({ username = "" }) => {
   }, [username]);
 
   return (
-    <div>
-      <AccountProfile
-        profile={profile}
-        articlesCount={articlesCount}
-        feedsCount={feedsCount}
-      />
-      <Divider />
-    </div>
+    <>
+      {fp.isEmpty(profile) ? (
+        <Progress />
+      ) : (
+        <div>
+          <AccountProfile
+            profile={profile}
+            articlesCount={articlesCount}
+            feedsCount={feedsCount}
+          />
+          <Divider />
+        </div>
+      )}
+    </>
   );
 };
 
