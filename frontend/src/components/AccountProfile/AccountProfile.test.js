@@ -13,14 +13,12 @@ describe("[AccountProfile]", () => {
       expect(
         screen.getByRole("figure", { name: "username" })
       ).toBeInTheDocument();
-      expect(screen.getByRole("figure", { name: "email" })).toBeInTheDocument();
       expect(
         screen.getByRole("figure", { name: "article-count" })
       ).toBeInTheDocument();
       expect(
         screen.getByRole("figure", { name: "feed-count" })
       ).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: "edit" })).toBeInTheDocument();
     });
   });
 });

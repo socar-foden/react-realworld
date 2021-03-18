@@ -1,10 +1,15 @@
 import { Button, CardMedia, Grid, Typography } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import React from "react";
+import { useSelector } from "react-redux";
+import fp from "lodash/fp";
 import useStyles from "./AccountProfile.style";
 
 const AccountProfile = ({ profile = {}, articles = [], feeds = [] }) => {
   const classes = useStyles();
+  const {
+    user: { username },
+  } = useSelector((rootReducer) => rootReducer.userReducer);
 
   return (
     <Grid container spacing={3} className={classes.root}>
@@ -38,14 +43,16 @@ const AccountProfile = ({ profile = {}, articles = [], feeds = [] }) => {
               {profile.username}
             </Typography>
 
-            <Button
-              variant="outlined"
-              color="primary"
-              className={classes.editProfile}
-              aria-label="edit"
-            >
-              Edit Profile
-            </Button>
+            {fp.isEqual(username, profile.username) && (
+              <Button
+                variant="outlined"
+                color="primary"
+                className={classes.editProfile}
+                aria-label="edit"
+              >
+                Edit Profile
+              </Button>
+            )}
           </div>
 
           <div className={classes.active}>
@@ -70,15 +77,6 @@ const AccountProfile = ({ profile = {}, articles = [], feeds = [] }) => {
               {feeds.length}
             </Typography>
           </div>
-
-          <Typography
-            variant="subtitle1"
-            component="h2"
-            role="figure"
-            aria-label="email"
-          >
-            {profile.email}
-          </Typography>
         </section>
       </Grid>
     </Grid>
