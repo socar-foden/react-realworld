@@ -8,7 +8,7 @@ const AccountProfile = ({ profile = {}, articles = [], feeds = [] }) => {
 
   return (
     <Grid container spacing={3} className={classes.root}>
-      <Grid item xs={4}>
+      <Grid item xs={4} className={classes.left}>
         <Button
           role="figure"
           aria-label="image"

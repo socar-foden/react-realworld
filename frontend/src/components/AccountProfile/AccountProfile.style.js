@@ -4,13 +4,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(2, 1, 1, 1),
   },
-  cover: {
-    width: "70%",
-    height: "100%",
-  },
-  imageWrapper: {
-    padding: 0,
-  },
+  // cover: {
+  //   width: "70%",
+  //   height: "100%",
+  // },
+  // imageWrapper: {
+  //   padding: 0,
+  // },
   info: {
     height: "80%",
     display: "flex",
@@ -33,6 +33,20 @@ const useStyles = makeStyles((theme) => ({
   },
   editProfile: {
     marginLeft: "5%",
+  },
+  cover: {
+    width: "10vw",
+    height: "10vw",
+    borderRadius: "50%",
+  },
+  imageWrapper: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  left: {
+    display: "flex",
+    justifyContent: "center",
   },
 }));
 
