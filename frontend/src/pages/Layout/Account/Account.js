@@ -104,6 +104,6 @@ const Account = ({ username = "" }) => {
       )}
     </>
   );
-};
+}; 
 
 export default Account;
