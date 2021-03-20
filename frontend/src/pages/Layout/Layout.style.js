@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
   },
   accountContainer: {
-    maxWidth: 710,
+    maxWidth: 1100,
   },
 }));
 

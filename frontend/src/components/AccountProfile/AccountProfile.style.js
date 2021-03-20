@@ -3,14 +3,8 @@ import { makeStyles } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(2, 1, 1, 1),
+    width: "100%",
   },
-  // cover: {
-  //   width: "70%",
-  //   height: "100%",
-  // },
-  // imageWrapper: {
-  //   padding: 0,
-  // },
   info: {
     height: "80%",
     display: "flex",
