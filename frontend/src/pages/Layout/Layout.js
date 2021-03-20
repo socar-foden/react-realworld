@@ -30,7 +30,7 @@ const Layout = () => {
               </Container>
             </Route>
             <Route path="/account">
-              <Container maxWidth="md">
+              <Container className={classes.accountContainer}>
                 <Account username={username} />
               </Container>
             </Route>

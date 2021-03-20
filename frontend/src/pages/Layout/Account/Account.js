@@ -6,6 +6,7 @@ import AccountProfile from "../../../components/AccountProfile/AccountProfile";
 import Progress from "../../../components/Progress/Progress";
 import { articleActions } from "../../../reducers/article/articleReducer";
 import { profileActions } from "../../../reducers/profile/profileReducer";
+import AccountContents from "../../../components/AccountContents/AccountContents";
 
 const Account = ({ username = "" }) => {
   const {
@@ -28,6 +29,13 @@ const Account = ({ username = "" }) => {
     }
   }, [username]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(articleActions.LIST_ARTICLES_INIT());
+      dispatch(articleActions.FEED_ARTICLES_INIT());
+    };
+  }, []);
+
   return (
     <>
       {fp.isEmpty(profile) ? (
@@ -39,7 +47,10 @@ const Account = ({ username = "" }) => {
             articlesCount={articlesCount}
             feedsCount={feedsCount}
           />
+
           <Divider />
+
+          <AccountContents articles={articles} feeds={feeds} />
         </div>
       )}
     </>
