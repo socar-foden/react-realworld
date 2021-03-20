@@ -7,6 +7,7 @@ require("dotenv").config({
 
 const app = express();
 const root = path.join(__dirname, `/dist/${process.env.NODE_ENV}`);
+const PORT = process.env.PORT || 80;
 
 app.use(express.static(root));
 app.use(fallback("index.html", { root: root }));
@@ -17,6 +18,6 @@ app.get("/", (req, res) => {
   );
 });
 
-app.listen(process.env.PORT || 80, () => {
-  console.log(`✅ Server is running on [ PORT: ${process.env.PORT} ]`);
+app.listen(PORT, () => {
+  console.log(`✅ Server is running on [ PORT: ${PORT} ]`);
 });
