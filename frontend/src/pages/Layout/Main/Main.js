@@ -26,7 +26,7 @@ const Main = () => {
       articleActions.LIST_ARTICLES({
         queryParameters: {
           limit: LIMIT,
-          offset: nextOffset * LIMIT,
+          offset: articles.length,
         },
       })
     );
