@@ -98,7 +98,7 @@ const Account = ({ username = "" }) => {
             <IntersectionObserver
               next={dispatchListArticle}
               loading={listArticles_request || feedArticles_request}
-            />
+            /> 
           )}
         </div>
       )}
