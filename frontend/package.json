@@ -8,8 +8,8 @@
     "test": "jest --passWithNoTests --watchAll --coverage --verbose --config=./jest.config.js",
     "build": "npm i && webpack build --config ./webpack.config.prod.js",
     "build:dev": "npm i && webpack build --config ./webpack.config.dev.js",
-    "start": "npm run build && cross-env NODE_ENV=production pm2 start ./server.js",
-    "start:dev": "npm run build:dev && cross-env NODE_ENV=development pm2 start ./server.js"
+    "start": "npm run build && pm2 restart ecosystem.config.js ./server.js --env production",
+    "start:dev": "npm run build:dev && pm2 restart ecosystem.config.js ./server.js"
   },
   "repository": {
     "type": "git",
