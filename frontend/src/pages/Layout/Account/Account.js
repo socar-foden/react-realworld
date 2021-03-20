@@ -102,7 +102,7 @@ const Account = ({ username = "" }) => {
           )}
         </div>
       )}
-    </>
+    </> 
   );
 };
 
