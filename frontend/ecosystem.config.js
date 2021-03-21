@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "realworld-f",
+      name: `realworld-f-${process.env.NODE_ENV}`,
       script: "./server.js",
       time: true,
       env: {
