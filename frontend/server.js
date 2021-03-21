@@ -7,12 +7,14 @@ require("dotenv").config({
 
 const app = express();
 const root = path.join(__dirname, `/dist/${process.env.NODE_ENV}`);
-const PORT = process.env.NODE_ENV === 'production' ? 80 : 8080;
+const PORT = process.env.NODE_ENV === "production" ? 80 : 8080;
 
 app.use(express.static(root));
 app.use(fallback("index.html", { root: root }));
 
 app.get("/", (req, res) => {
+  console.log(__dirname);
+
   res.sendFile(
     path.join(__dirname, `./dist/${process.env.NODE_ENV}/index.html`)
   );
