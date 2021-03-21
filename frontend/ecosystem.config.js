@@ -3,6 +3,7 @@ module.exports = {
     {
       name: "realworld-f",
       script: "./server.js",
+      time: true,
       env: {
         NODE_ENV: "development",
       },
