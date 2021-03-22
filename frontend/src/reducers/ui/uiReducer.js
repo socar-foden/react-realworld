@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { LIGHT_THEME } from "../../components/App.style";
+import { DARK_THEME } from "../../components/App.style";
 import { THEME } from "../../middlewares/uiMiddleware";
 
 const initialState = {
-  themeName: localStorage.getItem(THEME) || LIGHT_THEME,
+  themeName: localStorage.getItem(THEME) || DARK_THEME,
 };
 
 const uiSlice = createSlice({
