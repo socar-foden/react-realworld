@@ -1,9 +1,10 @@
-import { Button, CardMedia, Grid, Typography } from "@material-ui/core";
+import { Button, CardMedia, Dialog, Grid, Typography } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fp from "lodash/fp";
 import SettingsList from "../SettingsList/SettingsList";
+import AccountForm from "../AccountForm/AccountForm";
 import { userActions } from "../../reducers/user/userReducer";
 import useStyles from "./AccountProfile.style";
 
@@ -16,16 +17,16 @@ const AccountProfile = ({
 }) => {
   const classes = useStyles();
   const {
-    user: { username },
+    user,
+    updateUser: { success: updateUser_success },
   } = useSelector((rootReducer) => rootReducer.userReducer);
   const imageRef = useRef();
   const dispatch = useDispatch();
   const [openSettings, setOpenSettings] = useState(false);
   const [openConfirm, setOpenConfirm] = useState(false);
+  const [openEditForm, setOpenEditForm] = useState(false);
 
-  const handleClickImageButton = () => {
-    setOpenSettings(true);
-  };
+  const handleClickImageButton = () => setOpenSettings(true);
 
   const handleChangeImageFile = (e) => {
     const file = e.target.files[0];
@@ -80,6 +81,16 @@ const AccountProfile = ({
 
   const handleCloseConfirm = () => setOpenConfirm(false);
 
+  const handleClickEditProfile = () => setOpenEditForm(true);
+
+  const handleCloseEditForm = () => setOpenEditForm(false);
+
+  useEffect(() => {
+    if (updateUser_success) {
+      setOpenEditForm(false);
+    }
+  }, [updateUser_success]);
+
   return (
     <>
       <Grid container spacing={3} className={classes.root}>
@@ -121,12 +132,13 @@ const AccountProfile = ({
                 {profile.username}
               </Typography>
 
-              {fp.isEqual(username, profile.username) && (
+              {fp.isEqual(user.username, profile.username) && (
                 <Button
                   variant="outlined"
                   color="primary"
                   className={classes.editProfile}
                   aria-label="edit"
+                  onClick={handleClickEditProfile}
                 >
                   Edit Profile
                 </Button>
@@ -144,7 +156,7 @@ const AccountProfile = ({
                 <span className={classes.activeDetailHeader}>Articles</span>{" "}
                 {articlesCount}
               </Typography>
-              {fp.isEqual(username, profile.username) && (
+              {fp.isEqual(user.username, profile.username) && (
                 <Typography
                   variant="body1"
                   component="h4"
@@ -173,6 +185,10 @@ const AccountProfile = ({
         settingsList={confirmList}
         title="Are you sure you want to delete it?"
       />
+
+      <Dialog open={openEditForm} onClose={handleCloseEditForm} fullWidth>
+        <AccountForm user={user} />
+      </Dialog>
     </>
   );
 };

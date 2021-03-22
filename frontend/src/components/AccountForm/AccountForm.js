@@ -1,18 +1,32 @@
 import { Button, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import fp from "lodash/fp";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../reducers/user/userReducer";
 import utils from "../../utils/utils";
 import useStyles from "./AccountForm.style";
 
 const initFormData = {
   email: "",
+  username: "",
 };
 
 const AccountForm = ({ user = initFormData }) => {
   const classes = useStyles();
   const [formData, setFormData] = useState({ ...user });
+  const dispatch = useDispatch();
 
-  const handleSubmitForm = () => {};
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    dispatch(
+      userActions.UPDATE_USER({
+        userInfo: {
+          email: formData.email,
+          username: formData.username,
+        },
+      })
+    );
+  };
 
   return (
     <form
@@ -28,6 +42,14 @@ const AccountForm = ({ user = initFormData }) => {
         value={formData.email}
         margin="dense"
       />
+      <TextField
+        inputProps={{ "aria-label": "username", role: "input" }}
+        label="Username"
+        fullWidth
+        onChange={utils.handleChangeTextField(setFormData, "username")}
+        value={formData.username}
+        margin="dense"
+      />
       <div>
         <Button
           className={classes.margin}
@@ -35,7 +57,7 @@ const AccountForm = ({ user = initFormData }) => {
           variant="contained"
           color="primary"
           aria-label="submit"
-          disabled={fp.some(fp.isEmpty, [formData.email, formData.bio])}
+          disabled={fp.some(fp.isEmpty, [formData.email, formData.username])}
         >
           Submit
         </Button>
