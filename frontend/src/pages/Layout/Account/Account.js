@@ -22,38 +22,30 @@ const Account = ({ username = "" }) => {
       feedsCount,
       feedArticles: { request: feedArticles_request },
     },
-  } = useSelector((rootReducer) => rootReducer);
+    userReducer: {
+      updateUser: { success: updateUser_success },
+    },
+  } = useSelector(fp.identity);
   const dispatch = useDispatch();
   const [offset, setOffset] = useState(-1);
 
-  useEffect(() => {
-    if (username) {
-      dispatch(
-        profileActions.GET_PROFILE({
-          username,
-        })
-      );
-      dispatch(
-        articleActions.FEED_ARTICLES({
-          queryParameters: {
-            limit: LIMIT,
-            offset: articles.length,
-          },
-        })
-      );
-      dispatch(
-        articleActions.LIST_ARTICLES({
-          queryParameters: {
-            author: username,
-            limit: LIMIT,
-            offset: feeds.length,
-          },
-        })
-      );
-    }
-  }, [username]);
+  const initContentsInfo = () => {
+    dispatch(articleActions.LIST_ARTICLES_INIT());
+    dispatch(articleActions.FEED_ARTICLES_INIT());
+  };
 
-  const dispatchListArticle = () => {
+  const dispatchAllInfo = () => {
+    initContentsInfo();
+    dispatch(
+      profileActions.GET_PROFILE({
+        username,
+      })
+    );
+    dispatchListArticle(0);
+    dispatchFeedArticle(0);
+  };
+
+  const dispatchListArticle = (articlesLength) => {
     const nextOffset = offset + 1;
 
     dispatch(
@@ -61,7 +53,22 @@ const Account = ({ username = "" }) => {
         queryParameters: {
           author: username,
           limit: LIMIT,
-          offset: articles.length,
+          offset: articlesLength,
+        },
+      })
+    );
+    setOffset(nextOffset);
+  };
+
+  const dispatchFeedArticle = (feedsLength) => {
+    const nextOffset = offset + 1;
+
+    dispatch(
+      articleActions.FEED_ARTICLES({
+        queryParameters: {
+          author: username,
+          limit: LIMIT,
+          offset: feedsLength,
         },
       })
     );
@@ -69,9 +76,20 @@ const Account = ({ username = "" }) => {
   };
 
   useEffect(() => {
+    if (username) {
+      dispatchAllInfo();
+    }
+  }, [username]);
+
+  useEffect(() => {
+    if (updateUser_success) {
+      dispatchAllInfo();
+    }
+  }, [updateUser_success]);
+
+  useEffect(() => {
     return () => {
-      dispatch(articleActions.LIST_ARTICLES_INIT());
-      dispatch(articleActions.FEED_ARTICLES_INIT());
+      initContentsInfo();
     };
   }, []);
 
@@ -91,14 +109,18 @@ const Account = ({ username = "" }) => {
 
           <AccountContents articles={articles} feeds={feeds} />
 
-          {fp.some(fp.identity, [
-            !fp.isEmpty(articles) && articlesCount > articles.length,
-            !fp.isEmpty(feeds) && feedsCount > feeds.length,
-          ]) && (
+          {/* TODO: 추상화, 코드 정리 */}
+          {!fp.isEmpty(articles) && articlesCount > articles.length && (
             <IntersectionObserver
-              next={dispatchListArticle}
-              loading={listArticles_request || feedArticles_request}
-            /> 
+              next={() => dispatchListArticle(articles.length)}
+              loading={listArticles_request}
+            />
+          )}
+          {!fp.isEmpty(feeds) && feedsCount > feeds.length && (
+            <IntersectionObserver
+              next={() => dispatchFeedArticle(feeds.length)}
+              loading={feedArticles_request}
+            />
           )}
         </div>
       )}

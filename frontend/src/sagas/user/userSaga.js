@@ -15,5 +15,6 @@ export default function* userSaga() {
       userActions.GET_CURRENT_USER.type,
       user_service.getCurrentUser
     ),
+    utils.watchSaga(userActions.UPDATE_USER.type, user_service.updateUser),
   ]);
 }

@@ -7,6 +7,7 @@ const initialState = {
   registration: { request: false, success: false, failure: "" },
   authentication: { request: false, success: false, failure: "" },
   getCurrentUser: { request: false, success: false, failure: "" },
+  updateUser: { request: false, success: false, failure: "" },
 };
 
 const userSlice = createSlice({
@@ -47,6 +48,21 @@ const userSlice = createSlice({
     },
     GET_CURRENT_USER_FAILURE(state, { payload: { errors } }) {
       state.getCurrentUser = {
+        request: false,
+        success: false,
+        failure: errors,
+      };
+    },
+
+    UPDATE_USER(state) {
+      state.updateUser = { request: true, success: false, failure: "" };
+    },
+    UPDATE_USER_SUCCESS(state, { payload: { user } }) {
+      state.user = user;
+      state.updateUser = { request: false, success: true, failure: "" };
+    },
+    UPDATE_USER_FAILURE(state, { payload: { errors } }) {
+      state.updateUser = {
         request: false,
         success: false,
         failure: errors,

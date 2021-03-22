@@ -1,8 +1,9 @@
 import { Button, CardMedia, Grid, Typography } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import fp from "lodash/fp";
+import { userActions } from "../../reducers/user/userReducer";
 import useStyles from "./AccountProfile.style";
 
 const AccountProfile = ({
@@ -14,6 +15,30 @@ const AccountProfile = ({
   const {
     user: { username },
   } = useSelector((rootReducer) => rootReducer.userReducer);
+  const imageRef = useRef();
+  const dispatch = useDispatch();
+
+  const handleClickImageButton = () => {
+    // TODO: image delete 다이어로그 분기 추가
+    imageRef.current.click();
+  };
+
+  const handleChangeImageFile = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      // setImage(reader.result);
+      dispatch(
+        userActions.UPDATE_USER({
+          userInfo: {
+            image: reader.result,
+          },
+        })
+      );
+    };
+  };
 
   return (
     <Grid container spacing={3} className={classes.root}>
@@ -23,6 +48,7 @@ const AccountProfile = ({
           aria-label="image"
           color="inherit"
           className={classes.imageWrapper}
+          onClick={handleClickImageButton}
         >
           {profile.image ? (
             <CardMedia className={classes.cover} image={profile.image} />
@@ -34,6 +60,13 @@ const AccountProfile = ({
             />
           )}
         </Button>
+        <input
+          type="file"
+          onChange={handleChangeImageFile}
+          hidden
+          ref={imageRef}
+          accept="image/*"
+        />
       </Grid>
       <Grid item xs={8}>
         <section className={classes.info}>
