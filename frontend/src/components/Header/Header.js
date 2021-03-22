@@ -3,6 +3,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { AppBar, Button, IconButton, Switch, Toolbar } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@material-ui/icons/Menu";
+import { useHistory } from "react-router";
 import fp from "lodash/fp";
 import { uiActions } from "../../reducers/ui/uiReducer";
 import { DARK_THEME, DEFAULT_THEME } from "../App.style";
@@ -16,6 +17,7 @@ const Header = ({ setOpenSide }) => {
   const { themeName } = useSelector((rootReducer) => rootReducer.uiReducer);
   const [checked, setChecked] = useState(!fp.isEqual(themeName, DEFAULT_THEME));
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleClickMenu = () => {
     setOpenSide((prev) => !prev);
@@ -35,6 +37,10 @@ const Header = ({ setOpenSide }) => {
     );
   };
 
+  const handleClickLogo = () => {
+    history.push("/");
+  };
+
   return (
     <AppBar position="sticky" role="banner">
       <Toolbar>
@@ -47,9 +53,9 @@ const Header = ({ setOpenSide }) => {
         >
           <MenuIcon />
         </IconButton>
-        
+
         <div className={classes.title}>
-          <Button>
+          <Button onClick={handleClickLogo}>
             <img className={classes.logo} src="./resources/images/logo.png" />
           </Button>
         </div>
