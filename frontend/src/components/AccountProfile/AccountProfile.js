@@ -1,10 +1,13 @@
 import { Button, CardMedia, Grid, Typography } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fp from "lodash/fp";
+import SettingsList from "../SettingsList/SettingsList";
 import { userActions } from "../../reducers/user/userReducer";
 import useStyles from "./AccountProfile.style";
+
+const BASE_IMAGE = "https://static.productionready.io/images/smiley-cyrus.jpg";
 
 const AccountProfile = ({
   profile = {},
@@ -17,10 +20,11 @@ const AccountProfile = ({
   } = useSelector((rootReducer) => rootReducer.userReducer);
   const imageRef = useRef();
   const dispatch = useDispatch();
+  const [openSettings, setOpenSettings] = useState(false);
+  const [openConfirm, setOpenConfirm] = useState(false);
 
   const handleClickImageButton = () => {
-    // TODO: image delete 다이어로그 분기 추가
-    imageRef.current.click();
+    setOpenSettings(true);
   };
 
   const handleChangeImageFile = (e) => {
@@ -29,7 +33,6 @@ const AccountProfile = ({
 
     reader.readAsDataURL(file);
     reader.onload = () => {
-      // setImage(reader.result);
       dispatch(
         userActions.UPDATE_USER({
           userInfo: {
@@ -37,88 +40,140 @@ const AccountProfile = ({
           },
         })
       );
+      setOpenSettings(false);
     };
   };
 
+  const settingsList = [
+    {
+      name: "UPDATE",
+      handleClick: () => imageRef.current.click(),
+    },
+    {
+      name: "DELETE",
+      handleClick: () => setOpenConfirm(true),
+      disabled: fp.isEqual(BASE_IMAGE, profile.image),
+    },
+    { name: "CANCEL", handleClick: () => setOpenSettings(false) },
+  ];
+
+  const handleCloseSettings = () => setOpenSettings(false);
+
+  const confirmList = [
+    {
+      name: "DELETE",
+      handleClick: () => {
+        dispatch(
+          userActions.UPDATE_USER({
+            userInfo: {
+              image: BASE_IMAGE,
+            },
+          })
+        );
+        setOpenConfirm(false);
+        setOpenSettings(false);
+      },
+      disabled: fp.isEqual(BASE_IMAGE, profile.image),
+    },
+    { name: "CANCEL", handleClick: () => setOpenConfirm(false) },
+  ];
+
+  const handleCloseConfirm = () => setOpenConfirm(false);
+
   return (
-    <Grid container spacing={3} className={classes.root}>
-      <Grid item xs={4} className={classes.left}>
-        <Button
-          role="figure"
-          aria-label="image"
-          color="inherit"
-          className={classes.imageWrapper}
-          onClick={handleClickImageButton}
-        >
-          {profile.image ? (
-            <CardMedia className={classes.cover} image={profile.image} />
-          ) : (
-            <AccountCircleIcon
-              fontSize="large"
-              className={classes.cover}
-              color="primary"
-            />
-          )}
-        </Button>
-        <input
-          type="file"
-          onChange={handleChangeImageFile}
-          hidden
-          ref={imageRef}
-          accept="image/*"
-        />
-      </Grid>
-      <Grid item xs={8}>
-        <section className={classes.info}>
-          <div className={classes.infoTop}>
-            <Typography
-              variant="h5"
-              component="h1"
-              role="figure"
-              aria-label="username"
-            >
-              {profile.username}
-            </Typography>
-
-            {fp.isEqual(username, profile.username) && (
-              <Button
-                variant="outlined"
+    <>
+      <Grid container spacing={3} className={classes.root}>
+        <Grid item xs={4} className={classes.left}>
+          <Button
+            role="figure"
+            aria-label="image"
+            color="inherit"
+            className={classes.imageWrapper}
+            onClick={handleClickImageButton}
+          >
+            {profile.image ? (
+              <CardMedia className={classes.cover} image={profile.image} />
+            ) : (
+              <AccountCircleIcon
+                fontSize="large"
+                className={classes.cover}
                 color="primary"
-                className={classes.editProfile}
-                aria-label="edit"
-              >
-                Edit Profile
-              </Button>
+              />
             )}
-          </div>
+          </Button>
+          <input
+            type="file"
+            onChange={handleChangeImageFile}
+            hidden
+            ref={imageRef}
+            accept="image/*"
+          />
+        </Grid>
+        <Grid item xs={8}>
+          <section className={classes.info}>
+            <div className={classes.infoTop}>
+              <Typography
+                variant="h5"
+                component="h1"
+                role="figure"
+                aria-label="username"
+              >
+                {profile.username}
+              </Typography>
 
-          <div className={classes.active}>
-            <Typography
-              variant="body1"
-              component="h4"
-              className={classes.activeDetail}
-              role="figure"
-              aria-label="article-count"
-            >
-              <span className={classes.activeDetailHeader}>Articles</span>{" "}
-              {articlesCount}
-            </Typography>
-            {fp.isEqual(username, profile.username) && (
+              {fp.isEqual(username, profile.username) && (
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  className={classes.editProfile}
+                  aria-label="edit"
+                >
+                  Edit Profile
+                </Button>
+              )}
+            </div>
+
+            <div className={classes.active}>
               <Typography
                 variant="body1"
                 component="h4"
                 className={classes.activeDetail}
                 role="figure"
-                aria-label="feed-count"
+                aria-label="article-count"
               >
-                <span className={classes.activeDetailHeader}>Feeds</span>{" "}
-                {feedsCount}
+                <span className={classes.activeDetailHeader}>Articles</span>{" "}
+                {articlesCount}
               </Typography>
-            )}
-          </div>
-        </section>
+              {fp.isEqual(username, profile.username) && (
+                <Typography
+                  variant="body1"
+                  component="h4"
+                  className={classes.activeDetail}
+                  role="figure"
+                  aria-label="feed-count"
+                >
+                  <span className={classes.activeDetailHeader}>Feeds</span>{" "}
+                  {feedsCount}
+                </Typography>
+              )}
+            </div>
+          </section>
+        </Grid>
       </Grid>
-    </Grid>
+
+      <SettingsList
+        open={openSettings}
+        handleClose={handleCloseSettings}
+        settingsList={settingsList}
+      />
+
+      <SettingsList
+        open={openConfirm}
+        handleClose={handleCloseConfirm}
+        settingsList={confirmList}
+        title="Are you sure you want to delete it?"
+      />
+    </>
   );
 };
 
