@@ -13,7 +13,7 @@ const setAxiosAuthorization = (val) =>
 
 const userMiddleware = () => (next) => (action) => {
   const { type, payload } = action;
-  
+
   if (fp.isEqual(type, userActions.AUTHENTICATION_SUCCESS.type)) {
     const {
       user: { token },
@@ -21,9 +21,15 @@ const userMiddleware = () => (next) => (action) => {
 
     localStorage.setItem(TOKEN_KEY, token);
     axiosInterceptor = setAxiosAuthorization(`Token ${token}`);
-  } else if (fp.isEqual(type, userActions.SIGN_OUT.type)) {
+  } else if (
+    fp.find(fp.isEqual(type), [
+      userActions.SIGN_OUT.type,
+      userActions.GET_CURRENT_USER_FAILURE.type,
+    ])
+  ) {
     localStorage.removeItem(TOKEN_KEY);
     axios.interceptors.request.eject(axiosInterceptor);
+    window.location.href = "/sign-in";
   }
 
   return next(action);

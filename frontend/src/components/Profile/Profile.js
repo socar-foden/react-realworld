@@ -9,7 +9,6 @@ import {
 import React, { useEffect } from "react";
 import fp from "lodash/fp";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import Skeleton from "@material-ui/lab/Skeleton";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { userActions } from "../../reducers/user/userReducer";
@@ -19,7 +18,6 @@ const Profile = ({ open, setOpen, anchorEl }) => {
   const classes = useStyles();
   const { user } = useSelector((rootReducer) => rootReducer.userReducer);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     dispatch(userActions.GET_CURRENT_USER());
@@ -27,7 +25,6 @@ const Profile = ({ open, setOpen, anchorEl }) => {
 
   const handleClickSignOut = () => {
     dispatch(userActions.SIGN_OUT());
-    history.push("/sign-in");
   };
 
   return (
