@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@material-ui/icons/Menu";
 import fp from "lodash/fp";
 import { uiActions } from "../../reducers/ui/uiReducer";
-import { DARK_THEME, DEFAULT_THEME } from "../App.style";
+import { DARK_THEME, LIGHT_THEME } from "../App.style";
 import Profile from "../Profile/Profile";
 import useStyles from "./Header.style";
 
@@ -21,7 +21,7 @@ const Header = ({ setOpenSide }) => {
   const [openProfile, setOpenProfile] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const { themeName } = useSelector((rootReducer) => rootReducer.uiReducer);
-  const [checked, setChecked] = useState(!fp.isEqual(themeName, DEFAULT_THEME));
+  const [checked, setChecked] = useState(!fp.isEqual(themeName, LIGHT_THEME));
   const dispatch = useDispatch();
 
   const handleClickMenu = () => {
@@ -37,7 +37,7 @@ const Header = ({ setOpenSide }) => {
     setChecked(fp.negate(fp.identity));
     dispatch(
       uiActions.CHANGE_THEME({
-        themeName: checked ? DEFAULT_THEME : DARK_THEME,
+        themeName: checked ? LIGHT_THEME : DARK_THEME,
       })
     );
   };

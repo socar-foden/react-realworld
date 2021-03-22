@@ -11,7 +11,7 @@ const globalStyle = {
   },
 };
 
-const defaultTheme = createMuiTheme({
+const lightTheme = createMuiTheme({
   overrides: { ...globalStyle },
 });
 
@@ -31,11 +31,11 @@ const darkTheme = createMuiTheme({
   },
 });
 
-export const DEFAULT_THEME = "default";
+export const LIGHT_THEME = "light";
 export const DARK_THEME = "dark";
 
 const themeMap = {
-  [DEFAULT_THEME]: defaultTheme,
+  [LIGHT_THEME]: lightTheme,
   [DARK_THEME]: darkTheme,
 };
 
