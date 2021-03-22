@@ -19,14 +19,14 @@ const Main = () => {
   const classes = useStyles();
   const [offset, setOffset] = useState(-1);
 
-  const dispatchListArticle = () => {
+  const dispatchListArticle = (articlesLength) => {
     const nextOffset = offset + 1;
 
     dispatch(
       articleActions.LIST_ARTICLES({
         queryParameters: {
           limit: LIMIT,
-          offset: articles.length,
+          offset: articlesLength,
         },
       })
     );
@@ -34,7 +34,7 @@ const Main = () => {
   };
 
   useEffect(() => {
-    dispatchListArticle();
+    dispatchListArticle(0);
 
     return () => {
       dispatch(articleActions.LIST_ARTICLES_INIT());
@@ -48,7 +48,10 @@ const Main = () => {
       <ArticleList articles={articles} />
 
       {!fp.isEmpty(articles) && articlesCount > articles.length && (
-        <IntersectionObserver next={dispatchListArticle} loading={request} />
+        <IntersectionObserver
+          next={() => dispatchListArticle(articles.length)}
+          loading={request}
+        />
       )}
     </div>
   );
