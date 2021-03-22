@@ -1,4 +1,4 @@
-import { AppBar, GridList, Tab, Tabs } from "@material-ui/core";
+import { AppBar, Grid, Tab, Tabs } from "@material-ui/core";
 import React, { useState } from "react";
 import fp from "lodash/fp";
 import Article from "../Article/Article";
@@ -28,14 +28,16 @@ const AccountContents = ({ articles = [], feeds = [] }) => {
         </Tabs>
       </AppBar>
 
-      <GridList className={classes.gridList}>
+      <Grid container className={classes.gridList}>
         {fp.map(
           (item) => (
-            <Article key={item.slug} article={item} />
+            <Grid key={item.slug} item md={3}>
+              <Article article={item} />
+            </Grid>
           ),
           fp.isEqual(index, 0) ? articles : feeds
         )}
-      </GridList>
+      </Grid>
     </>
   );
 };
