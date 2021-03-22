@@ -28,7 +28,11 @@ const SettingsList = ({
           fp.entries,
           fp.map(([index, settings]) => (
             <li key={settings.name}>
-              <ListItem button onClick={settings.handleClick || fp.noop}>
+              <ListItem
+                disabled={settings.disabled}
+                button
+                onClick={settings.handleClick || fp.noop}
+              >
                 <ListItemText
                   primary={settings.name}
                   className={clsx({
