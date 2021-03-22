@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -18,6 +19,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [{ from: "resources", to: "resources" }],
     }),
+    new FaviconsWebpackPlugin("favicon.ico"),
   ],
   mode: "production",
   module: {
