@@ -46,7 +46,6 @@ const Header = ({ setOpenSide }) => {
       <Toolbar>
         <IconButton
           edge="start"
-          className={classes.menuButton}
           color="inherit"
           aria-label="menu"
           onClick={handleClickMenu}
