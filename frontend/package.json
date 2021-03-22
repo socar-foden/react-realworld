@@ -8,7 +8,7 @@
     "test": "jest --passWithNoTests --watchAll --coverage --verbose --config=./jest.config.js",
     "build": "webpack build --config ./webpack.config.prod.js",
     "build:dev": "webpack build --config ./webpack.config.dev.js",
-    "start": "cross-env NODE_ENV=production pm2 restart ecosystem.config.js --env production",
+    "start": "cross-env NODE_ENV=production authbind --deep pm2 restart ecosystem.config.js --env production",
     "start:dev": "cross-env NODE_ENV=development pm2 restart ecosystem.config.js"
   },
   "repository": {
