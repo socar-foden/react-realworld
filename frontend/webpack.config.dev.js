@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -16,6 +17,9 @@ module.exports = {
       inject: "body",
     }),
     new ESLintPlugin(),
+    new CopyPlugin({
+      patterns: [{ from: "resources", to: "resources" }],
+    }),
   ],
   mode: "development",
   module: {

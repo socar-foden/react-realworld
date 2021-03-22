@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import {
-  AppBar,
-  Button,
-  IconButton,
-  Switch,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
+import { AppBar, Button, IconButton, Switch, Toolbar } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@material-ui/icons/Menu";
 import fp from "lodash/fp";
 import { uiActions } from "../../reducers/ui/uiReducer";
-import { DARK_THEME, LIGHT_THEME } from "../App.style";
+import { DARK_THEME, DEFAULT_THEME } from "../App.style";
 import Profile from "../Profile/Profile";
 import useStyles from "./Header.style";
 
@@ -21,7 +14,7 @@ const Header = ({ setOpenSide }) => {
   const [openProfile, setOpenProfile] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const { themeName } = useSelector((rootReducer) => rootReducer.uiReducer);
-  const [checked, setChecked] = useState(!fp.isEqual(themeName, LIGHT_THEME));
+  const [checked, setChecked] = useState(!fp.isEqual(themeName, DEFAULT_THEME));
   const dispatch = useDispatch();
 
   const handleClickMenu = () => {
@@ -37,7 +30,7 @@ const Header = ({ setOpenSide }) => {
     setChecked(fp.negate(fp.identity));
     dispatch(
       uiActions.CHANGE_THEME({
-        themeName: checked ? LIGHT_THEME : DARK_THEME,
+        themeName: checked ? DEFAULT_THEME : DARK_THEME,
       })
     );
   };
@@ -54,9 +47,12 @@ const Header = ({ setOpenSide }) => {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" className={classes.title}>
-          RealWorld
-        </Typography>
+        
+        <div className={classes.title}>
+          <Button>
+            <img className={classes.logo} src="./resources/images/logo.png" />
+          </Button>
+        </div>
 
         <Switch
           checked={checked}
