@@ -27,6 +27,7 @@ describe("[SignUpForm]", () => {
       </Provider>
     );
   };
+
   beforeEach(renderSignUpForm);
 
   describe("UI 테스트", () => {
