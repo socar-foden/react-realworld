@@ -145,7 +145,6 @@ const ArticleForm = ({ article = initFormData }) => {
           variant="contained"
           color="primary"
           aria-label="submit"
-          //  onClick={handleClickSignIn}
           disabled={fp.some(fp.isEmpty, [
             formData.title,
             formData.body,
