@@ -140,7 +140,7 @@ const AccountProfile = ({
                   aria-label="edit"
                   onClick={handleClickEditProfile}
                 >
-                  Edit Profile
+                  Edit
                 </Button>
               )}
             </div>

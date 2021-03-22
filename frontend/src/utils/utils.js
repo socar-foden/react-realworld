@@ -3,6 +3,10 @@ import { call, fork, put, takeLatest } from "redux-saga/effects";
 
 const isDevelopment = fp.isEqual(process.env.NODE_ENV, "development");
 
+export const EMAIL_MAX_LENGTH = 20;
+export const USERNAME_MAX_LENGTH = 10;
+export const PASSWORD_MAX_LENGTH = 20;
+
 const utils = {
   log: isDevelopment ? console.log : fp.noop,
   error: isDevelopment ? console.error : fp.noop,

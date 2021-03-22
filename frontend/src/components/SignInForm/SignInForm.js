@@ -4,7 +4,10 @@ import { useHistory } from "react-router";
 import fp from "lodash/fp";
 import { useDispatch, useSelector } from "react-redux";
 import email_validator from "email-validator";
-import utils from "../../utils/utils";
+import utils, {
+  EMAIL_MAX_LENGTH,
+  PASSWORD_MAX_LENGTH,
+} from "../../utils/utils";
 import { userActions } from "../../reducers/user/userReducer";
 import useStyles from "./SignInForm.style";
 
@@ -79,7 +82,11 @@ const SignInForm = () => {
     >
       <TextField
         className={classes.margin}
-        inputProps={{ "aria-label": "e-mail", role: "input" }}
+        inputProps={{
+          "aria-label": "e-mail",
+          role: "input",
+          maxLength: EMAIL_MAX_LENGTH,
+        }}
         type="email"
         label="E-Mail"
         required
@@ -91,7 +98,11 @@ const SignInForm = () => {
       />
       <TextField
         className={classes.margin}
-        inputProps={{ "aria-label": "password", role: "input" }}
+        inputProps={{
+          "aria-label": "password",
+          role: "input",
+          maxLength: PASSWORD_MAX_LENGTH,
+        }}
         type="password"
         label="Password"
         required

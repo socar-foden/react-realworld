@@ -4,7 +4,11 @@ import { useHistory } from "react-router";
 import fp from "lodash/fp";
 import email_validator from "email-validator";
 import { useDispatch, useSelector } from "react-redux";
-import utils from "../../utils/utils";
+import utils, {
+  EMAIL_MAX_LENGTH,
+  PASSWORD_MAX_LENGTH,
+  USERNAME_MAX_LENGTH,
+} from "../../utils/utils";
 import { userActions } from "../../reducers/user/userReducer";
 import useStyles from "./SignUpForm.style";
 
@@ -103,7 +107,11 @@ const SignUpForm = () => {
     >
       <TextField
         className={classes.margin}
-        inputProps={{ "aria-label": "e-mail", role: "input" }}
+        inputProps={{
+          "aria-label": "e-mail",
+          role: "input",
+          maxLength: EMAIL_MAX_LENGTH,
+        }}
         type="email"
         label="E-Mail"
         required
@@ -115,7 +123,11 @@ const SignUpForm = () => {
       />
       <TextField
         className={classes.margin}
-        inputProps={{ "aria-label": "username", role: "input" }}
+        inputProps={{
+          "aria-label": "username",
+          role: "input",
+          maxLength: USERNAME_MAX_LENGTH,
+        }}
         label="Username"
         required
         fullWidth
@@ -125,7 +137,11 @@ const SignUpForm = () => {
       />
       <TextField
         className={classes.margin}
-        inputProps={{ "aria-label": "password", role: "input" }}
+        inputProps={{
+          "aria-label": "password",
+          role: "input",
+          maxLength: PASSWORD_MAX_LENGTH,
+        }}
         type="password"
         label="Password"
         required
@@ -136,7 +152,11 @@ const SignUpForm = () => {
       />
       <TextField
         className={classes.margin}
-        inputProps={{ "aria-label": "password-confirm", role: "input" }}
+        inputProps={{
+          "aria-label": "password-confirm",
+          role: "input",
+          maxLength: PASSWORD_MAX_LENGTH,
+        }}
         type="password"
         label="Password Confirm"
         required

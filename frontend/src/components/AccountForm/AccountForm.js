@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import fp from "lodash/fp";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../reducers/user/userReducer";
-import utils from "../../utils/utils";
+import utils, { EMAIL_MAX_LENGTH, USERNAME_MAX_LENGTH } from "../../utils/utils";
 import useStyles from "./AccountForm.style";
 
 const initFormData = {
@@ -35,7 +35,7 @@ const AccountForm = ({ user = initFormData }) => {
       aria-label="article"
     >
       <TextField
-        inputProps={{ "aria-label": "e-mail", role: "input" }}
+        inputProps={{ "aria-label": "e-mail", role: "input", maxLength: EMAIL_MAX_LENGTH }}
         label="E-mail"
         fullWidth
         onChange={utils.handleChangeTextField(setFormData, "email")}
@@ -43,7 +43,7 @@ const AccountForm = ({ user = initFormData }) => {
         margin="dense"
       />
       <TextField
-        inputProps={{ "aria-label": "username", role: "input" }}
+        inputProps={{ "aria-label": "username", role: "input", maxLength: USERNAME_MAX_LENGTH }}
         label="Username"
         fullWidth
         onChange={utils.handleChangeTextField(setFormData, "username")}
