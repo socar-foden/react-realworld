@@ -33,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
+  overflowWrap: {
+    overflowWrap: "anywhere",
+  },
 }));
 
 export default useStyles;

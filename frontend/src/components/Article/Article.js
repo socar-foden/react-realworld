@@ -108,7 +108,11 @@ const Article = ({
     <Card className={classes.root}>
       <CardHeader
         title={
-          <Typography variant="subtitle1" component="h6">
+          <Typography
+            variant="subtitle1"
+            component="h6"
+            className={classes.overflowWrap}
+          >
             {article.title}
           </Typography>
         }
@@ -153,6 +157,7 @@ const Article = ({
           component="p"
           role="figure"
           aria-label="body"
+          className={classes.overflowWrap}
         >
           {article.body}
         </Typography>
@@ -164,6 +169,7 @@ const Article = ({
           component="p"
           role="figure"
           aria-label="description"
+          className={classes.overflowWrap}
         >
           {article.description}
         </Typography>
