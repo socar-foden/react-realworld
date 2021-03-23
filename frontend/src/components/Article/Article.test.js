@@ -2,17 +2,32 @@ import { render, screen } from "@testing-library/react";
 import React from "react";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
+import { Router } from "react-router";
+import { createMemoryHistory } from "history";
 import userEvent from "@testing-library/user-event";
 import { articleActions } from "../../reducers/article/articleReducer";
 import rootReducer from "../../reducers/rootReducer";
 import Article from "./Article";
 import { commentActions } from "../../reducers/comment/commentReducer";
 
+const mockArticle = {
+  favorited: false,
+  author: { username: "test" },
+  tagList: [],
+  favoritesCount: 0,
+};
+
 describe("[Article]", () => {
+  let history;
+
   beforeEach(() => {
+    history = createMemoryHistory();
+
     render(
       <Provider store={createStore(rootReducer)}>
-        <Article />
+        <Router history={history}>
+          <Article article={mockArticle} />
+        </Router>
       </Provider>
     );
   });
@@ -32,9 +47,6 @@ describe("[Article]", () => {
       ).toBeInTheDocument();
       expect(
         screen.getByRole("figure", { name: "number-of-favorites" })
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("button", { name: "settings" })
       ).toBeInTheDocument();
       expect(
         screen.getByRole("figure", { name: "tag-list" })
@@ -65,14 +77,9 @@ describe("[Article]", () => {
     it(`unfavorite 버튼을 클릭하면, ${articleActions.UNFAVORITE_ARTICLE.type}이 호출된다.`, () => {
       render(
         <Provider store={createStore(rootReducer)}>
-          <Article
-            article={{
-              favorited: true,
-              author: {},
-              tagList: [],
-              favoritesCount: 0,
-            }}
-          />
+          <Router history={history}>
+            <Article article={{ ...mockArticle, favorited: true }} />
+          </Router>
         </Provider>
       );
 
@@ -90,6 +97,13 @@ describe("[Article]", () => {
 
       userEvent.click(screen.getByRole("button", { name: "view-comments" }));
       expect(mockCall).toHaveBeenCalled();
+    });
+
+    it("author를 클릭하면 /profile/:username으로 이동한다.", () => {
+      userEvent.click(screen.getByRole("button", { name: "author" }));
+      expect(history.location.pathname).toBe(
+        `/profile/${mockArticle.author.username}`
+      );
     });
   });
 });

@@ -13,6 +13,7 @@ import clsx from "clsx";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useDispatch, useSelector } from "react-redux";
 import dateFormat from "dateformat";
+import { useHistory } from "react-router";
 import fp from "lodash/fp";
 import { articleActions } from "../../reducers/article/articleReducer";
 import SettingsList from "../SettingsList/SettingsList";
@@ -42,6 +43,7 @@ const Article = ({
       updateArticle: { success: updateArticle_success },
     },
   } = useSelector(fp.identity);
+  const history = useHistory();
 
   // eslint-disable-next-line no-unused-vars
   const handleClickFavorite = fp.curry((slug, e) => {
@@ -104,6 +106,10 @@ const Article = ({
 
   const handleCloseConfirm = () => setOpenConfirm(false);
 
+  const handleClickImage = () => {
+    history.push(`/profile/${author.username}`);
+  };
+
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -126,6 +132,7 @@ const Article = ({
             aria-label="author"
             color="inherit"
             className={classes.imageWrapper}
+            onClick={handleClickImage}
           >
             {author.image ? (
               <CardMedia className={classes.cover} image={author.image} />
