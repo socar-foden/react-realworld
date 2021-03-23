@@ -1,8 +1,11 @@
 import {
+  FormControl,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
+  MenuItem,
+  Select,
   SwipeableDrawer,
 } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
@@ -10,6 +13,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import React from "react";
 import { useHistory, useLocation } from "react-router";
 import fp from "lodash/fp";
+import { L_EN, L_KO } from "../../i18n";
 import useStyles from "./SideNav.style";
 
 const MenuList = [
@@ -59,6 +63,17 @@ const SideNav = ({ open, setOpen }) => {
             </ListItem>
           ))}
         </List>
+
+        <FormControl className={classes.formControl}>
+          <Select
+            label="language"
+            value={L_EN}
+            inputProps={{ "aria-label": "language" }}
+          >
+            <MenuItem value={L_EN}>English</MenuItem>
+            <MenuItem value={L_KO}>한국어</MenuItem>
+          </Select>
+        </FormControl>
       </SwipeableDrawer>
     </nav>
   );
