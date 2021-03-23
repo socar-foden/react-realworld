@@ -15,6 +15,7 @@ import rootSaga from "./sagas/rootSaga";
 import userMiddleware from "./middlewares/userMiddleware";
 import rootReducer from "./reducers/rootReducer";
 import uiMiddleware from "./middlewares/uiMiddleware";
+import "../src/i18n";
 
 axiosDefaultSetUp();
 
