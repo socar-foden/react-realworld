@@ -24,7 +24,9 @@ module.exports = {
       patterns: [{ from: "resources", to: "resources" }],
     }),
     new FaviconsWebpackPlugin("favicon.ico"),
-    new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin({
+      openAnalyzer: false,
+    }),
   ],
   mode: "production",
   module: {
