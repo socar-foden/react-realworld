@@ -9,19 +9,12 @@ import { profileActions } from "../../../reducers/profile/profileReducer";
 import AccountContents from "../../../components/AccountContents/AccountContents";
 import IntersectionObserver from "../../../components/IntersectionObserver/IntersectionObserver";
 
-const LIMIT = 9;
+const LIMIT = 8;
 
 const Account = ({ username = "" }) => {
   const {
     profileReducer: { profile },
-    articleReducer: {
-      articles,
-      articlesCount,
-      listArticles: { request: listArticles_request },
-      feeds,
-      feedsCount,
-      feedArticles: { request: feedArticles_request },
-    },
+    articleReducer: { articles, articlesCount, feeds, feedsCount },
     userReducer: {
       updateUser: { success: updateUser_success },
     },
@@ -113,13 +106,11 @@ const Account = ({ username = "" }) => {
           {!fp.isEmpty(articles) && articlesCount > articles.length && (
             <IntersectionObserver
               next={() => dispatchListArticle(articles.length)}
-              loading={listArticles_request}
             />
           )}
           {!fp.isEmpty(feeds) && feedsCount > feeds.length && (
             <IntersectionObserver
               next={() => dispatchFeedArticle(feeds.length)}
-              loading={feedArticles_request}
             />
           )}
         </div>

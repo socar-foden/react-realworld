@@ -11,11 +11,9 @@ const LIMIT = 5;
 
 const Main = () => {
   const dispatch = useDispatch();
-  const {
-    articles,
-    listArticles: { request },
-    articlesCount,
-  } = useSelector((rootReducer) => rootReducer.articleReducer);
+  const { articles, articlesCount } = useSelector(
+    (rootReducer) => rootReducer.articleReducer
+  );
   const classes = useStyles();
   const [offset, setOffset] = useState(-1);
 
@@ -50,7 +48,6 @@ const Main = () => {
       {!fp.isEmpty(articles) && articlesCount > articles.length && (
         <IntersectionObserver
           next={() => dispatchListArticle(articles.length)}
-          loading={request}
         />
       )}
     </div>

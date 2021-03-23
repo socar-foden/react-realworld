@@ -4,7 +4,7 @@ import fp from "lodash/fp";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import useStyles from "./IntersectionObserver.style";
 
-const IntersectionObserver = ({ next = fp.noop, loading = true }) => {
+const IntersectionObserver = ({ next = fp.noop }) => {
   const classes = useStyles();
 
   const handleChange = (inView) => inView && next();
@@ -13,7 +13,7 @@ const IntersectionObserver = ({ next = fp.noop, loading = true }) => {
     <InView onChange={handleChange}>
       {({ ref }) => (
         <div ref={ref} className={classes.root}>
-          {loading && <CircularProgress />}
+          <CircularProgress />
         </div>
       )}
     </InView>
