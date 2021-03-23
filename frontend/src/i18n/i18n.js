@@ -31,6 +31,12 @@ import {
   IS_REQUIRED,
   NOT_EMAIL_FORMAT,
   PASSWORDS_NOT_MATCH,
+  WELCOME,
+  SIGN_UP_COMPLETE,
+  SIGN_IN_FAILURE,
+  SIGN_UP_FAILURE_EMAIL_EXIST,
+  SIGN_UP_FAILURE_USERNAME_EXIST,
+  SIGN_UP_FAILURE_ALL_EXIST,
 } from "./constants";
 
 const resources = {
@@ -63,6 +69,12 @@ const resources = {
       [IS_REQUIRED]: "is(are) required.",
       [NOT_EMAIL_FORMAT]: "Not in E-Mail format.",
       [PASSWORDS_NOT_MATCH]: "Password Confirm does not match Password.",
+      [WELCOME]: "Welcome!",
+      [SIGN_UP_COMPLETE]: "You have been signed up. Please log in.",
+      [SIGN_IN_FAILURE]: "E-mail or Password is invalid.",
+      [SIGN_UP_FAILURE_EMAIL_EXIST]: "E-mail is already taken.",
+      [SIGN_UP_FAILURE_USERNAME_EXIST]: "Username is already taken.",
+      [SIGN_UP_FAILURE_ALL_EXIST]: "E-mail, Username are already taken.",
     },
   },
   [L_KO]: {
@@ -94,6 +106,12 @@ const resources = {
       [IS_REQUIRED]: "이(가) 필요합니다.",
       [NOT_EMAIL_FORMAT]: "E-mail 형식이 아닙니다.",
       [PASSWORDS_NOT_MATCH]: "비밀번호 확인이 비밀번호와 일치하지 않습니다.",
+      [WELCOME]: "환영합니다!",
+      [SIGN_UP_COMPLETE]: "회원가입되었습니다. 로그인해주세요.",
+      [SIGN_IN_FAILURE]: "E-mail 또는 비밀번호가 올바르지 않습니다.",
+      [SIGN_UP_FAILURE_EMAIL_EXIST]: "이미 존재하는 E-mail입니다.",
+      [SIGN_UP_FAILURE_USERNAME_EXIST]: "이미 존재하는 사용자명입니다.",
+      [SIGN_UP_FAILURE_ALL_EXIST]: "이미 존재하는 E-mail, 사용자명입니다.",
     },
   },
 };

@@ -32,3 +32,11 @@ export const ARE_YOU_SURE_DELETE = "ARE_YOU_SURE_DELETE";
 export const IS_REQUIRED = "IS_REQUIRED";
 export const NOT_EMAIL_FORMAT = "NOT_EMAIL_FORMAT";
 export const PASSWORDS_NOT_MATCH = "PASSWORDS_NOT_MATCH";
+export const WELCOME = "WELCOME";
+export const SIGN_UP_COMPLETE = "SIGN_UP_COMPLETE";
+// MESSAGE (Server Response)
+export const SIGN_IN_FAILURE = "email or password is invalid";
+export const SIGN_UP_FAILURE_EMAIL_EXIST = "email is already taken.";
+export const SIGN_UP_FAILURE_USERNAME_EXIST = "username is already taken.";
+export const SIGN_UP_FAILURE_ALL_EXIST = `username is already taken.
+email is already taken.`;

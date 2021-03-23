@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { useTranslation } from "react-i18next";
 import Alert from "../../components/Alert/Alert";
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
+import { SIGN_UP_COMPLETE } from "../../i18n/constants";
 import { userActions } from "../../reducers/user/userReducer";
 import useStyles from "./SignUp.style";
 
@@ -16,6 +18,7 @@ const SignUp = () => {
   } = useSelector((rootReducer) => rootReducer.userReducer);
   const dispatch = useDispatch();
   const history = useHistory();
+  const { t } = useTranslation();
 
   const init_registration_failure = () => {
     dispatch(
@@ -44,7 +47,7 @@ const SignUp = () => {
 
       {registration_failure && (
         <Alert
-          message={registration_failure}
+          message={t(registration_failure)}
           severity={"error"}
           handleOnClose={handleCloseErrorAlert}
         />
@@ -52,7 +55,7 @@ const SignUp = () => {
 
       {registration_success && (
         <Alert
-          message={"You have been signed up. Please log in."}
+          message={t(SIGN_UP_COMPLETE)}
           severity={"success"}
           handleOnClose={handleCloseSuccessAlert}
         />
