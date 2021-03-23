@@ -26,7 +26,11 @@ const AccountProfile = ({
   const [openConfirm, setOpenConfirm] = useState(false);
   const [openEditForm, setOpenEditForm] = useState(false);
 
-  const handleClickImageButton = () => setOpenSettings(true);
+  const handleClickImageButton = () => {
+    if (fp.isEqual(user.username, profile.username)) {
+      setOpenSettings(true);
+    }
+  };
 
   const handleChangeImageFile = (e) => {
     const file = e.target.files[0];

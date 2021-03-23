@@ -1,5 +1,6 @@
 import { AppBar, Grid, Tab, Tabs } from "@material-ui/core";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import fp from "lodash/fp";
 import Article from "../Article/Article";
 import useStyles from "./AccountContents.style";
@@ -7,6 +8,10 @@ import useStyles from "./AccountContents.style";
 const AccountContents = ({ articles = [], feeds = [] }) => {
   const [index, setIndex] = useState(0);
   const classes = useStyles();
+  const {
+    userReducer: { user },
+    profileReducer: { profile },
+  } = useSelector(fp.identity);
 
   const handleChangeTab = (e, newIndex) => {
     setIndex(newIndex);
@@ -24,7 +29,7 @@ const AccountContents = ({ articles = [], feeds = [] }) => {
           centered
         >
           <Tab label="Articles" />
-          <Tab label="Feeds" />
+          {fp.isEqual(user.username, profile.username) && <Tab label="Feeds" />}
         </Tabs>
       </AppBar>
 
