@@ -7,7 +7,13 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    app: "./src/index.js",
+    account: "./src/pages/Layout/Account/Account.js",
+    main: "./src/pages/Layout/Main/Main.js",
+    notFound: "./src/pages/Layout/NotFound/NotFound.js",
+    profile: "./src/pages/Layout/Profile/Profile.js",
+  },
   output: {
     publicPath: "/",
     filename: "[name].bundle.js",
@@ -43,9 +49,15 @@ module.exports = {
       },
     ],
   },
-  // optimization: {
-  //   splitChunks: {
-  //     chunks: "all",
-  //   },
-  // },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/](react-dom|core-js|internals|@material-ui|sockjs-client\/dist|lodash)[\\/]/,
+          name: "common_vendors",
+          chunks: "all",
+        },
+      },
+    },
+  },
 };
