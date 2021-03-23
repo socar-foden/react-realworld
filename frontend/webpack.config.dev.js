@@ -64,7 +64,7 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         commons: {
-          test: /[\\/]node_modules[\\/](react-dom|core-js|internals|@material-ui|sockjs-client\/dist|lodash)[\\/]/,
+          test: /[\\/]node_modules[\\/]/,
           name: "common_vendors",
           chunks: "all",
         },
