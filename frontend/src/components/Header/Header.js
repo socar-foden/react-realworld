@@ -55,7 +55,7 @@ const Header = ({ setOpenSide }) => {
 
         <div className={classes.title}>
           <Button onClick={handleClickLogo}>
-            <img className={classes.logo} src="./resources/images/logo.png" />
+            <img className={classes.logo} src="/resources/images/logo.png" />
           </Button>
         </div>
 
