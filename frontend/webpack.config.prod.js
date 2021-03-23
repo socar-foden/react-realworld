@@ -32,6 +32,7 @@ module.exports = {
     new FaviconsWebpackPlugin("favicon.ico"),
     new BundleAnalyzerPlugin({
       openAnalyzer: false,
+      analyzerMode: "static",
     }),
   ],
   mode: "production",
