@@ -23,7 +23,13 @@
   "rules": {
     "no-unused-vars": "warn",
     "react/prop-types": "off",
-    "import/order": "error"
+    "import/order": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+      }
+    ]
   },
   "ignorePatterns": ["*.test.js", "*.config.js", "/dist/*"]
 }
