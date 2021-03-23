@@ -2,12 +2,21 @@ import { Divider } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fp from "lodash/fp";
-import AccountProfile from "../../../components/AccountProfile/AccountProfile";
-import Progress from "../../../components/Progress/Progress";
+import loadable from "@loadable/component";
 import { articleActions } from "../../../reducers/article/articleReducer";
 import { profileActions } from "../../../reducers/profile/profileReducer";
-import AccountContents from "../../../components/AccountContents/AccountContents";
-import IntersectionObserver from "../../../components/IntersectionObserver/IntersectionObserver";
+const AccountProfile = loadable(() =>
+  import("../../../components/AccountProfile/AccountProfile")
+);
+const Progress = loadable(() =>
+  import("../../../components/Progress/Progress")
+);
+const AccountContents = loadable(() =>
+  import("../../../components/AccountContents/AccountContents")
+);
+const IntersectionObserver = loadable(() =>
+  import("../../../components/IntersectionObserver/IntersectionObserver")
+);
 
 const LIMIT = 8;
 

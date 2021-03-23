@@ -3,12 +3,13 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { AppBar, Button, IconButton, Switch, Toolbar } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@material-ui/icons/Menu";
+import loadable from "@loadable/component";
 import { useHistory } from "react-router";
 import fp from "lodash/fp";
 import { uiActions } from "../../reducers/ui/uiReducer";
 import { DARK_THEME, LIGHT_THEME } from "../App.style";
-import Profile from "../Profile/Profile";
 import useStyles from "./Header.style";
+const Profile = loadable(() => import("../Profile/Profile"));
 
 const Header = ({ setOpenSide }) => {
   const classes = useStyles();

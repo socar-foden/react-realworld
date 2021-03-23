@@ -1,9 +1,10 @@
 import React from "react";
 import { Route, Switch } from "react-router";
-import SignIn from "../../pages/SignIn/SignIn";
-import SignUp from "../../pages/SignUp/SignUp";
+import loadable from "@loadable/component";
 import Layout from "../../pages/Layout/Layout";
-import PrivateRoute from "../PrivateRoute/PrivateRoute";
+const SignIn = loadable(() => import("../../pages/SignIn/SignIn"));
+const SignUp = loadable(() => import("../../pages/SignUp/SignUp"));
+const PrivateRoute = loadable(() => import("../PrivateRoute/PrivateRoute"));
 
 const RouteSwitch = () => {
   return (

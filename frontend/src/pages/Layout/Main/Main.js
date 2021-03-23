@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import loadable from "@loadable/component";
 import fp from "lodash/fp";
-import ArticleForm from "../../../components/ArticleForm/ArticleForm";
 import { articleActions } from "../../../reducers/article/articleReducer";
-import IntersectionObserver from "../../../components/IntersectionObserver/IntersectionObserver";
-import ArticleList from "../../../components/ArticleList/ArticleList";
 import useStyles from "./Main.style";
+const ArticleForm = loadable(() =>
+  import("../../../components/ArticleForm/ArticleForm")
+);
+const IntersectionObserver = loadable(() =>
+  import("../../../components/IntersectionObserver/IntersectionObserver")
+);
+const ArticleList = loadable(() =>
+  import("../../../components/ArticleList/ArticleList")
+);
 
 const LIMIT = 5;
 

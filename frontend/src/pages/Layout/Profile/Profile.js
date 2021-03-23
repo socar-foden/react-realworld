@@ -1,6 +1,7 @@
 import React from "react";
+import loadable from "@loadable/component";
 import { useParams } from "react-router";
-import Account from "../Account/Account";
+const Account = loadable(() => import("../Account/Account"));
 
 const Profile = () => {
   const { username } = useParams();

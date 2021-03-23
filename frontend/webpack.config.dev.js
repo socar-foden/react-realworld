@@ -4,6 +4,8 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 module.exports = {
   entry: "./src/index.js",
@@ -11,6 +13,7 @@ module.exports = {
     publicPath: "/",
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, `dist/development`),
+    chunkFilename: "[name].chunk.js",
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -23,6 +26,7 @@ module.exports = {
       patterns: [{ from: "resources", to: "resources" }],
     }),
     new FaviconsWebpackPlugin("favicon.ico"),
+    new BundleAnalyzerPlugin(),
   ],
   mode: "development",
   module: {
@@ -47,4 +51,9 @@ module.exports = {
     hot: true,
     open: true,
   },
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: "all",
+  //   },
+  // },
 };

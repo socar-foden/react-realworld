@@ -1,14 +1,15 @@
 import { Container } from "@material-ui/core";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import loadable from "@loadable/component";
 import { Route, Switch } from "react-router";
-import Header from "../../components/Header/Header";
 import SideNav from "../../components/SideNav/SideNav";
-import Account from "./Account/Account";
 import useStyles from "./Layout.style";
-import Main from "./Main/Main";
-import NotFound from "./NotFound/NotFound";
-import Profile from "./Profile/Profile";
+const Header = loadable(() => import("../../components/Header/Header"));
+const Account = loadable(() => import("./Account/Account"));
+const Main = loadable(() => import("./Main/Main"));
+const NotFound = loadable(() => import("./NotFound/NotFound"));
+const Profile = loadable(() => import("./Profile/Profile"));
 
 const Layout = () => {
   const [openSide, setOpenSide] = useState(false);
