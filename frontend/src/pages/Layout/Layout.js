@@ -7,6 +7,7 @@ import SideNav from "../../components/SideNav/SideNav";
 import Account from "./Account/Account";
 import useStyles from "./Layout.style";
 import Main from "./Main/Main";
+import NotFound from "./NotFound/NotFound";
 import Profile from "./Profile/Profile";
 
 const Layout = () => {
@@ -36,6 +37,9 @@ const Layout = () => {
             <Container className={classes.accountContainer}>
               <Profile />
             </Container>
+          </Route>
+          <Route path="*">
+            <NotFound />
           </Route>
         </Switch>
       </main>
