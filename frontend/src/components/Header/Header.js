@@ -15,7 +15,6 @@ const Header = ({ setOpenSide }) => {
   const [openProfile, setOpenProfile] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const { themeName } = useSelector((rootReducer) => rootReducer.uiReducer);
-  const [checked, setChecked] = useState(!fp.isEqual(themeName, LIGHT_THEME));
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -29,10 +28,9 @@ const Header = ({ setOpenSide }) => {
   };
 
   const handleChangeTheme = () => {
-    setChecked(fp.negate(fp.identity));
     dispatch(
       uiActions.CHANGE_THEME({
-        themeName: checked ? LIGHT_THEME : DARK_THEME,
+        themeName: fp.isEqual(themeName, DARK_THEME) ? LIGHT_THEME : DARK_THEME,
       })
     );
   };
@@ -60,7 +58,7 @@ const Header = ({ setOpenSide }) => {
         </div>
 
         <Switch
-          checked={checked}
+          checked={fp.isEqual(themeName, LIGHT_THEME)}
           onChange={handleChangeTheme}
           color="default"
           inputProps={{ "aria-label": "theme", role: "input" }}
