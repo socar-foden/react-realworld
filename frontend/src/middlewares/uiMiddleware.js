@@ -1,4 +1,5 @@
 import fp from "lodash/fp";
+import i18n from "../i18n";
 import { uiActions } from "../reducers/ui/uiReducer";
 
 export const THEME = "realworld-theme";
@@ -14,6 +15,7 @@ const uiMiddleware = () => (next) => (action) => {
   } else if (fp.isEqual(type, uiActions.CHANGE_LANGUAGE.type)) {
     const { language } = payload;
 
+    i18n.changeLanguage(language);
     localStorage.setItem(LANGUAGE, language);
   }
 
