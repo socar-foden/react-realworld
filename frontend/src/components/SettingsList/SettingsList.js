@@ -8,7 +8,9 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import clsx from "clsx";
+import { useTranslation } from "react-i18next";
 import fp from "lodash/fp";
+import { DELETE } from "../../i18n/constants";
 import useStyles from "./SettingsList.style";
 
 const SettingsList = ({
@@ -18,6 +20,7 @@ const SettingsList = ({
   title,
 }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <Dialog open={open} onClose={handleClose} fullWidth>
@@ -36,7 +39,10 @@ const SettingsList = ({
                 <ListItemText
                   primary={settings.name}
                   className={clsx({
-                    [classes.deleteButton]: fp.isEqual(settings.name, "DELETE"),
+                    [classes.deleteButton]: fp.isEqual(
+                      settings.name,
+                      t(DELETE)
+                    ),
                     [classes.item]: true,
                   })}
                 />

@@ -9,12 +9,21 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import { useTranslation } from "react-i18next";
 import clsx from "clsx";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { useDispatch, useSelector } from "react-redux";
 import dateFormat from "dateformat";
 import { useHistory } from "react-router";
 import fp from "lodash/fp";
+import {
+  ARE_YOU_SURE_DELETE,
+  CANCEL,
+  DELETE,
+  FAVORITES,
+  UPDATE,
+  VIEW_COMMENTS,
+} from "../../i18n/constants";
 import { articleActions } from "../../reducers/article/articleReducer";
 import SettingsList from "../SettingsList/SettingsList";
 import { commentActions } from "../../reducers/comment/commentReducer";
@@ -44,6 +53,7 @@ const Article = ({
     },
   } = useSelector(fp.identity);
   const history = useHistory();
+  const { t } = useTranslation();
 
   // eslint-disable-next-line no-unused-vars
   const handleClickFavorite = fp.curry((slug, e) => {
@@ -76,23 +86,23 @@ const Article = ({
 
   const articleSettingsList = [
     {
-      name: "UPDATE",
+      name: t(UPDATE),
       handleClick: () => setOpenEditForm(true),
     },
     {
-      name: "DELETE",
+      name: t(DELETE),
       handleClick: () => setOpenConfirm(true),
     },
-    { name: "CANCEL", handleClick: () => setOpenSettings(false) },
+    { name: t(CANCEL), handleClick: () => setOpenSettings(false) },
   ];
 
   const confirmList = [
     {
-      name: "DELETE",
+      name: t(DELETE),
       handleClick: () =>
         dispatch(articleActions.DELETE_ARTICLE({ slug: article.slug })),
     },
-    { name: "CANCEL", handleClick: () => setOpenConfirm(false) },
+    { name: t(CANCEL), handleClick: () => setOpenConfirm(false) },
   ];
 
   const handleCloseEditForm = () => setOpenEditForm(false);
@@ -206,7 +216,7 @@ const Article = ({
           role="figure"
           aria-label="number-of-favorites"
         >
-          favorites {favoritedInfo.favoritesCount}
+          {t(FAVORITES)} {favoritedInfo.favoritesCount}
         </Typography>
       </CardContent>
       <CardContent role="figure" aria-label="tag-list">
@@ -233,7 +243,7 @@ const Article = ({
           aria-label="view-comments"
           onClick={handleClickViewDetails}
         >
-          View Comments..
+          {t(VIEW_COMMENTS)}
         </Button>
       </CardContent>
 
@@ -256,7 +266,7 @@ const Article = ({
             open={openConfirm}
             handleClose={handleCloseConfirm}
             settingsList={confirmList}
-            title="Are you sure you want to delete it?"
+            title={t(ARE_YOU_SURE_DELETE)}
           />
 
           <Dialog open={openEditForm} onClose={handleCloseEditForm} fullWidth>

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { DARK_THEME } from "../../components/App.style";
-import i18n from "../../i18n";
+import i18n from "../../i18n/i18n";
 import { THEME } from "../../middlewares/uiMiddleware";
 
 const initialState = {

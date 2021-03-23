@@ -4,10 +4,19 @@ import { useHistory } from "react-router";
 import fp from "lodash/fp";
 import { useDispatch, useSelector } from "react-redux";
 import email_validator from "email-validator";
+import { useTranslation } from "react-i18next";
 import utils, {
   EMAIL_MAX_LENGTH,
   PASSWORD_MAX_LENGTH,
 } from "../../utils/utils";
+import {
+  EMAIL,
+  IS_REQUIRED,
+  NOT_EMAIL_FORMAT,
+  PASSWORD,
+  SIGN_IN,
+  SIGN_UP,
+} from "../../i18n/constants";
 import { userActions } from "../../reducers/user/userReducer";
 import useStyles from "./SignInForm.style";
 
@@ -24,6 +33,7 @@ const SignInForm = () => {
   const {
     authentication: { success: authentication_success },
   } = useSelector((rootReducer) => rootReducer.userReducer);
+  const { t } = useTranslation();
 
   const handleClickForm = (e) => {
     e.preventDefault();
@@ -32,13 +42,13 @@ const SignInForm = () => {
       {
         v: formData.email,
         pred: fp.negate(fp.isEmpty),
-        message: "E-Mail is required.",
+        message: `${t(EMAIL)} ${t(IS_REQUIRED)}`,
         el: emailRef,
       },
       {
         v: formData.password,
         pred: fp.negate(fp.isEmpty),
-        message: "Password is required.",
+        message: `${t(PASSWORD)} ${t(IS_REQUIRED)}`,
         el: passwordRef,
       },
 
@@ -46,7 +56,7 @@ const SignInForm = () => {
       {
         v: formData.email,
         pred: email_validator.validate,
-        message: "Not in E-Mail format.",
+        message: t(NOT_EMAIL_FORMAT),
         el: emailRef,
       },
     ]);
@@ -87,9 +97,7 @@ const SignInForm = () => {
           role: "input",
           maxLength: EMAIL_MAX_LENGTH,
         }}
-        type="email"
-        label="E-Mail"
-        required
+        label={t(EMAIL)}
         fullWidth
         autoFocus
         onChange={utils.handleChangeTextField(setFormData, "email")}
@@ -104,8 +112,7 @@ const SignInForm = () => {
           maxLength: PASSWORD_MAX_LENGTH,
         }}
         type="password"
-        label="Password"
-        required
+        label={t(PASSWORD)}
         fullWidth
         onChange={utils.handleChangeTextField(setFormData, "password")}
         value={formData.password}
@@ -120,7 +127,7 @@ const SignInForm = () => {
           aria-label="sign-in"
           disabled={authentication_success}
         >
-          Sign in
+          {t(SIGN_IN)}
         </Button>
         <Button
           className={classes.margin}
@@ -130,7 +137,7 @@ const SignInForm = () => {
           onClick={handleClickSignUp}
           disabled={authentication_success}
         >
-          Sign up
+          {t(SIGN_UP)}
         </Button>
       </div>
     </form>

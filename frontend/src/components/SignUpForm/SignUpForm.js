@@ -4,11 +4,23 @@ import { useHistory } from "react-router";
 import fp from "lodash/fp";
 import email_validator from "email-validator";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 import utils, {
   EMAIL_MAX_LENGTH,
   PASSWORD_MAX_LENGTH,
   USERNAME_MAX_LENGTH,
 } from "../../utils/utils";
+import {
+  CANCEL,
+  EMAIL,
+  IS_REQUIRED,
+  NOT_EMAIL_FORMAT,
+  PASSWORD,
+  PASSWORDS_NOT_MATCH,
+  PASSWORD_CONFIRM,
+  SIGN_UP,
+  USERNAME,
+} from "../../i18n/constants";
 import { userActions } from "../../reducers/user/userReducer";
 import useStyles from "./SignUpForm.style";
 
@@ -29,6 +41,7 @@ const SignUpForm = () => {
   const {
     registration: { success: registration_success },
   } = useSelector((rootReducer) => rootReducer.userReducer);
+  const { t } = useTranslation();
 
   const handleClickCancel = () => {
     history.push("/sign-in");
@@ -42,25 +55,25 @@ const SignUpForm = () => {
       {
         v: formData.email,
         pred: fp.negate(fp.isEmpty),
-        message: "E-Mail is required.",
+        message: `${t(EMAIL)} ${t(IS_REQUIRED)}`,
         el: emailRef,
       },
       {
         v: formData.username,
         pred: fp.negate(fp.isEmpty),
-        message: "Username is required.",
+        message: `${t(USERNAME)} ${t(IS_REQUIRED)}`,
         el: usernameRef,
       },
       {
         v: formData.password,
         pred: fp.negate(fp.isEmpty),
-        message: "Password is required.",
+        message: `${t(PASSWORD)} ${t(IS_REQUIRED)}`,
         el: passwordRef,
       },
       {
         v: formData.passwordConfirm,
         pred: fp.negate(fp.isEmpty),
-        message: "Password Confirm is required.",
+        message: `${t(PASSWORD_CONFIRM)} ${t(IS_REQUIRED)}`,
         el: passwordConfirmRef,
       },
 
@@ -68,13 +81,13 @@ const SignUpForm = () => {
       {
         v: formData.email,
         pred: email_validator.validate,
-        message: "Not in E-Mail format.",
+        message: t(NOT_EMAIL_FORMAT),
         el: emailRef,
       },
       {
         v: formData.passwordConfirm,
         pred: fp.isEqual(formData.password),
-        message: "Password Confirm does not match Password.",
+        message: t(PASSWORDS_NOT_MATCH),
         el: passwordConfirmRef,
       },
     ]);
@@ -112,9 +125,7 @@ const SignUpForm = () => {
           role: "input",
           maxLength: EMAIL_MAX_LENGTH,
         }}
-        type="email"
-        label="E-Mail"
-        required
+        label={t(EMAIL)}
         fullWidth
         autoFocus
         value={formData.email}
@@ -128,8 +139,7 @@ const SignUpForm = () => {
           role: "input",
           maxLength: USERNAME_MAX_LENGTH,
         }}
-        label="Username"
-        required
+        label={t(USERNAME)}
         fullWidth
         value={formData.username}
         onChange={utils.handleChangeTextField(setFormData, "username")}
@@ -143,8 +153,7 @@ const SignUpForm = () => {
           maxLength: PASSWORD_MAX_LENGTH,
         }}
         type="password"
-        label="Password"
-        required
+        label={t(PASSWORD)}
         fullWidth
         value={formData.password}
         onChange={utils.handleChangeTextField(setFormData, "password")}
@@ -158,8 +167,7 @@ const SignUpForm = () => {
           maxLength: PASSWORD_MAX_LENGTH,
         }}
         type="password"
-        label="Password Confirm"
-        required
+        label={t(PASSWORD_CONFIRM)}
         fullWidth
         value={formData.passwordConfirm}
         onChange={utils.handleChangeTextField(setFormData, "passwordConfirm")}
@@ -174,7 +182,7 @@ const SignUpForm = () => {
           aria-label="sign-up"
           disabled={registration_success}
         >
-          Sign up
+          {t(SIGN_UP)}
         </Button>
         <Button
           className={classes.margin}
@@ -183,7 +191,7 @@ const SignUpForm = () => {
           onClick={handleClickCancel}
           disabled={registration_success}
         >
-          Cancel
+          {t(CANCEL)}
         </Button>
       </div>
     </form>

@@ -3,8 +3,18 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fp from "lodash/fp";
+import { useTranslation } from "react-i18next";
 import SettingsList from "../SettingsList/SettingsList";
 import AccountForm from "../AccountForm/AccountForm";
+import {
+  CANCEL,
+  DELETE,
+  UPDATE,
+  EDIT,
+  ARTICLES,
+  FEEDS,
+  ARE_YOU_SURE_DELETE,
+} from "../../i18n/constants";
 import { userActions } from "../../reducers/user/userReducer";
 import useStyles from "./AccountProfile.style";
 
@@ -25,6 +35,7 @@ const AccountProfile = ({
   const [openSettings, setOpenSettings] = useState(false);
   const [openConfirm, setOpenConfirm] = useState(false);
   const [openEditForm, setOpenEditForm] = useState(false);
+  const { t } = useTranslation();
 
   const handleClickImageButton = () => {
     if (fp.isEqual(user.username, profile.username)) {
@@ -51,22 +62,22 @@ const AccountProfile = ({
 
   const settingsList = [
     {
-      name: "UPDATE",
+      name: t(UPDATE),
       handleClick: () => imageRef.current.click(),
     },
     {
-      name: "DELETE",
+      name: t(DELETE),
       handleClick: () => setOpenConfirm(true),
       disabled: fp.isEqual(BASE_IMAGE, profile.image),
     },
-    { name: "CANCEL", handleClick: () => setOpenSettings(false) },
+    { name: t(CANCEL), handleClick: () => setOpenSettings(false) },
   ];
 
   const handleCloseSettings = () => setOpenSettings(false);
 
   const confirmList = [
     {
-      name: "DELETE",
+      name: t(DELETE),
       handleClick: () => {
         dispatch(
           userActions.UPDATE_USER({
@@ -80,7 +91,7 @@ const AccountProfile = ({
       },
       disabled: fp.isEqual(BASE_IMAGE, profile.image),
     },
-    { name: "CANCEL", handleClick: () => setOpenConfirm(false) },
+    { name: t(CANCEL), handleClick: () => setOpenConfirm(false) },
   ];
 
   const handleCloseConfirm = () => setOpenConfirm(false);
@@ -144,7 +155,7 @@ const AccountProfile = ({
                   aria-label="edit"
                   onClick={handleClickEditProfile}
                 >
-                  Edit
+                  {t(EDIT)}
                 </Button>
               )}
             </div>
@@ -157,7 +168,9 @@ const AccountProfile = ({
                 role="figure"
                 aria-label="article-count"
               >
-                <span className={classes.activeDetailHeader}>Articles</span>{" "}
+                <span className={classes.activeDetailHeader}>
+                  {t(ARTICLES)}
+                </span>{" "}
                 {articlesCount}
               </Typography>
               {fp.isEqual(user.username, profile.username) && (
@@ -168,7 +181,7 @@ const AccountProfile = ({
                   role="figure"
                   aria-label="feed-count"
                 >
-                  <span className={classes.activeDetailHeader}>Feeds</span>{" "}
+                  <span className={classes.activeDetailHeader}>{t(FEEDS)}</span>{" "}
                   {feedsCount}
                 </Typography>
               )}
@@ -187,7 +200,7 @@ const AccountProfile = ({
         open={openConfirm}
         handleClose={handleCloseConfirm}
         settingsList={confirmList}
-        title="Are you sure you want to delete it?"
+        title={t(ARE_YOU_SURE_DELETE)}
       />
 
       <Dialog open={openEditForm} onClose={handleCloseEditForm} fullWidth>

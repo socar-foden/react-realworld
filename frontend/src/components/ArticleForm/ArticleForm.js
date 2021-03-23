@@ -1,9 +1,11 @@
 import { Button, Chip, TextField } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import fp from "lodash/fp";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import CloseIcon from "@material-ui/icons/Close";
 import utils from "../../utils/utils";
+import { BODY, DESCRIPTION, SUBMIT, TAGS, TITLE } from "../../i18n/constants";
 import { articleActions } from "../../reducers/article/articleReducer";
 import useStyles from "./ArticleForm.style";
 
@@ -22,6 +24,7 @@ const ArticleForm = ({ article = initFormData }) => {
   const {
     createArticle: { success },
   } = useSelector((rootReducer) => rootReducer.articleReducer);
+  const { t } = useTranslation();
 
   const handleKeyPressTag = (e) => {
     const { tag, tagList } = formData;
@@ -85,14 +88,14 @@ const ArticleForm = ({ article = initFormData }) => {
     >
       <TextField
         inputProps={{ "aria-label": "title", role: "input" }}
-        label="Title"
+        label={t(TITLE)}
         fullWidth
         onChange={utils.handleChangeTextField(setFormData, "title")}
         value={formData.title}
         margin="dense"
       />
       <TextField
-        label="Article"
+        label={t(BODY)}
         multiline
         size="small"
         fullWidth
@@ -106,7 +109,7 @@ const ArticleForm = ({ article = initFormData }) => {
       />
       <TextField
         inputProps={{ "aria-label": "description", role: "input" }}
-        label="Description"
+        label={t(DESCRIPTION)}
         fullWidth
         onChange={utils.handleChangeTextField(setFormData, "description")}
         value={formData.description}
@@ -114,7 +117,7 @@ const ArticleForm = ({ article = initFormData }) => {
       />
       <TextField
         inputProps={{ "aria-label": "tag-list", role: "input" }}
-        label="Tags"
+        label={t(TAGS)}
         fullWidth
         onChange={utils.handleChangeTextField(setFormData, "tag")}
         value={formData.tag}
@@ -151,7 +154,7 @@ const ArticleForm = ({ article = initFormData }) => {
             formData.description,
           ])}
         >
-          Submit
+          {t(SUBMIT)}
         </Button>
       </div>
     </form>

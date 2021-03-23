@@ -1,5 +1,5 @@
 import fp from "lodash/fp";
-import i18n from "../i18n";
+import i18n from "../i18n/i18n";
 import { uiActions } from "../reducers/ui/uiReducer";
 
 export const THEME = "realworld-theme";

@@ -1,6 +1,8 @@
 import { Button, Grid, TextField } from "@material-ui/core";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import { ADD_COMMENT, SUBMIT } from "../../i18n/constants";
 import { commentActions } from "../../reducers/comment/commentReducer";
 import utils from "../../utils/utils";
 import useStyles from "./CommentForm.style";
@@ -13,6 +15,7 @@ const CommentForm = ({ article = {} }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState(initFormData);
+  const { t } = useTranslation();
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -37,7 +40,7 @@ const CommentForm = ({ article = {} }) => {
       <Grid container>
         <Grid item xs={9}>
           <TextField
-            label="Add Comment.."
+            label={t(ADD_COMMENT)}
             variant="filled"
             fullWidth
             inputProps={{ "aria-label": "body", role: "input" }}
@@ -55,7 +58,7 @@ const CommentForm = ({ article = {} }) => {
             className={classes.fullHeight}
             disabled={!formData.body}
           >
-            Submit
+            {t(SUBMIT)}
           </Button>
         </Grid>
       </Grid>
