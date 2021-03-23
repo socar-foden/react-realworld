@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { DARK_THEME } from "../../components/App.style";
-import { THEME } from "../../middlewares/uiMiddleware";
+import { L_EN } from "../../i18n";
+import { THEME, LANGUAGE } from "../../middlewares/uiMiddleware";
 
 const initialState = {
   themeName: localStorage.getItem(THEME) || DARK_THEME,
+  language: localStorage.getItem(LANGUAGE) || L_EN,
 };
 
 const uiSlice = createSlice({
@@ -12,6 +14,10 @@ const uiSlice = createSlice({
   reducers: {
     CHANGE_THEME(state, { payload: { themeName } }) {
       state.themeName = themeName;
+    },
+
+    CHANGE_LANGUAGE(state, { payload: { language } }) {
+      state.language = language;
     },
   },
 });

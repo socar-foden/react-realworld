@@ -13,7 +13,9 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import React from "react";
 import { useHistory, useLocation } from "react-router";
 import fp from "lodash/fp";
+import { useDispatch, useSelector } from "react-redux";
 import { L_EN, L_KO } from "../../i18n";
+import { uiActions } from "../../reducers/ui/uiReducer";
 import useStyles from "./SideNav.style";
 
 const MenuList = [
@@ -33,12 +35,22 @@ const SideNav = ({ open, setOpen }) => {
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
+  const { language } = useSelector((rootReducer) => rootReducer.uiReducer);
+  const dispatch = useDispatch();
 
   // eslint-disable-next-line no-unused-vars
   const handleClickListItem = fp.curry((path, e) => {
     history.push(path);
     setOpen(false);
   });
+
+  const handleChangeLanguage = (e) => {
+    dispatch(
+      uiActions.CHANGE_LANGUAGE({
+        language: e.target.value,
+      })
+    );
+  };
 
   return (
     <nav aria-label="side-nav">
@@ -67,8 +79,9 @@ const SideNav = ({ open, setOpen }) => {
         <FormControl className={classes.formControl}>
           <Select
             label="language"
-            value={L_EN}
+            value={language}
             inputProps={{ "aria-label": "language" }}
+            onChange={handleChangeLanguage}
           >
             <MenuItem value={L_EN}>English</MenuItem>
             <MenuItem value={L_KO}>한국어</MenuItem>

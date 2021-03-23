@@ -2,6 +2,7 @@ import fp from "lodash/fp";
 import { uiActions } from "../reducers/ui/uiReducer";
 
 export const THEME = "realworld-theme";
+export const LANGUAGE = "realworld-language";
 
 const uiMiddleware = () => (next) => (action) => {
   const { type, payload } = action;
@@ -10,6 +11,10 @@ const uiMiddleware = () => (next) => (action) => {
     const { themeName } = payload;
 
     localStorage.setItem(THEME, themeName);
+  } else if (fp.isEqual(type, uiActions.CHANGE_LANGUAGE.type)) {
+    const { language } = payload;
+
+    localStorage.setItem(LANGUAGE, language);
   }
 
   return next(action);
