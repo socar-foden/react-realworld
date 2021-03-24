@@ -41,7 +41,7 @@ const AccountContents = ({ articles = [], feeds = [] }) => {
       <Grid container className={classes.gridList}>
         {fp.map(
           (item) => (
-            <Grid key={item.slug} item md={3}>
+            <Grid key={item.slug} item md={4}>
               <Article article={item} />
             </Grid>
           ),

@@ -1,3 +1,4 @@
+import dateFormat from "dateformat";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import { LANGUAGE } from "../middlewares/uiMiddleware";
@@ -37,6 +38,7 @@ import {
   SIGN_UP_FAILURE_EMAIL_EXIST,
   SIGN_UP_FAILURE_USERNAME_EXIST,
   SIGN_UP_FAILURE_ALL_EXIST,
+  dateFormatMap,
 } from "./constants";
 
 const resources = {
@@ -116,15 +118,19 @@ const resources = {
   },
 };
 
+const initialLan = localStorage.getItem(LANGUAGE) || L_EN;
+
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources,
-    lng: localStorage.getItem(LANGUAGE) || L_EN,
+    lng: initialLan,
     keySeparator: false, // we do not use keys in form messages.welcome
     interpolation: {
       escapeValue: false, // react already safes from xss
     },
   });
+
+dateFormat.i18n = dateFormatMap[initialLan];
 
 export default i18n;

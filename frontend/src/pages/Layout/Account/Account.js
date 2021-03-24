@@ -18,7 +18,7 @@ const IntersectionObserver = loadable(() =>
   import("../../../components/IntersectionObserver/IntersectionObserver")
 );
 
-const LIMIT = 8;
+const LIMIT = 9;
 
 const Account = ({ username = "" }) => {
   const {
