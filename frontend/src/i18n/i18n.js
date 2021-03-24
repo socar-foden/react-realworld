@@ -39,6 +39,9 @@ import {
   SIGN_UP_FAILURE_USERNAME_EXIST,
   SIGN_UP_FAILURE_ALL_EXIST,
   dateFormatMap,
+  FOLLOW,
+  ARE_YOU_SURE_UNFOLLOW,
+  UNFOLLOW,
 } from "./constants";
 
 const resources = {
@@ -77,6 +80,9 @@ const resources = {
       [SIGN_UP_FAILURE_EMAIL_EXIST]: "E-mail is already taken.",
       [SIGN_UP_FAILURE_USERNAME_EXIST]: "Username is already taken.",
       [SIGN_UP_FAILURE_ALL_EXIST]: "E-mail, Username are already taken.",
+      [FOLLOW]: "Follow",
+      [UNFOLLOW]: "Unfollow",
+      [ARE_YOU_SURE_UNFOLLOW]: "Are you sure you want to unfollow?",
     },
   },
   [L_KO]: {
@@ -114,6 +120,9 @@ const resources = {
       [SIGN_UP_FAILURE_EMAIL_EXIST]: "이미 존재하는 E-mail입니다.",
       [SIGN_UP_FAILURE_USERNAME_EXIST]: "이미 존재하는 사용자명입니다.",
       [SIGN_UP_FAILURE_ALL_EXIST]: "이미 존재하는 E-mail, 사용자명입니다.",
+      [FOLLOW]: "팔로우",
+      [UNFOLLOW]: "팔로우 취소",
+      [ARE_YOU_SURE_UNFOLLOW]: "팔로우를 취소하시겠습니까?",
     },
   },
 };

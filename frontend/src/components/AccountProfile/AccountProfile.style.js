@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     marginBottom: theme.spacing(1),
   },
-  editProfile: {
+  button: {
     marginLeft: "5%",
   },
   cover: {

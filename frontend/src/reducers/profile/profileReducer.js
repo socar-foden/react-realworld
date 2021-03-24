@@ -5,6 +5,8 @@ const initialState = {
 
   // [요청 관련상태]
   getProfile: { request: false, success: false, failure: "" },
+  followUser: { request: false, success: false, failure: "" },
+  unfollowUser: { request: false, success: false, failure: "" },
 };
 
 const profileSlice = createSlice({
@@ -20,6 +22,28 @@ const profileSlice = createSlice({
     },
     GET_PROFILE_FAILURE(state, { payload: { errors } }) {
       state.getProfile = { request: false, success: false, failure: errors };
+    },
+
+    FOLLOW_USER(state) {
+      state.followUser = { request: true, success: false, failure: "" };
+    },
+    FOLLOW_USER_SUCCESS(state, { payload: { profile } }) {
+      state.profile = profile;
+      state.followUser = { request: false, success: true, failure: "" };
+    },
+    FOLLOW_USER_FAILURE(state, { payload: { errors } }) {
+      state.followUser = { request: false, success: false, failure: errors };
+    },
+
+    UNFOLLOW_USER(state) {
+      state.followUser = { request: true, success: false, failure: "" };
+    },
+    UNFOLLOW_USER_SUCCESS(state, { payload: { profile } }) {
+      state.profile = profile;
+      state.followUser = { request: false, success: true, failure: "" };
+    },
+    UNFOLLOW_USER_FAILURE(state, { payload: { errors } }) {
+      state.followUser = { request: false, success: false, failure: errors };
     },
   },
 });

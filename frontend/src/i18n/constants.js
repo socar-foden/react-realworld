@@ -22,6 +22,8 @@ export const TITLE = "TITLE";
 export const BODY = "BODY";
 export const DESCRIPTION = "DESCRIPTION";
 export const TAGS = "TAGS";
+export const FOLLOW = "FOLLOW";
+export const UNFOLLOW = "UNFOLLOW";
 
 // MESSAGE
 export const VIEW_COMMENTS = "VIEW_COMMENTS";
@@ -34,6 +36,7 @@ export const NOT_EMAIL_FORMAT = "NOT_EMAIL_FORMAT";
 export const PASSWORDS_NOT_MATCH = "PASSWORDS_NOT_MATCH";
 export const WELCOME = "WELCOME";
 export const SIGN_UP_COMPLETE = "SIGN_UP_COMPLETE";
+export const ARE_YOU_SURE_UNFOLLOW = "ARE_YOU_SURE_UNFOLLOW";
 // MESSAGE (Server Response)
 export const SIGN_IN_FAILURE = "email or password is invalid";
 export const SIGN_UP_FAILURE_EMAIL_EXIST = "email is already taken.";

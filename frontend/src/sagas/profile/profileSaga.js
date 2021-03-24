@@ -9,5 +9,13 @@ export default function* userSaga() {
       profileActions.GET_PROFILE.type,
       profile_service.getProfile
     ),
+    utils.watchSaga(
+      profileActions.FOLLOW_USER.type,
+      profile_service.followUser
+    ),
+    utils.watchSaga(
+      profileActions.UNFOLLOW_USER.type,
+      profile_service.unfollowUser
+    ),
   ]);
 }

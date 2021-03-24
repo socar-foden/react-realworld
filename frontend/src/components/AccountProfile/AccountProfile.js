@@ -3,7 +3,9 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fp from "lodash/fp";
+import CheckIcon from "@material-ui/icons/Check";
 import { useTranslation } from "react-i18next";
+import PersonIcon from "@material-ui/icons/Person";
 import SettingsList from "../SettingsList/SettingsList";
 import AccountForm from "../AccountForm/AccountForm";
 import {
@@ -14,7 +16,11 @@ import {
   ARTICLES,
   FEEDS,
   ARE_YOU_SURE_DELETE,
+  FOLLOW,
+  ARE_YOU_SURE_UNFOLLOW,
+  UNFOLLOW,
 } from "../../i18n/constants";
+import { profileActions } from "../../reducers/profile/profileReducer";
 import { userActions } from "../../reducers/user/userReducer";
 import useStyles from "./AccountProfile.style";
 
@@ -34,6 +40,7 @@ const AccountProfile = ({
   const dispatch = useDispatch();
   const [openSettings, setOpenSettings] = useState(false);
   const [openConfirm, setOpenConfirm] = useState(false);
+  const [openUnfollowConfirm, setOpenUnfollowConfirm] = useState(false);
   const [openEditForm, setOpenEditForm] = useState(false);
   const { t } = useTranslation();
 
@@ -94,11 +101,59 @@ const AccountProfile = ({
     { name: t(CANCEL), handleClick: () => setOpenConfirm(false) },
   ];
 
+  const unfollowConfirmList = [
+    {
+      name: t(UNFOLLOW),
+      handleClick: () => {
+        dispatch(profileActions.UNFOLLOW_USER({ username: profile.username }));
+        setOpenUnfollowConfirm(false);
+      },
+    },
+    { name: t(CANCEL), handleClick: () => setOpenUnfollowConfirm(false) },
+  ];
+
   const handleCloseConfirm = () => setOpenConfirm(false);
+
+  const handleCloseUnfollowConfirm = () => setOpenUnfollowConfirm(false);
 
   const handleClickEditProfile = () => setOpenEditForm(true);
 
   const handleCloseEditForm = () => setOpenEditForm(false);
+
+  const handleClickFollow = () =>
+    dispatch(
+      profileActions.FOLLOW_USER({
+        username: profile.username,
+      })
+    );
+
+  const handleClickUnfollow = () => setOpenUnfollowConfirm(true);
+
+  const followButtonMap = {
+    [false]: (
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.button}
+        aria-label="follow"
+        onClick={handleClickFollow}
+      >
+        {t(FOLLOW)}
+      </Button>
+    ),
+    [true]: (
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.button}
+        aria-label="follow"
+        onClick={handleClickUnfollow}
+      >
+        <PersonIcon />
+        <CheckIcon />
+      </Button>
+    ),
+  };
 
   useEffect(() => {
     if (updateUser_success) {
@@ -147,16 +202,18 @@ const AccountProfile = ({
                 {profile.username}
               </Typography>
 
-              {fp.isEqual(user.username, profile.username) && (
+              {fp.isEqual(user.username, profile.username) ? (
                 <Button
                   variant="outlined"
                   color="primary"
-                  className={classes.editProfile}
+                  className={classes.button}
                   aria-label="edit"
                   onClick={handleClickEditProfile}
                 >
                   {t(EDIT)}
                 </Button>
+              ) : (
+                followButtonMap[profile.following]
               )}
             </div>
 
@@ -201,6 +258,13 @@ const AccountProfile = ({
         handleClose={handleCloseConfirm}
         settingsList={confirmList}
         title={t(ARE_YOU_SURE_DELETE)}
+      />
+
+      <SettingsList
+        open={openUnfollowConfirm}
+        handleClose={handleCloseUnfollowConfirm}
+        settingsList={unfollowConfirmList}
+        title={t(ARE_YOU_SURE_UNFOLLOW)}
       />
 
       <Dialog open={openEditForm} onClose={handleCloseEditForm} fullWidth>
