@@ -60,5 +60,6 @@ module.exports = {
         },
       },
     },
+    runtimeChunk: "single",
   },
 };

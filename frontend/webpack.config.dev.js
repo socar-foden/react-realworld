@@ -8,13 +8,15 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 
 module.exports = {
-  entry: {
-    app: "./src/index.js",
-    account: "./src/pages/Layout/Account/Account.js",
-    main: "./src/pages/Layout/Main/Main.js",
-    notFound: "./src/pages/Layout/NotFound/NotFound.js",
-    profile: "./src/pages/Layout/Profile/Profile.js",
-  },
+  entry:
+    // "./src/index.js",
+    {
+      app: "./src/index.js",
+      account: "./src/pages/Layout/Account/Account.js",
+      main: "./src/pages/Layout/Main/Main.js",
+      notFound: "./src/pages/Layout/NotFound/NotFound.js",
+      profile: "./src/pages/Layout/Profile/Profile.js",
+    },
   output: {
     publicPath: "/",
     filename: "[name].bundle.js",
@@ -70,5 +72,6 @@ module.exports = {
         },
       },
     },
+    runtimeChunk: "single",
   },
 };
