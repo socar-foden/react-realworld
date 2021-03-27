@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import loadable from "@loadable/component";
-import fp from "lodash/fp";
 import { articleActions } from "../../../reducers/article/articleReducer";
 import useStyles from "./Main.style";
 const ArticleForm = loadable(() =>
   import("../../../components/ArticleForm/ArticleForm")
-);
-const IntersectionObserver = loadable(() =>
-  import("../../../components/IntersectionObserver/IntersectionObserver")
 );
 const ArticleList = loadable(() =>
   import("../../../components/ArticleList/ArticleList")
@@ -50,13 +46,11 @@ const Main = () => {
     <div className={classes.root}>
       <ArticleForm />
 
-      <ArticleList articles={articles} />
-
-      {!fp.isEmpty(articles) && articlesCount > articles.length && (
-        <IntersectionObserver
-          next={() => dispatchListArticle(articles.length)}
-        />
-      )}
+      <ArticleList
+        articles={articles}
+        articlesCount={articlesCount}
+        next={dispatchListArticle}
+      />
     </div>
   );
 };
