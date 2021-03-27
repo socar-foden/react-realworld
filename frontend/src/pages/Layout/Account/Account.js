@@ -111,6 +111,7 @@ const Account = ({ username = "" }) => {
           <Divider />
 
           <AccountContents
+            profile={profile}
             contents={[
               {
                 name: t(ARTICLES),

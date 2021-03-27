@@ -1,5 +1,5 @@
 import { AppBar, Grid, Tab, Tabs } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import fp from "lodash/fp";
 import loadable from "@loadable/component";
 import useStyles from "./AccountContents.style";
@@ -8,7 +8,7 @@ const IntersectionObserver = loadable(() =>
   import("../IntersectionObserver/IntersectionObserver")
 );
 
-const AccountContents = ({ contents = [] }) => {
+const AccountContents = ({ profile = {}, contents = [] }) => {
   const [index, setIndex] = useState(0);
   const classes = useStyles();
 
@@ -17,6 +17,10 @@ const AccountContents = ({ contents = [] }) => {
   };
 
   const target = contents[index];
+
+  useEffect(() => {
+    setIndex(0);
+  }, [profile]);
 
   return (
     <>
