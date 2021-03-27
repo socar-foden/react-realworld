@@ -11,7 +11,8 @@ const article_service = {
   updateArticle: ({ articleInfo, slug }) =>
     axios.put(`/api/articles/${slug}`, { article: articleInfo }),
   deleteArticle: ({ slug }) => axios.delete(`/api/articles/${slug}`),
-  feedArticles: () => axios.get(`/api/articles/feed`),
+  feedArticles: ({ queryParameters }) =>
+    axios.get(`/api/articles/feed`, { params: { ...queryParameters } }),
 };
 
 export default article_service;
