@@ -1,24 +1,22 @@
 import { AppBar, Grid, Tab, Tabs } from "@material-ui/core";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
 import fp from "lodash/fp";
-import { ARTICLES, FEEDS } from "../../i18n/constants";
-import Article from "../Article/Article";
+import loadable from "@loadable/component";
 import useStyles from "./AccountContents.style";
+const Article = loadable(() => import("../Article/Article"));
+const IntersectionObserver = loadable(() =>
+  import("../IntersectionObserver/IntersectionObserver")
+);
 
-const AccountContents = ({ articles = [], feeds = [] }) => {
+const AccountContents = ({ contents = [] }) => {
   const [index, setIndex] = useState(0);
   const classes = useStyles();
-  const {
-    userReducer: { user },
-    profileReducer: { profile },
-  } = useSelector(fp.identity);
-  const { t } = useTranslation();
 
   const handleChangeTab = (e, newIndex) => {
     setIndex(newIndex);
   };
+
+  const target = contents[index];
 
   return (
     <>
@@ -31,9 +29,9 @@ const AccountContents = ({ articles = [], feeds = [] }) => {
           scrollButtons="auto"
           centered
         >
-          <Tab label={t(ARTICLES)} />
-          {fp.isEqual(user.username, profile.username) && (
-            <Tab label={t(FEEDS)} />
+          {fp.map(
+            (item) => item.pred && <Tab key={item.name} label={item.name} />,
+            contents
           )}
         </Tabs>
       </AppBar>
@@ -45,7 +43,11 @@ const AccountContents = ({ articles = [], feeds = [] }) => {
               <Article article={item} />
             </Grid>
           ),
-          fp.isEqual(index, 0) ? articles : feeds
+          target.list
+        )}
+
+        {!fp.isEmpty(target.list) && target.count > target.list.length && (
+          <IntersectionObserver next={() => target.next(target.list.length)} />
         )}
       </Grid>
     </>

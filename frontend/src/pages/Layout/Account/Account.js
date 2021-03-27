@@ -2,9 +2,11 @@ import { Divider } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import fp from "lodash/fp";
+import { useTranslation } from "react-i18next";
 import loadable from "@loadable/component";
 import { articleActions } from "../../../reducers/article/articleReducer";
 import { profileActions } from "../../../reducers/profile/profileReducer";
+import { ARTICLES, FEEDS } from "../../../i18n/constants";
 const AccountProfile = loadable(() =>
   import("../../../components/AccountProfile/AccountProfile")
 );
@@ -13,9 +15,6 @@ const Progress = loadable(() =>
 );
 const AccountContents = loadable(() =>
   import("../../../components/AccountContents/AccountContents")
-);
-const IntersectionObserver = loadable(() =>
-  import("../../../components/IntersectionObserver/IntersectionObserver")
 );
 
 const LIMIT = 9;
@@ -31,13 +30,11 @@ const Account = ({ username = "" }) => {
   } = useSelector(fp.identity);
   const dispatch = useDispatch();
   const [offset, setOffset] = useState(-1);
+  const { t } = useTranslation();
 
   const initContentsInfo = () => {
     dispatch(articleActions.LIST_ARTICLES_INIT());
-
-    if (!fp.isEqual(profile.username, user.username)) {
-      dispatch(articleActions.FEED_ARTICLES_INIT());
-    }
+    dispatch(articleActions.FEED_ARTICLES_INIT());
   };
 
   const dispatchAllInfo = () => {
@@ -48,10 +45,7 @@ const Account = ({ username = "" }) => {
       })
     );
     dispatchListArticle(0);
-
-    if (!fp.isEqual(profile.username, user.username)) {
-      dispatchFeedArticle(0);
-    }
+    dispatchFeedArticle(0);
   };
 
   const dispatchListArticle = (articlesLength) => {
@@ -70,20 +64,18 @@ const Account = ({ username = "" }) => {
   };
 
   const dispatchFeedArticle = (feedsLength) => {
-    if (!fp.isEqual(profile.username, user.username)) {
-      const nextOffset = offset + 1;
+    const nextOffset = offset + 1;
 
-      dispatch(
-        articleActions.FEED_ARTICLES({
-          queryParameters: {
-            author: username,
-            limit: LIMIT,
-            offset: feedsLength,
-          },
-        })
-      );
-      setOffset(nextOffset);
-    }
+    dispatch(
+      articleActions.FEED_ARTICLES({
+        queryParameters: {
+          author: username,
+          limit: LIMIT,
+          offset: feedsLength,
+        },
+      })
+    );
+    setOffset(nextOffset);
   };
 
   useEffect(() => {
@@ -118,19 +110,24 @@ const Account = ({ username = "" }) => {
 
           <Divider />
 
-          <AccountContents articles={articles} feeds={feeds} />
-
-          {/* TODO: 추상화, 코드 정리 */}
-          {!fp.isEmpty(articles) && articlesCount > articles.length && (
-            <IntersectionObserver
-              next={() => dispatchListArticle(articles.length)}
-            />
-          )}
-          {!fp.isEmpty(feeds) && feedsCount > feeds.length && (
-            <IntersectionObserver
-              next={() => dispatchFeedArticle(feeds.length)}
-            />
-          )}
+          <AccountContents
+            contents={[
+              {
+                name: t(ARTICLES),
+                pred: true,
+                list: articles,
+                count: articlesCount,
+                next: dispatchListArticle,
+              },
+              {
+                name: t(FEEDS),
+                pred: fp.isEqual(user.username, profile.username),
+                list: feeds,
+                count: feedsCount,
+                next: dispatchFeedArticle,
+              },
+            ]}
+          />
         </div>
       )}
     </>
